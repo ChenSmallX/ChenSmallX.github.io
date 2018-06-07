@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于 Vsocde 的配置文件问题（MacOS 篇）]]></title>
+    <url>%2F2018%2F06%2F07%2Fconfig-of-vscode-for-c-cpp-on-macos%2F</url>
+    <content type="text"><![CDATA[为什么要配置 VScodevscode 是我从 windows 到 MacOS 上都很喜欢的一款编辑器（辣鸡如我没用过其他的，例如：sublime、atom），它很强大，真的很强大，用武科大一个写 Python 的同学的说法就是：一流程序员用 vscode，二流程序员用 pycharm VScode 强大在哪里呢？摘录自网络 由于VS被评为最好用的IDE，所以出了VSC也是蛮让人期待的，看了官方使用介绍初步体验了一下，果然充满惊喜，比sublime开源，比atom更快，比webstorm更轻。 初步印象： 文件目录管理很强大 自定义配置，主题，自动保存，可以设置延迟毫秒后保存，也可以设置文件失去焦点时自动保存 集成Git，快速diff,而且修改文件后会左边会显示指示器，比如删除会显示红色，增加显示绿色，修改则显示蓝色，很方便啊！ 智能提示很强大，作为一款编辑器这是sublime和atom没法比的啊，正如知友所言，秒sublime和atom几条街，简直就是浓缩版的VS！ Go to Definition很方便,按F12自动跳转到方法定义处，如果不想跳转，直接shift+F12实现Peek功能！(泪流满面) 自带emmet支持html/jade/css/less/sass/xml，前端福音啊 自带强大的调试功能，官方说这是大亮点，不过我node写的少，还没体验到，看这界面刁刁的 作者：动感小前端链接：https://www.zhihu.com/question/29984607/answer/93300215来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 优点： 1，好看，分分钟逼死notepad++。2，加载大文件几乎秒开。3，C#支持高亮，已经编译过的还支持引用。4，JS、HTML等支持高亮和补全。5，全平台，我再也不纠结买RMBP还是XPS了。6，免费，这是必须的好评7，占用内存低，下图是我打开我正在写的开源（20M左右代码）文件夹后的内存占用，堪称神奇。 缺点： 对C#支持还不够好。不支持工程加载，只支持文件夹加载，引用比较复杂的大工程支持力度低。支持git但是对github没提供接口。debug需要手动输入参数，虽不复杂，但和VS一贯定位不符。 总结： 删除了notepad++，并将所有文本文件关联在了code上。第一版本就这么给力，后续版本私钥sublime和atom去死么。以后别收费才好。建议捆绑在VS上，（逃 作者：Caspar Cui链接：https://www.zhihu.com/question/29984607/answer/46321538来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 太多了，不一一赘述了，总之就是太强大了，用一次就知道是我想要的。 关于 C/C++ 的配置在 VScode 上写 C/C++ 需要安装支持插件，插件需要配置文件来配合它的工作。在 Windows 上的配置文件也有的，但是这篇文章就不细说了。 我个人在 MacOS 上的 C/C++配置文件需要文件 launch.json tasks.json 有一点要提一下，就是在最新的 MacOS 上已经全面禁用了 gdb 了，虽然有办法可以让 gdb 可用，但是就有与系统作对的嫌疑了。总之使用 clang 也是不错滴。 launch.jsonlaunch.json, 是控制调试程序的配置文件，确定了程序运行的路径、参数、环境配置等等。 123456789101112131415161718192021&#123; // 使用 IntelliSense 了解相关属性。 // 悬停以查看现有属性的描述。 // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387 "version": "0.2.0", "configurations": [ &#123; "name": "(lldb) Launch", "type": "cppdbg", "request": "launch", "program": "$&#123;workspaceRoot&#125;/$&#123;fileBasenameNoExtension&#125;.out", "args": [], "stopAtEntry": false, "cwd": "$&#123;workspaceFolder&#125;", "environment": [], "externalConsole": true, "MIMode": "lldb", "preLaunchTask": "clang++" &#125; ]&#125; tasks.jsontasks.json, 通过通读文件，可以看出这个配置文件指定了用于编译的指令，指令结果输出方式和控制指令的参数等，其重要性可见一斑。 123456789&#123; // See https://go.microsoft.com/fwlink/?LinkId=733558 // for the documentation about the tasks.json format "version": "0.1.0", "command": "clang++", "isShellCommand": true, "args": ["-std=c++11", "-g", "$&#123;file&#125;", "-o", "$&#123;fileBasenameNoExtension&#125;.out"], "showOutput": "always"&#125;]]></content>
+      <categories>
+        <category>programer walk</category>
+        <category>programming tools</category>
+        <category>geek work</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
+        <tag>programming tools</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[test]]></title>
     <url>%2F2018%2F06%2F06%2Ftest%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[如果这篇文章正常显示，则说明博客与发博功能正常上线。 主要特性 支持“标准”Markdown / CommonMark和Github风格的语法，也可变身为代码编辑器； 支持实时预览、图片（跨域）上传、预格式文本/代码/表格插入、代码折叠、搜索替换、只读模式、自定义样式主题和多语言语法高亮等功能； 支持ToC（Table of Contents）、Emoji表情、Task lists、@链接等Markdown扩展语法； 支持TeX科学公式（基于KaTeX）、流程图 Flowchart 和 时序图 Sequence Diagram; 支持识别和解析HTML标签，并且支持自定义过滤标签解析，具有可靠的安全性和几乎无限的扩展性； 支持 AMD / CMD 模块化加载（支持 Require.js &amp; Sea.js），并且支持自定义扩展插件； 兼容主流的浏览器（IE8+）和Zepto.js，且支持iPad等平板设备； 支持自定义主题样式； Editor.md 目录 (Table of Contents) [TOCM] [TOC] Heading 1Heading 2Heading 3Heading 4Heading 5Heading 6Heading 1 link Heading linkHeading 2 link Heading linkHeading 3 link Heading linkHeading 4 link Heading link Heading link Heading linkHeading 5 link Heading linkHeading 6 link Heading link标题（用底线的形式）Heading (underline)This is an H1This is an H2字符效果和横线等 删除线 删除线（开启识别HTML标签时）斜体字 斜体字粗体 粗体粗斜体 粗斜体 上标：X2，下标：O2 缩写(同HTML的abbr标签) 即更长的单词或短语的缩写形式，前提是开启识别HTML标签时，已默认开启 The HTML specification is maintained by the W3C. 引用 Blockquotes 引用文本 Blockquotes 引用的行内混合 Blockquotes 引用：如果想要插入空白换行即&lt;br /&gt;标签，在插入处先键入两个以上的空格然后回车即可，普通链接。 锚点与链接 Links普通链接 普通链接带标题 直接链接：https://github.com 锚点链接 GFM a-tail link @pandao @pandao 多语言代码高亮 Codes行内代码 Inline code执行命令：npm install marked 缩进风格即缩进四个空格，也做为实现类似&lt;pre&gt;预格式化文本(Preformatted Text)的功能。 &lt;?php echo &quot;Hello world!&quot;; ?&gt; 预格式化文本： | First Header | Second Header | | ------------- | ------------- | | Content Cell | Content Cell | | Content Cell | Content Cell | JS代码 123456789101112131415161718192021222324252627282930313233343536function test()&#123; console.log("Hello world!");&#125; (function()&#123; var box = function()&#123; return box.fn.init(); &#125;; box.prototype = box.fn = &#123; init : function()&#123; console.log('box.init()'); return this; &#125;, add : function(str)&#123; alert("add", str); return this; &#125;, remove : function(str)&#123; alert("remove", str); return this; &#125; &#125;; box.fn.init.prototype = box.fn; window.box =box;&#125;)();var testBox = box();testBox.add("jQuery").remove("jQuery"); HTML代码 HTML codes12345678910&lt;!DOCTYPE html&gt;&lt;html&gt; &lt;head&gt; &lt;mate charest="utf-8" /&gt; &lt;title&gt;Hello world!&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;Hello world!&lt;/h1&gt; &lt;/body&gt;&lt;/html&gt; 图片 ImagesImage: Follow your heart. 图为：厦门白城沙滩 图片加链接 (Image + Link)： 图为：李健首张专辑《似水流年》封面 列表 Lists无序列表（减号）Unordered Lists (-) 列表一 列表二 列表三 无序列表（星号）Unordered Lists (*) 列表一 列表二 列表三 无序列表（加号和嵌套）Unordered Lists (+) 列表一 列表二 列表二-1 列表二-2 列表二-3 列表三 列表一 列表二 列表三 有序列表 Ordered Lists (-) 第一行 第二行 第三行 GFM task list [x] GFM task list 1 [x] GFM task list 2 [ ] GFM task list 3 [ ] GFM task list 3-1 [ ] GFM task list 3-2 [ ] GFM task list 3-3 [ ] GFM task list 4 [ ] GFM task list 4-1 [ ] GFM task list 4-2 绘制表格 Tables 项目 价格 数量 计算机 $1600 5 手机 $12 12 管线 $1 234 First Header Second Header Content Cell Content Cell Content Cell Content Cell First Header Second Header Content Cell Content Cell Content Cell Content Cell Function name Description help() Display the help window. destroy() Destroy your computer! Left-Aligned Center Aligned Right Aligned col 3 is some wordy text $1600 col 2 is centered $12 zebra stripes are neat $1 Item Value Computer $1600 Phone $12 Pipe $1 特殊符号 HTML Entities Codes&copy; &amp; &uml; &trade; &iexcl; &pound;&amp; &lt; &gt; &yen; &euro; &reg; &plusmn; &para; &sect; &brvbar; &macr; &laquo; &middot; X&sup2; Y&sup3; &frac34; &frac14; &times; &divide; &raquo; 18&ordm;C &quot; &apos; Emoji表情 :smiley: Blockquotes :star: GFM task lists &amp; Emoji &amp; fontAwesome icon emoji &amp; editormd logo emoji :editormd-logo-5x: [x] :smiley: @mentions, :smiley: #refs, links, formatting, and tags supported :editormd-logo:; [x] list syntax required (any unordered or ordered list supported) :editormd-logo-3x:; [x] [ ] :smiley: this is a complete item :smiley:; [ ] []this is an incomplete item test link :fa-star: @pandao; [ ] [ ]this is an incomplete item :fa-star: :fa-gear:; [ ] :smiley: this is an incomplete item test link :fa-star: :fa-gear:; [ ] :smiley: this is :fa-star: :fa-gear: an incomplete item test link; 反斜杠 Escape*literal asterisks* 科学公式 TeX(KaTeX)E=mc^2行内的公式E=mc^2行内的公式，行内的E=mc^2公式。 \(\sqrt{3x-1}+(1+x)^2\)\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))多行公式： 12345\displaystyle\left( \sum\_&#123;k=1&#125;^n a\_k b\_k \right)^2\leq\left( \sum\_&#123;k=1&#125;^n a\_k^2 \right)\left( \sum\_&#123;k=1&#125;^n b\_k^2 \right) 123456789\displaystyle \frac&#123;1&#125;&#123; \Bigl(\sqrt&#123;\phi \sqrt&#123;5&#125;&#125;-\phi\Bigr) e^&#123; \frac25 \pi&#125;&#125; = 1+\frac&#123;e^&#123;-2\pi&#125;&#125; &#123;1+\frac&#123;e^&#123;-4\pi&#125;&#125; &#123; 1+\frac&#123;e^&#123;-6\pi&#125;&#125; &#123;1+\frac&#123;e^&#123;-8\pi&#125;&#125; &#123;1+\cdots&#125; &#125; &#125; &#125; 123f(x) = \int_&#123;-\infty&#125;^\infty \hat f(\xi)\,e^&#123;2 \pi i \xi x&#125; \,d\xi 绘制流程图 Flowchart12345678st=&gt;start: 用户登陆op=&gt;operation: 登陆操作cond=&gt;condition: 登陆成功 Yes or No?e=&gt;end: 进入后台st-&gt;op-&gt;condcond(yes)-&gt;econd(no)-&gt;op 绘制序列图 Sequence Diagram1234Andrew-&gt;China: Says Hello Note right of China: China thinks\nabout it China--&gt;Andrew: How are you? Andrew-&gt;&gt;China: I am good thanks! End]]></content>
       <categories>
         <category>test</category>
       </categories>
@@ -12,18 +26,18 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2018%2F06%2F06%2Fhello-world%2F</url>
+    <title><![CDATA[Hello Hexo]]></title>
+    <url>%2F2018%2F06%2F06%2Fhello-hexo%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[gallery]]></title>
-    <url>%2Fgallery%2Findex.html</url>
-    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[categories]]></title>
     <url>%2Fcategories%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[gallery]]></title>
+    <url>%2Fgallery%2Findex.html</url>
     <content type="text"></content>
   </entry>
   <entry>
