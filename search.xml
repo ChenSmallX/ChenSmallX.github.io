@@ -74,14 +74,14 @@
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
   <entry>
+    <title><![CDATA[about-me]]></title>
+    <url>%2Fabout-me%2Findex.html</url>
+    <content type="text"><![CDATA[Readme：萌新的小博客_I’m a new bloger关于我 中学毕业于海南中学。 本科在读于武汉理工大学-计算机科学与技术学院-软件工程专业。 爱好写代码（虽然很菜），折腾，转专业后没有时间玩游戏了。 联系我QQ：641751205（请添加备注）邮箱：smallx@foxmail.com新浪微博：@SmallX努力学画Twitter:陈可@SmallX_51441战网ID：SmallX#51441Steam：smaller_x My blog前博客用 Typecho 程序搭建于大二，起步太晚。托管于VirMach_VPS上。 本博客使用 Hexo 搭建并托管于 Github@Microsoft 仓库上。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[categories]]></title>
     <url>%2Fcategories%2Findex.html</url>
     <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[about-me]]></title>
-    <url>%2Fabout-me%2Findex.html</url>
-    <content type="text"><![CDATA[Readme：萌新的小博客_I’m a new bloger 关于我 中学毕业于海南中学. 本科在读与武汉理工大学.计算机科学与技术学院.软件工程专业。 爱好写代码（虽然很菜），折腾，转专业后没有时间玩游戏了。 联系我QQ：641751205（请添加备注）邮箱：smallx@foxmail.com新浪微博：@SmallX努力学画Twitter:陈可@SmallX_51441战网ID：SmallX#51441Steam：smaller_x 此博客用 Typecho 程序搭建于大二，起步太晚。托管于VirMach_VPS上。]]></content>
   </entry>
   <entry>
     <title><![CDATA[gallery]]></title>
