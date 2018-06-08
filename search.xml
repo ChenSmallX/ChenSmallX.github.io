@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CentOS 初步设置以及 C/C++ 开发环境部署]]></title>
+    <url>%2F2018%2F06%2F08%2Fsettings-for-a-new-or-minimal-centos%2F</url>
+    <content type="text"><![CDATA[CentOS 简介摘自维基百科： CentOS（Community Enterprise Operating System）是Linux发行版之一，它是来自于Red Hat Enterprise Linux依照开放源代码规定发布的源代码所编译而成。由于出自同样的源代码，因此有些要求高度稳定性的服务器以CentOS替代商业版的Red Hat Enterprise Linux使用。两者的不同，在于CentOS并不包含封闭源代码软件。CentOS 对上游代码的主要修改是为了移除不能自由使用的商标。2014年，CentOS宣布与Red Hat合作，但CentOS将会在新的委员会下继续运作，并不受RHEL的影响。 CentOS和RHEL一样，都可以使用Fedora EPEL来补足软件。 支持的处理器Intel x86及兼容架构（32位）（CentOS 7 的32位版本由AltArch SIG提供支持Intel Itanium（64位）（新版本不再支持）x86-64 (AMD64和Intel 64，64位）PowerPC G3及G4（测试版）（新版本不再支持）IBM的eServer z系列及S/390大型主机（新版本不再支持）龙芯（Loongson）采用的MIPS架构（32位、64位 (非官方支持 )AArch64（ARM架构中的ARMv8或ARM64，64位）（由AltArch SIG提供支持）另外有限度的支持两款旧型处理器：AlphaSPARC（测试版） 获取官方网站 CentOS Project 官方下载站点 Download CentOS 阿里云开源镜像占 OPSX 为什么要用 CentOS？无论是作为一个系统运营商，还是普通的运维人员，在很长的一段时间里，我们需要在多种大型系统中找到一个可靠的，可预测的系统，我们需要从世界上最强大的软件供应商和开源项目中获得强有力的支持。对于那些最常用的系统，我们需要文档，工具和全球性资源。 正因如此，RedHat / CentOS系列发行版正是我们的选择。他们能够满足以上所有需求，而且问题相对较少、长期稳定，这使得我们能够为成千上万的运行了不同配置、服务和应用的系统提供世界级的维护。 RedHat Enterprise Linux (RHEL)是黄金标准的企业发行版。它每五年左右更新一次，在系统的稳定性，前瞻性和安全性上有着极大的优势。每当新的主版本发行后，比如 5.x亦或最近的6.x，所有版本和代码都将保留不变，只有安全问题或是主要的bug，例如后门，端口之类的问题，会通过发布新的子版本来修复。 CentOS是RHEL发行版对应的开源版本，通常在RedHat的发布后就会很快发行。我们使用CentOS的原因在于RHEL发行版的标准支持服务费用非常高，大约每台服务器800美元左右，对于我们很多拥有数十台甚至上百台服务器的用户来说，这是必须要控制的成本。 RHEL/CentOS系统有两个潜在的问题首先，一旦确定了主版本，,除了安全问题和严重故障会被修复以外，其他内容将不会做任何改变。这虽然对稳定性有好处，但是对许多服务不利。比如MySQL和PHP服务，它们在这五年的CentOS/RHEL主版本发布周期中会进行繁重的开发和大量的修改。例如，MySQL5.0 是当前RHEL/CentOS主版本所默认使用的版本，但是当前MySQL已经更新到5.1和5.5版本了。 幸运的是，这个问题被Yum软件包管理器轻易地解决了。如此以来，那些主要的软件，例如当前RHEL/CentOS中实际的组件，包括内核和所有工具等仍然来自发行版， 但是那些附加的软件，例如Nginx，Apache，PHP，Java和MySQL等等来自更新的软件源例如Fedora； 或者直接从开发商获取更新的版本例如MySQL。 在我们这里，我们有自己专用的安装镜像来全自动的处理所有这些事情。 其次，CentOS的发行会滞后于RedHat的发行，包括关键的补丁和修复。这在RHEL 6.x的发行周期中尤为显著。但是根据我们的经验，这没什么好担心的，对我们来说永远不会成为问题。 很多人询问我们为什么不用基于Debian的系统，例如Debian或者Ubuntu服务器。如果在别无选择的情况下，我们的确会支持这个建议，但是根据我们的经验来看，这些系统并不如RHEL/CentOS来的稳定和可靠。 我们认为，这在某种程度上是由于他们过快的发展和各个版本、组合之间较少的测试且不成熟所导致的。然而尽管他们非常流行，但是主要的服务商和项目都仍然首选RHEL/CentOS系统，因为这样他们就可以为企业顾客提供服务，（对Oracle和MySQL更是如此）。除此之外，基于Debian的系统有许多内核和稳定性问题，尤其是在我们的云计算服务中。 对我们而言，唯一使用Debian/Ubuntu的原因是：“它们能够为一个系统提供必要的特殊服务时，尤其是当一些驱动程序或者一些IO 子系统需要一种新的内核的时候”。例如，ext4 文件系统或在最近的内核中日志的改变等；现在，所有这一切都包含在了RHEL/CentOS6.x中。 当然，多数Linux开发者都使用的是Ubuntu的桌面版，而且可以理解的是，他们更倾向在开发生产时使用相同的系统，并且还能使用很多有趣的工具。但总体上来说，我们依然认为RHEL/CentOS是一个更优越的部署平台，并且已经有十多个客户成功地转向使用CentOS 作为生产环境并且没有任何问题，但这仍然是艰巨的任务。 总的来说，你将更乐于看到一个良好管理的CentOS 系统。我们有成千上万台服务器使用CentOS平台，而每年平均只有一台服务器崩溃。我们也很难想象它竟如此罕见，所以，挑一个优秀、迅捷、可靠的平台吧！ 对于新装 CentOS 的配置以及 C/C++ 开发环境配置对于我来说在拿到一台新的 VPS 的时候能 ping 上 baidu.com 就直接跳过前三步了。hhh 配置主机名和hosts解析 1vi /etc/sysconfig/network 修改 hostname=server.domain.com 1vi /etc/hosts 添加 127.0.0.1 server.domain.com重启系统 reboot 配置ip 1vi /etc/sysconfig/network-scripts/ifcfg-eth0 修改onboot=yes修改bootproto=static 添加IPADDR=192.168.1.100NETMASK=255.255.255.0BROADCAST=192.168.1.255NETWORK=192.168.1.0GATEWAY=192.168.1.1 配置dns 1vi /etc/resolv.conf nameserver 192.168.1.1 12service network restart #重启网络ping baidu.com #看是否连通 安装 C/C++ &amp; Makefile 开发环境 1234567yum install vim #强大的Vi编辑器，类似于Vi的文本编辑器，不过在Vi的基础上增加了很多新的特性yum install wget #从网络上自动下载文件的工具，支持通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载yum install gcc #一套由GNU工程开发的支持多种编程语言的编译器yum install cppyum install gcc-c++yum install make #makefileyum install gdb #调试工具 添加epel源 123wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpmrpm -ivh epel-release-latest-6.noarch.rpmrpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6 设置时区为亚洲/上海。系统时间和硬件时间校准。 1234cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtimeyum -y install ntpntpdate cn.pool.ntp.org #时钟同步hwclock --systohc #设置硬件时间和系统时间一致并校准]]></content>
+      <categories>
+        <category>geek&#39;s work</category>
+        <category>play with VPS</category>
+        <category>Linux learning</category>
+      </categories>
+      <tags>
+        <tag>VPS</tag>
+        <tag>Linux</tag>
+        <tag>CentOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[VPS管理面板：VPSMate]]></title>
+    <url>%2F2018%2F06%2F08%2FVPS-panel-VPSMate%2F</url>
+    <content type="text"><![CDATA[VPSMate 面板之前介绍过宝塔面板的安装和使用，也提到过VPSMate这个轻量级的面板，这次就把它的安装方法和使用写一下。 vpsmate是一款相当好用的 vps 管理面板，缺点是没有多用户管理，其他就没任何缺点了。个人使用的话，是相当好的。内存占用非常小，内存占用量约为 20MB，不使用时不会占用 CPU 资源。功能强大。 vpsmate 目前在 CentOS/Redhat 的 5.4+、6.x 版本下测试通过，同时支持 32 位和 64 位版本。 能够快速安装常见的网站系统，包括 phpMyAdmin、WordPress、PHPWind 。 安装脚本123yum install wget python epel-release -ywget http://www.vpsmate.org/tools/install.pypython install.py 安装过程会让你输入用户名跟密码，可以直接回车，这样用户名跟密码均默认为 admin，安装好用http://ip地址:8888/ 登录后会让我们修改用户名跟密码，建立立即修改用户名跟密码。 运行浏览器登录 1http://ip地址:8888/]]></content>
+      <categories>
+        <category>geek&#39;s work</category>
+        <category>play with VPS</category>
+      </categories>
+      <tags>
+        <tag>VPS</tag>
+        <tag>VPS panel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[VPS网络优化：net-speeder]]></title>
     <url>%2F2018%2F06%2F08%2Fnet-optimize-for-VPS-net-speeder%2F</url>
     <content type="text"><![CDATA[net-speeder为什么会有 net-speeder当使用国外服务器时，经常会发现，下载速度只有十几k。平时可能不太注意，认为服务器带宽不足，或者自己使用的宽带不给力，其实很有可能原因并不在此。 由于光速的局限性，延迟会比较高（即使光沿直线传播，太平洋一个往返也要一百多毫秒）。并且由于距离较远，途径路由跳数较多，并且网络拥堵的原因。经常会发生丢包的情况。 对于平时使用最广泛的TCP协议来讲，发送端发出包后，接收端会回复ACK，表示自己收到了。用这种机制来保证可靠性。但对于高延迟链路来讲，如果每发送一个包都等待应答，那么大部分时间都在等待数据包到达，而链路则空置了。为此一般会采用滑动窗口技术。即在窗口满之前，发送端一直发送包，然后收到应答后将确认收到的包从窗口中移除。这样可以提高链路利用率。 TCP还有一个特性则是拥塞控制。当发送端检测到链路发生丢包时，则会主动缩小窗口大小以减慢发送速度，避免拥塞。不过对于跳数较多的链路来讲，只要有一个路由不够稳定丢包，就会被发送端判断为拥塞，从而影响网络速度。 为了解决丢包问题，最简单粗暴的方法就是双倍发送，即同一份数据包发送两份。这样的话在服务器带宽充足情况下，丢包率会平方级降低。 这种方式下，直接优点是降低丢包率，直接缺点是耗费双倍流量。一些延伸影响是更容易触发快速恢复逻辑，避免了丢包时窗口缩减过快。一定程度也能提高网络速度。 测试情况（别人的）最近比较忙，空闲时间做了一个最简单的程序，试用效果很好，在一台VPS上测试后发现，未开启时单线程下载、ssh管道速度在十几K级别。开启后可以达到平均300KB+的速度。效果非常明显。但对于不加速就可以跑满带宽的类型来讲（多线程下载），开启后反而由于多出来的无效流量，导致速度减半。所以对于多线程/高速链路，这个方案是不适合的。 目前版本是最简单的逻辑，未来会进行细化（主动触发快速恢复、快速重传等），降低流量浪费，提升加速效果。 目前程序起名net-speeder，相对于修改协议栈来讲，由于后者需要重新升级编译内核，使用用户态程序部署更方便，稳定性更高，兼容性更好。缺点则是性能开销稍大和自由度有损失。总体比较起来，个人使用还是使用用户态程序更合适一些，特别是在虚拟机中使用（OpenVZ，LXC等虚拟机无法自己定制内核）。 安装脚本 安装脚本：CentOS 12wget --no-check-certificate https://gist.github.com/LazyZhu/dc3f2f84c336a08fd6a5/raw/d8aa4bcf955409e28a262ccf52921a65fe49da99/net_speeder_lazyinstall.shsh net_speeder_lazyinstall.sh 安装脚本：Debian / Ubuntu 123wget --no-check-certificate https://raw.githubusercontent.com/tennfy/debian_netspeeder_tennfy/master/debian_netspeeder_tennfy.shchmod a+x debian_netspeeder_tennfy.shbash debian_netspeeder_tennfy.sh 启动： 1nohup /usr/local/net_speeder/net_speeder venet0 "ip" &gt;/dev/null 2&gt;&amp;1 &amp; 设置开机启动 1echo 'nohup /usr/local/net_speeder/net_speeder venet0 "ip" &gt;/dev/null 2&gt;&amp;1 &amp; ' &gt;&gt; /etc/rc.local 记录完毕]]></content>
@@ -15,6 +43,7 @@
       </categories>
       <tags>
         <tag>VPS</tag>
+        <tag>VPS panel</tag>
       </tags>
   </entry>
   <entry>
@@ -38,9 +67,9 @@
         <category>play with VPS</category>
       </categories>
       <tags>
+        <tag>VPS</tag>
         <tag>shadowsocks/R</tag>
         <tag>翻墙</tag>
-        <tag>VPS</tag>
       </tags>
   </entry>
   <entry>
