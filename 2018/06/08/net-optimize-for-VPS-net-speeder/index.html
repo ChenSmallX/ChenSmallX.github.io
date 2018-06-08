@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="VPS网络优化：net-speeder"><meta name="keywords" content=""><meta name="author" content="Small Xeon,undefined"><meta name="copyright" content="Small Xeon"><title>VPS网络优化：net-speeder | Case of Xeon</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.4"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="dns-prefetch" href="https://unpkg.com"><link rel="stylesheet" type="text/css" href="https://unpkg.com/gitment@latest/style/default.css"><script src="https://unpkg.com/gitment@latest/dist/gitment.browser.js"></script><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-120435702-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  localSearch: {"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}"},"path":"search.xml"}
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#net-speeder"><span class="toc-number">1.</span> <span class="toc-text">net-speeder</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么会有-net-speeder"><span class="toc-number">1.1.</span> <span class="toc-text">为什么会有 net-speeder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试情况（别人的）"><span class="toc-number">1.2.</span> <span class="toc-text">测试情况（别人的）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装脚本"><span class="toc-number">2.</span> <span class="toc-text">安装脚本</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://wx2.sinaimg.cn/large/907f0dd8gy1fkumyytkjnj20e80e8q41.jpg"></div><div class="author-info__name text-center">Small Xeon</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/ChenSmallX" target="_blank">Follow me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">7</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">6</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">5</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links of Friends</div><a class="author-info-links__name text-center" href="blog.chensmallx.top" target="_blank">SmallXeon</a><a class="author-info-links__name text-center" href="sky19960802.github.io" target="_blank">SKT's Blog</a><a class="author-info-links__name text-center" href="ssparkluo.sxl.cn" target="_blank">Sspark</a><a class="author-info-links__name text-center" href="fuhy.me" target="_blank">Fuhy's blog</a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container" style="background-image: url(true)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Case of Xeon</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">VPS网络优化：net-speeder</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-08</time><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">918</span><span class="post-meta__separator">|</span><span>Reading time: 3 min</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div id="post-content"><h1 id="net-speeder"><a href="#net-speeder" class="headerlink" title="net-speeder"></a>net-speeder</h1><h2 id="为什么会有-net-speeder"><a href="#为什么会有-net-speeder" class="headerlink" title="为什么会有 net-speeder"></a>为什么会有 net-speeder</h2><p>当使用国外服务器时，经常会发现，下载速度只有十几k。平时可能不太注意，认为服务器带宽不足，或者自己使用的宽带不给力，其实很有可能原因并不在此。</p>
+<p>由于光速的局限性，延迟会比较高（即使光沿直线传播，太平洋一个往返也要一百多毫秒）。并且由于距离较远，途径路由跳数较多，并且网络拥堵的原因。经常会发生丢包的情况。</p>
+<p>对于平时使用最广泛的TCP协议来讲，发送端发出包后，接收端会回复ACK，表示自己收到了。用这种机制来保证可靠性。但对于高延迟链路来讲，如果每发送一个包都等待应答，那么大部分时间都在等待数据包到达，而链路则空置了。为此一般会采用滑动窗口技术。即在窗口满之前，发送端一直发送包，然后收到应答后将确认收到的包从窗口中移除。这样可以提高链路利用率。</p>
+<p>TCP还有一个特性则是拥塞控制。当发送端检测到链路发生丢包时，则会主动缩小窗口大小以减慢发送速度，避免拥塞。不过对于跳数较多的链路来讲，只要有一个路由不够稳定丢包，就会被发送端判断为拥塞，从而影响网络速度。</p>
+<p><strong>为了解决丢包问题，最简单粗暴的方法就是双倍发送，即同一份数据包发送两份。这样的话在服务器带宽充足情况下，丢包率会平方级降低。</strong></p>
+<p>这种方式下，直接优点是降低丢包率，直接缺点是耗费双倍流量。一些延伸影响是更容易触发快速恢复逻辑，避免了丢包时窗口缩减过快。一定程度也能提高网络速度。</p>
+<h2 id="测试情况（别人的）"><a href="#测试情况（别人的）" class="headerlink" title="测试情况（别人的）"></a>测试情况（别人的）</h2><p>最近比较忙，空闲时间做了一个最简单的程序，试用效果很好，在一台VPS上测试后发现，未开启时单线程下载、ssh管道速度在十几K级别。开启后可以达到平均300KB+的速度。效果非常明显。但对于不加速就可以跑满带宽的类型来讲（多线程下载），开启后反而由于多出来的无效流量，导致速度减半。所以对于多线程/高速链路，这个方案是不适合的。</p>
+<p>目前版本是最简单的逻辑，未来会进行细化（主动触发快速恢复、快速重传等），降低流量浪费，提升加速效果。</p>
+<p>目前程序起名net-speeder，相对于修改协议栈来讲，由于后者需要重新升级编译内核，使用用户态程序部署更方便，稳定性更高，兼容性更好。缺点则是性能开销稍大和自由度有损失。总体比较起来，个人使用还是使用用户态程序更合适一些，特别是在虚拟机中使用（OpenVZ，LXC等虚拟机无法自己定制内核）。</p>
+<hr>
+<h1 id="安装脚本"><a href="#安装脚本" class="headerlink" title="安装脚本"></a>安装脚本</h1><ul>
+<li>安装脚本：<br>CentOS</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://gist.github.com/LazyZhu/dc3f2f84c336a08fd6a5/raw/d8aa4bcf955409e28a262ccf52921a65fe49da99/net_speeder_lazyinstall.sh</span><br><span class="line">sh net_speeder_lazyinstall.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装脚本：<br>Debian / Ubuntu</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/tennfy/debian_netspeeder_tennfy/master/debian_netspeeder_tennfy.sh</span><br><span class="line">chmod a+x debian_netspeeder_tennfy.sh</span><br><span class="line">bash debian_netspeeder_tennfy.sh</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>启动：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup /usr/<span class="built_in">local</span>/net_speeder/net_speeder venet0 <span class="string">"ip"</span> &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置开机启动</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'nohup /usr/local/net_speeder/net_speeder venet0 "ip" &gt;/dev/null 2&gt;&amp;1 &amp; '</span> &gt;&gt; /etc/rc.local</span><br></pre></td></tr></table></figure>
+<hr>
+<p>记录完毕</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Small Xeon</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://blog.chensmallx.top/2018/06/08/net-optimize-for-VPS-net-speeder/">http://blog.chensmallx.top/2018/06/08/net-optimize-for-VPS-net-speeder/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://wx3.sinaimg.cn/large/907f0dd8gy1fs1jgjlu5qj20890890ty.jpg"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://wx3.sinaimg.cn/large/907f0dd8gy1fs1jgrg3dhj20cu0cs76d.jpg"><div class="post-qr-code__desc">微信打赏</div></div></div><div class="social-share" data-disabled="douban, linkedin, diandian, tencent"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script><nav id="pagination"><div class="next-post pull-right"><a href="/2018/06/08/VPS-panel-bt/"><span>VPS管理面板：宝塔面板</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitment-container"></div><script>var gitment = new Gitment({
+  owner: 'ChenSmallX',
+  repo: 'ChenSmallX.github.io',
+  oauth: {
+    client_id: 'b71971a064d5b6b71a75',
+    client_secret: '47c8048557f6cec9d792a3270a4ab8bfd8fc8177'
+  }
+})
+gitment.render('gitment-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2017 - 2018 By Small Xeon</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.5.4"></script><script src="/js/fancybox.js?version=1.5.4"></script><script src="/js/sidebar.js?version=1.5.4"></script><script src="/js/copy.js?version=1.5.4"></script><script src="/js/fireworks.js?version=1.5.4"></script><script src="/js/transition.js?version=1.5.4"></script><script src="/js/scroll.js?version=1.5.4"></script><script src="/js/head.js?version=1.5.4"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
