@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JAVA_Program_Language:个人遇到的 java.util.NoSuchElementException 异常以及问题所咋与解决方法]]></title>
+    <url>%2F2018%2F06%2F13%2Fjavaprogramlanguage-personal-encountered-javautilnosuchelementexception-anomalies-and-problems-and-solutions%2F</url>
+    <content type="text"><![CDATA[下面是输出的异常信息 12345678java.util.NoSuchElementExceptionat java.util.Scanner.throwFor(Scanner.java:862)at java.util.Scanner.next(Scanner.java:1485)at java.util.Scanner.nextInt(Scanner.java:2117)at java.util.Scanner.nextInt(Scanner.java:2076)at User.Operator.main(Operator.java:71)at User.Main.login(Main.java:63)at User.Main.main(Main.java:18) 在正常的输出中，在函数结束的位置还有一句 1Exception in thread "main" 索性让我们看看代码 123456789101112131415161718192021222324252627282930313233343536373839404142434445public boolean downloadFile() throws SQLException, IOException&#123; try &#123; Scanner input = new Scanner(System.in); System.out.print("输入文件编号："); String fileID = input.next(); input.close(); Doc fileDoc = DataProcessing.searchDoc(fileID); File initedFile = new File(this.uploadPath+fileDoc.getFilename()); File creatFile = new File(this.downloadPath+fileDoc.getFilename()); try &#123; creatFile.createNewFile(); &#125; catch (IOException ioe)&#123; System.out.println("下载目录出错（无法创建新文件）！"); throw ioe; &#125; try &#123; FileInputStream fis = new FileInputStream(initedFile); FileOutputStream fos = new FileOutputStream(creatFile); byte [] temp = new byte[(int)initedFile.length()]; fis.read(temp); fos.write(temp); fis.close(); fos.close(); &#125; catch (FileNotFoundException notFound) &#123; System.out.println("未找到文件！"); throw notFound; &#125; catch (IOException ioe) &#123; System.out.println("io接口错误！"); throw ioe; &#125; System.out.println("下载文件... ..."); &#125; catch (SQLException sqle) &#123; System.out.println("sqle");// 这句用于检查是否出错 throw sqle; &#125; catch (IOException ioe) &#123; System.out.println("ioe");// 同上 throw ioe; &#125; System.out.println("下载文件成功！"); return true;&#125; 此方法用于上传文件，在main函数中使用方法如下： 12345678910case 3: try &#123; this.downloadFile(); //System.out.println("到了这里"); &#125; catch (SQLException sqle) &#123; System.out.println("发生错误：数据库异常("+sqle+")"); &#125; catch (IOException ioe) &#123; System.out.println("发生错误：IO接口异常 ("+ioe+")"); &#125; break; 在测试过程中，各种用于标记完成的println()都输出了，也未有捕捉到异常。在查找资料的时候，在一个百度知道中找到了答案。引用：百度知道在最佳回答中，答主说到了是Scanner对象重复使用close()方法导致的，但是在问题中题主和答主未有讨论清楚的是，这里两次使用close()方法分别是不同的Scanner对象，出现错误不应该。 解决方法：将语句 1input.close(); 删除即可。 我在写这篇博文的时候也是突然灵光一闪，意识到一个严重的问题。详细即为：在downloadFile()方法内使用的Scanner对象和main()方法内使用的Scanner对象，声明语句都为： 1Scanner input = new Scanner(System.in); 即两个Scanner对象指向的内存都是命令行输入端，所以实际上两者是同一个对象（在JAVA虚拟机层面，而非软件中）。所以问题解决，原因找到，皆大欢喜！]]></content>
+      <categories>
+        <category>programer walk</category>
+        <category>JAVA programming language</category>
+      </categories>
+      <tags>
+        <tag>Programming language</tag>
+        <tag>JAVA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[VPS网络优化：锐速 [OpenVZ架构勿用]]]></title>
     <url>%2F2018%2F06%2F09%2Fnet-optimize-for-VPS-serverspeeder%2F</url>
     <content type="text"><![CDATA[锐速 serverspeeder锐速serverspeeder是一款TCP网络加速软件，能在Linux系统和Windows系统的服务器中安装，安装后能启到提高网络连接稳定性、带宽利用率、低访问失败率等作用，从而提高服务器网络访问速度。锐速并非实际增大服务器带宽，只是提高网络的稳定性和利用率而已。蜗牛在为服务器安装锐速后，测试服务器全球下载、本地上传下载速度变化不大；但使用超级ping发现，丢包现象明显减少。另外一个明显变化就是在同一VPS安装科学上网工具观看YouTube，没安装锐速前观看YouTube 720P视频非常不流畅，经常会出现缓冲现象；而安装锐速后能流畅观看YouTube 720P视频。 锐速破解版锐速破解版linux一键自动安装包是由@91yun发布的，无限带宽版。锐速只支持在XEN和KVM虚拟技术价格的VPS中安装，不支持在OpenVZ虚拟技术架构的VPS安装，推荐在KVM VPS中安装。目前此一键安装包已支持在CentOS，ubuntu和debian系统中安装，而且能自动匹配服务器内核是否支持安装，如果支持就会全自动下载安装，无需任何操作；如果内核不支持，会在安装过程中提示可选内核。 目前锐速ServerSpeeder无限带宽破解版支持的内核有： CentOS-6.8：2.6.32-642.el7.x86_64 CentOS-7.2：3.10.0-327.el7.x86_64 CentOS：4.4.0-x86_64-linode63 Ubuntu_14.04：4.2.0-35-generic Debian_8：3.16.0-4-amd64 文章内提供的是 破解版，可以直接使用脚本安装 安装 123wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/serverspeeder/master/serverspeeder-all.sh &amp;&amp; bash serverspeeder-all.sh#chmod +x serverspeeder -all.sh#./serverspeeder-all.sh 卸载 1chattr -i /serverspeeder/etc/apx* &amp;&amp; /serverspeeder/bin/serverSpeeder.sh uninstall -f]]></content>
@@ -126,6 +139,11 @@
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
   <entry>
+    <title><![CDATA[categories]]></title>
+    <url>%2Fcategories%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[Readme：萌新的小博客_I'm a new bloger]]></title>
     <url>%2Fabout-me%2Findex.html</url>
     <content type="text"><![CDATA[关于我中学毕业于海南中学。本科在读于武汉理工大学-计算机科学与技术学院-软件工程专业。爱好写代码（虽然很菜），折腾，转专业后没有时间玩游戏了。 联系我QQ：641751205（请添加备注）邮箱：smallx@foxmail.com新浪微博：@SmallX努力学画Twitter:陈可@SmallX_51441战网ID：SmallX#51441Steam：smaller_x My blog前博客用 Typecho 程序搭建于大二，起步太晚。托管于VirMach_VPS上。 本博客使用 Hexo 搭建并托管于 Github@Microsoft 仓库上。]]></content>
@@ -134,11 +152,6 @@
     <title><![CDATA[gallery]]></title>
     <url>%2Fgallery%2Findex.html</url>
     <content type="text"><![CDATA[gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[categories]]></title>
-    <url>%2Fcategories%2Findex.html</url>
-    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[tags]]></title>
