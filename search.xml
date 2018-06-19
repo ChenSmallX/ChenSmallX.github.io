@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Digital Ocean 上 CentOS 更换内核并开启 BBR 魔改版加速小记]]></title>
+    <url>%2F2018%2F06%2F19%2Fdigitalocean-centos6-enable-bbr-to-upspeed%2F</url>
+    <content type="text"><![CDATA[依稀记得全年在 github 上完成了学生认证，获得了学生福利，然而里面的东西却一点都没用上。包括各种各样的开发者工具，像 atom 的授权啊（其实不知道开源的东西为什么还包含在学生福利包中），网页开发工具啊，域名啊之类的。对于我来说这些都没太大用处，除了 DO 的50刀额度以外。 然而，以前也折腾过学生包，不过不知为何工单不通过，并没有获得50刀的额度。（或许是我当初英语太差的缘故，表达不清晰导致） 前几天在物色 VPS 的时候又想到了这茬事情，于是就开始折腾了起来。 使用 BBR 前提与 net-speeder 相同，不能为 OpenVZ 架构的 VPS。若是使用 CentOS 的话推荐使用6，当然7也行，但是加速效果不如6好。 激活 Digitl Ocean 的 github 学生包进入 DO 的 Billing 页面，寻找 promo code 的选项，然而并没有找到，看来是 DO 的网站改版了。以前教程上的做法都不适用了，于是开启工单大法。 页面滑到最下面，点击 Support 进入支持页面。在上面的一堆选项中的各种问题查找是无法解决 github 学生包激活的问题的，要选择下方的 get more help 中的Contect Support 提交工单进行人工服务。 提交工单申请学生额度创建一个 Billing 分类的工单，问题选择 promo code and creditSubject 一栏中填写工单的主题，比如我填写的是 Student promo code from my github pack而在问题一栏中则不填写问题描述中要语言清晰，语气正式并且有礼貌，说明问题的来龙去脉以及自己的要求。例如我写的是 Hello staff,I’m a student from China, and I’ve got my student pack on github. But there is a puzzling question that no input box on my billing tag.And my code is: #FCK#jd**-1aa9f47a (此处做打码处理)Could you help me activate the code to my account? I’ll appreciate it if you made this for me!thanks! 一般效果如下： 工单发过去之后，大概十分钟就收到回复了，并且账户额度增加了50刀，白嫖 DO 一年是预订了 hhh 启用 BBR 内核加速 SS/SSRBBR摘自网络 在使用Google BBR之前，我们首先要了解它是什么。了解计算机网络的人都知道，在TCP连接中，由于需要维持连接的可靠性，引入了拥塞控制和流量管理的方法。Google BBR就是谷歌公司提出的一个开源TCP拥塞控制的算法。在最新的linux 4.9及以上的内核版本中已被采用。对于该算法的分析，这里有一篇文章值得一读。在本人的网络环境（武汉电信20MB）测试下，ss不经过其它的任何的优化就能轻松的跑满带宽。（speedtest测试或fast测试）。由于Google BBR非常新，任何低于4.9的linux内核版本都需要升级到4.9及以上才能使用，故若VPS本身内核版本较低的话，只有KVM架构的VPS才能使用本教程升级内核并使用，openvz的VPS用户若内核版本较低则无法使用！最近，Google 开源了其 TCP BBR 拥塞控制算法，并提交到了 Linux 内核，从 4.9 开始，Linux 内核已经用上了该算法。根据以往的传统，Google 总是先在自家的生产环境上线运用后，才会将代码开源，此次也不例外。根据实地测试，在部署了最新版内核并开启了 TCP BBR 的机器上，网速甚至可以提升好几个数量级。 更换 Droplet 内核可以事先在可用内核中查找，若是自己的内核在这里面，则无需进行更换了。 由于 BBR 中包含了各种各样的加速工具，其支持的内核有限，所以我们要更换我们 VPS 的内核以适配所有工具来达到最佳效果。 在更换内核之前要先检测内核，如果是 OpenVZ 的话则不要继续后面的了。 检测 VPS 架构Ubuntu / Debian 1sudo apt-get install virt-what CentOS / RedHat 1yum install -y virt-what 运行 1sudo virt-what 运行之后的效果如下 更换 CentOS 6 内核123456uname -r #查看当前内核版本rpm -ivh http://xz.wn789.com/CentOSkernel/kernel-firmware-2.6.32-504.3.3.el6.noarch.rpmrpm -ivh http://xz.wn789.com/CentOSkernel/kernel-2.6.32-504.3.3.el6.x86_64.rpm --forcerpm -qa | grep kernel #查看是否安装成功reboot #重启VPSuname -r #当前使用内核版本 更换 CentOS 7 内核12345uname -r #查看当前内核版本rpm -ivh http://xz.wn789.com/CentOSkernel/kernel-3.10.0-229.1.2.el7.x86_64.rpm --forcerpm -qa | grep kernel #查看内核是否安装成功reboot #重启VPSuname -r #当前使用内核版本 安装 BBR 内核加速一键安装脚本 这个脚本由千影制作（在这里感谢一下），github 上仓库已经404了。 首次下载使用 1wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" &amp;&amp; chmod +x tcp.sh &amp;&amp; ./tcp.sh 后面想要再次使用这个脚本可以直接 1./tcp.sh 脚本内容可以大概看一下： 依次执行1安装 BBR 内核，后使8进行系统优化或直接用4启用加速服务。]]></content>
+      <categories>
+        <category>geek&#39;s work</category>
+        <category>play with VPS</category>
+      </categories>
+      <tags>
+        <tag>VPS</tag>
+        <tag>BBR</tag>
+        <tag>CentOS</tag>
+        <tag>DigitalOcean</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JAVA_Program_Language:个人遇到的 java.util.NoSuchElementException 异常以及问题所咋与解决方法]]></title>
     <url>%2F2018%2F06%2F13%2Fjavaprogramlanguage-personal-encountered-javautilnosuchelementexception-anomalies-and-problems-and-solutions%2F</url>
     <content type="text"><![CDATA[下面是输出的异常信息 12345678java.util.NoSuchElementExceptionat java.util.Scanner.throwFor(Scanner.java:862)at java.util.Scanner.next(Scanner.java:1485)at java.util.Scanner.nextInt(Scanner.java:2117)at java.util.Scanner.nextInt(Scanner.java:2076)at User.Operator.main(Operator.java:71)at User.Main.login(Main.java:63)at User.Main.main(Main.java:18) 在正常的输出中，在函数结束的位置还有一句 1Exception in thread "main" 索性让我们看看代码 123456789101112131415161718192021222324252627282930313233343536373839404142434445public boolean downloadFile() throws SQLException, IOException&#123; try &#123; Scanner input = new Scanner(System.in); System.out.print("输入文件编号："); String fileID = input.next(); input.close(); Doc fileDoc = DataProcessing.searchDoc(fileID); File initedFile = new File(this.uploadPath+fileDoc.getFilename()); File creatFile = new File(this.downloadPath+fileDoc.getFilename()); try &#123; creatFile.createNewFile(); &#125; catch (IOException ioe)&#123; System.out.println("下载目录出错（无法创建新文件）！"); throw ioe; &#125; try &#123; FileInputStream fis = new FileInputStream(initedFile); FileOutputStream fos = new FileOutputStream(creatFile); byte [] temp = new byte[(int)initedFile.length()]; fis.read(temp); fos.write(temp); fis.close(); fos.close(); &#125; catch (FileNotFoundException notFound) &#123; System.out.println("未找到文件！"); throw notFound; &#125; catch (IOException ioe) &#123; System.out.println("io接口错误！"); throw ioe; &#125; System.out.println("下载文件... ..."); &#125; catch (SQLException sqle) &#123; System.out.println("sqle");// 这句用于检查是否出错 throw sqle; &#125; catch (IOException ioe) &#123; System.out.println("ioe");// 同上 throw ioe; &#125; System.out.println("下载文件成功！"); return true;&#125; 此方法用于上传文件，在main函数中使用方法如下： 12345678910case 3: try &#123; this.downloadFile(); //System.out.println("到了这里"); &#125; catch (SQLException sqle) &#123; System.out.println("发生错误：数据库异常("+sqle+")"); &#125; catch (IOException ioe) &#123; System.out.println("发生错误：IO接口异常 ("+ioe+")"); &#125; break; 在测试过程中，各种用于标记完成的println()都输出了，也未有捕捉到异常。在查找资料的时候，在一个百度知道中找到了答案。引用：百度知道在最佳回答中，答主说到了是Scanner对象重复使用close()方法导致的，但是在问题中题主和答主未有讨论清楚的是，这里两次使用close()方法分别是不同的Scanner对象，出现错误不应该。 解决方法：将语句 1input.close(); 删除即可。 我在写这篇博文的时候也是突然灵光一闪，意识到一个严重的问题。详细即为：在downloadFile()方法内使用的Scanner对象和main()方法内使用的Scanner对象，声明语句都为： 1Scanner input = new Scanner(System.in); 即两个Scanner对象指向的内存都是命令行输入端，所以实际上两者是同一个对象（在JAVA虚拟机层面，而非软件中）。所以问题解决，原因找到，皆大欢喜！]]></content>
@@ -38,8 +53,8 @@
       </categories>
       <tags>
         <tag>VPS</tag>
-        <tag>Linux</tag>
         <tag>CentOS</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -139,19 +154,19 @@
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
   <entry>
-    <title><![CDATA[categories]]></title>
-    <url>%2Fcategories%2Findex.html</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[Readme：萌新的小博客_I'm a new bloger]]></title>
     <url>%2Fabout-me%2Findex.html</url>
     <content type="text"><![CDATA[关于我中学毕业于海南中学。本科在读于武汉理工大学-计算机科学与技术学院-软件工程专业。爱好写代码（虽然很菜），折腾，转专业后没有时间玩游戏了。 联系我QQ：641751205（请添加备注）邮箱：smallx@foxmail.com新浪微博：@SmallX努力学画Twitter:陈可@SmallX_51441战网ID：SmallX#51441Steam：smaller_x My blog前博客用 Typecho 程序搭建于大二，起步太晚。托管于VirMach_VPS上。 本博客使用 Hexo 搭建并托管于 Github@Microsoft 仓库上。]]></content>
   </entry>
   <entry>
+    <title><![CDATA[categories]]></title>
+    <url>%2Fcategories%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[gallery]]></title>
     <url>%2Fgallery%2Findex.html</url>
-    <content type="text"><![CDATA[gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入]]></content>
+    <content type="text"><![CDATA[gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入]]></content>
   </entry>
   <entry>
     <title><![CDATA[tags]]></title>
