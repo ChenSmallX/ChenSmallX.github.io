@@ -2,6 +2,17 @@
 <search>
   <entry>
     <title><![CDATA[每日一记]]></title>
+    <url>%2F2018%2F11%2F21%2Fpost-everyday-2018-11-21%2F</url>
+    <content type="text"><![CDATA[日期：2018年11月21日 星期三天气：晴 每日一记第二天 今天的几件大事~ GR09终于到货盼星星盼月亮，终于在双十一之后的第十天收到了迟来的 GR09。 这也是至今为止玩过最贵的入耳了吧。以前也就玩过a73, titan5都是799价位的，声音可以说是已经很不错了。gr09却是1999价位的，就等煲100个小时之后看看真正的声音吧~ 噜噜： 评价耳机从高中低频 解析声场动态瞬态出发 高频：圆润不刺耳，甚至听起来有些暗。也许是没煲开的原因。中频：人声稍微有点远，在歌手的结像上也比较清晰，相比于 a73和 titan5不知道要高到哪里去了。低频：低频是我喜欢的那种低频，量感不足但是点到即止，快放块收，不拖沓。 用 dataGrip 把数据库的一个表修好了1234567891011mysql&gt; SELECT DISTINCT departmentID FROM employee;+--------------+| departmentID |+--------------+ | | | | |+--------------+5 rows in set (0.00 sec) 总是显示不完全，此处 departmentID 是一个 CHAR(8)，status 也显示所有的编码均为 utf8，理论上不存在编码问题。然而使用UPDATE 指令也没办法让数据输出。 1234567891011121314151617181920212223mysql&gt; status--------------mysql Ver 14.14 Distrib 5.7.21, for macos10.13 (x86_64) using EditLine wrapperConnection id: 62Current database: dbemCurrent user: root@localhostSSL: Not in useCurrent pager: lessUsing outfile: &apos;&apos;Using delimiter: ;Server version: 5.7.21 MySQL Community Server (GPL)Protocol version: 10Connection: Localhost via UNIX socketServer characterset: utf8Db characterset: utf8Client characterset: utf8Conn. characterset: utf8UNIX socket: /tmp/mysql.sockUptime: 5 days 13 hours 47 min 1 secThreads: 1 Questions: 2346 Slow queries: 0 Opens: 716 Flush tables: 1 Open tables: 485 Queries per second avg: 0.004-------------- 当然，使用\G也是个不错的选择，但是这样输出十分的丑，没办法截图放到实验报告里面呀，颜值还是很重要的。 123456789101112131415161718192021mysql&gt; SELECT DISTINCT departmentID FROM employee\G;*************************** 1. row ***************************departmentID: 2*************************** 2. row ***************************departmentID: 1*************************** 3. row ***************************departmentID: 1*************************** 4. row ***************************departmentID: 5*************************** 5. row ***************************departmentID: 3*************************** 6. row ***************************departmentID: 3*************************** 7. row ***************************departmentID: 4*************************** 8. row ***************************departmentID: 48 rows in set (0.01 sec)ERROR:No query specified 走投无路，治好选择使用其他优化的比较好的 GUI Client 写指令。正好有 JetBrains 家的教育版全家桶 License，而且质量过关，所以直接就下DataGrip来用了。 结果还是被我找到一个骚操作： 使用 GUI 界面设置 CHAR 类型为 NULL （需要数据库定义的时候设置column 为 null） submit 结果 再使用同个 GUI 把 null 值改回去 接着再 submit 一次 大功告成！ 1234567891011121314mysql&gt; SELECT DISTINCT departmentID,gender FROM employee;+--------------+--------+| departmentID | gender |+--------------+--------+| 2 | 1 || 1 | 1 || 1 | 0 || 5 | 1 || 3 | 0 || 3 | 1 || 4 | 1 || 4 | 0 |+--------------+--------+8 rows in set (0.00 sec) 很舒服了。 羽绒服还是太给力了前两天在银泰 new balance 买的一条1500+的羽绒服，有帽子，帽子带绒，不要再舒服。 今天早上起来感觉是真的冷，然后就穿着去上课了。结果真是热的要死。回来的时候再次感受到武汉天气的沙雕。 被老乡吐槽： 不愧是来自赤道的，羽绒服都这么夸张。 以后不敢穿了 mmp 哦。 明天也要一样加油哦~]]></content>
+      <categories>
+        <category>每日一记</category>
+      </categories>
+      <tags>
+        <tag>每日一记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[每日一记]]></title>
     <url>%2F2018%2F11%2F20%2Fpost-everyday-2018-11-20%2F</url>
     <content type="text"><![CDATA[日期：2018年11月20日 星期二天气：晴 开始一次坚持的每日一记 为什么要开始每日一记之前在使用日程本的时候还有写日记的习惯，然而在使用嘀嗒清单之后，有了智能日程就不再写日记了。总觉得每天总要例行做点什么来记录一下自己的所做所为所想。 坚持是一种好习惯“道理我都懂”，话是这么说，然而做就不是这么做了。 从很久之前就知道写日记做记录是好习惯，也做过也推荐别人这做过，效果的确是好，但是心血来潮这种事情，开始的第一天挺简单，坚持两天也不困难，三天需要一丝丝毅力，再多的话也许就需要我们自身有目标驱动自己去做这件事情，我个人是这么认为的。 坚持是做一件事情的必备条件，的确是。像之前打算开始学 TensorFlow 的时候，就是三天打鱼两天晒网，一直就学不到什么。然而事实证明，就算是天天废寝忘食的学，以自己的实力也基本完成不了机器学习的编写。【难受 所以想以此为契机，用这个来督促自己吧（以前也有这样的博文，然而还是坚持不下来）。让自己养成坚持的习惯。 给自己一点回忆的资本我的一句话：回忆是美好的，但是前提是要有能勾起回忆的东西。 还有一句不知道是谁的话：什么时候开始都不算迟，迟的是迟迟没有意识到要去开始。 我觉得我写日记断断续续的，也没怎么能够坚持特别久，就算是用日程本，也是写着写着就断了，并不能写到让自己感到愉悦的程度。曾经想过自己某一天拿出自己的日记看着看着就笑了，看着看着就哭了的感觉，是会多美好。但是从来就没有付诸实践和完成过。 所以想到这里，我就会想去写点什么，虽然从小语文就差出天际，写不出华丽的辞藻，别人看了也许没什么（日记啊喂，别人看不看有啥关系【蛤蛤），但是自己总是可以找到感动自己的理由，对吧？ 我写日记的理由就在想要让以后的自己看到今天的自己，看到自己成长的历程。 可以让 Github 的活跃格子亮起来（误当然还想到一点就是，博客搭在 github 上，po博文就是 git push 啊，那岂不是可以亮一格？（又想起那个火车站都比你努力的图片 想想就刺激，说不定还可以通过这个来让这个习惯坚持下去呢【hiahiahia~ 每日一记都要记一些什么我就想吧，既然要感动自己，那就是记录一些每天脑子里面蹦出来的的感想，做过的有意义的事情，和朋友之间的互动呀，和亲人之间的陪伴呀，都是可以写的，当然太过隐私的事情当然不能当做招牌去炫耀，对吧~ 既然还有成长历程，那就还要记录每天学了什么，成功做出了什么，学到了什么道理之类的，这应该能写的就很多了呢，想想就有些小激动，嘿嘿。（能不能坚持还是问题 今日所记今天就是很平常的一天啦，上课下课逃课睡觉。 上课的时候还是一样的没什么劲，就是自己看自己关于数据库的东西，写写实验报告，应付一下任务。看到大佬们都写了很多高端的东西，用来当做校招的垫脚石，着实是觉得自己和他们差距很大。 这几天在做的事情，那就是看《进击的巨人》。花了两三天的时间吧，除了学习吃饭睡觉，基本都在看了。截止现在是出到了第三季第12集。 看到巨人再加上这几天发生了一些事情，就比如说马拉松递国旗呀、还有金马奖上“希望大家正视我们的国家”之后激起的一些言论，感觉就是任何事情背后都有所谓的“大佬”在推波助澜，制造舆论。 上纲上线之类的不说，还有各种网络暴力，以所为的“爱国”之名义进行人身攻击，能不能说 naive？然而也开始感觉到，这个社会上，达到一定地位后的“领导”也许真的不把人民群众当做人看吧。唉。 就是这样啦。虽说是对社会感到绝望，但是不是还是活的好好的嘛，有黑暗也有光明美好，即使是面对惨淡，也要面带微笑去度过。更何况生活如此多娇~]]></content>
       <categories>
@@ -239,8 +250,8 @@
     <content type="text"><![CDATA[关于我中学毕业于海南中学。本科在读于武汉理工大学-计算机科学与技术学院-软件工程专业。爱好写代码（虽然很菜），折腾，转专业后没有时间玩游戏了。 联系我QQ：641751205（请添加备注）邮箱：smallx@foxmail.com新浪微博：@SmallX努力学画Twitter:陈可@SmallXeon战网ID：SmallX#51441Steam：smaller_x My blog前博客用 Typecho 程序搭建于大二，起步太晚。托管于VirMach_VPS上。 本博客使用 Hexo 搭建并托管于 Github@Microsoft 仓库上。]]></content>
   </entry>
   <entry>
-    <title><![CDATA[tags]]></title>
-    <url>%2Ftags%2Findex.html</url>
+    <title><![CDATA[categories]]></title>
+    <url>%2Fcategories%2Findex.html</url>
     <content type="text"></content>
   </entry>
   <entry>
@@ -249,8 +260,8 @@
     <content type="text"><![CDATA[gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入]]></content>
   </entry>
   <entry>
-    <title><![CDATA[categories]]></title>
-    <url>%2Fcategories%2Findex.html</url>
+    <title><![CDATA[tags]]></title>
+    <url>%2Ftags%2Findex.html</url>
     <content type="text"></content>
   </entry>
 </search>
