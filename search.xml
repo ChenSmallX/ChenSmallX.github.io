@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[每日一记]]></title>
+    <url>%2F2018%2F11%2F22%2Fpost-everyday-2018-11-22%2F</url>
+    <content type="text"><![CDATA[几件大事： 测试新平台成功 没翻车。 今天肯德基感恩节活动，忍住了，没去。 开始复习软件需求工程 intel H61 + G550 通电测试顺利的装上了系统，就是视频输出颜色有问题，过于偏蓝。 明天也要好好继续加油哦~]]></content>
+      <categories>
+        <category>每日一记</category>
+      </categories>
+      <tags>
+        <tag>每日一记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MacOSX下VMWareFusion-Ubuntu回收空间]]></title>
     <url>%2F2018%2F11%2F22%2FVMWare-Fusion-recycle-storage%2F</url>
     <content type="text"><![CDATA[为什么要回收 VMWare 的空间？起因例行清理 mac 的垃圾文件，虽然自己的硬盘有512g，然而里头东西超过250g 的时候对于强迫症患者来说还是难受的一批。 用 cleanmymac 清来清去也只能清一点点。删除了 Download 文件夹里面不需要的东西之后，发现也才多了半个 G，是我平时下的东西太小了吗【问号脸 用 DaicyDisk 分析了一下磁盘，发现在用户文件夹下，占空间较大的就是两个虚拟机——Parallels Desktop 和 VMWare Fusion。 因为在 PD 上装的是 Windows，搭了一个 C/C++ 的开发环境，总共 VS 下来加系统也得30多 g，基本上是回收不了太多空间了。 所以就盯上了 VM。 VM 特别的诡异，在 Linux 里面看包含 swap 也只用了8g 多的空间，结果整个 vmdk 文件就占了13g 多，所以这就需要用手术刀咔擦一下调教调教。 而且！而且！不知道为啥我的 VM 里头的可回收没有！ 没办法死马当活马医了，总是有办法的。 折腾开始清 apt 缓存首先例行的就是清除 apt 的缓存，这个稍微用过 Ubuntu 的小伙伴都知道怎么清掉不用的依赖和缓存。（但是其实空不出多少空间来的，因为软件包什么的也就几百几时 mb 这样） 总之有一点是一点吧【习习蛤蛤 12sudo apt-get autoclean # autoremove 也一样sudo apt-get clean 结果清掉了一点。结果还是没法回收。 Linux 神奇的 zero因为找不到占空间的东西，所以推测应该是硬盘缓存之类的，明明删除了但是还是留下了没有清除的数据。 摘自维基百科： 在类UNIX 操作系统中, /dev/zero 是一个特殊的文件，当你读它的时候，它会提供无限的空字符(NULL, ASCII NUL, 0x00)。其中的一个典型用法是用它提供的字符流来覆盖信息，另一个常见用法是产生一个特定大小的空白文件。BSD就是通过mmap把/dev/zero映射到虚地址空间实现共享内存的。可以使用mmap将/dev/zero映射到一个虚拟的内存空间，这个操作的效果等同于使用一段匿名的内存（没有和任何文件相关）。 所以我们可以直接读取这个文件写到一个新的文件里面直到硬盘占满，然后删除这个文件就可以把那些幽灵空间都置零。 12345sudo cat /dev/zero &gt; zero # 此处的 zero 文件就可以是想要回收空间的挂载点sudo sync # 有些系统需要同步一下才可以把内存的文件改动写进硬盘sleep 1sudo syncsudo rm zero 有一点很重要，就是执行完了 zero 的文件写入之后可能会提示硬盘已满，这时候不要惊慌，要的就是这种效果。 这时候虽然在系统里面看是没有啥变化的，但是在虚拟硬盘的逻辑上已经发生了空余空间全置零的改变。 宿主机操作 调用 vm 自带工具这时候就需要宿主机这边的空间回收操作了，然而 GUI 界面给的接口完全没法用，回收不到啥。所以查了半天，还是看到了骚操作。 这个 vmware-vdiskmanager 也是 vm 自带的工具，然而并没有用在 GUI 的操作界面上，只能手动调用。 先整理一下硬盘碎片。 1234$ cd /Applications/VMware\ Fusion.app/Contents/Library$ ./vmware-vdiskmanager -d ~/VMWare/Ubuntu\ 64\ 位.vmwarevm/虚拟磁盘.vmdk Defragment: 100% done.Defragmentation completed successfully. 然后看一下现在虚拟硬盘文件的大小 12$ ls -l ~/VMWare/Ubuntu\ 64\ 位.vmwarevm/虚拟磁盘.vmdk-rw------- 1 chenke staff 14744485888 11 22 12:08 /Users/chenke/VMWare/Ubuntu 64 位.vmwarevm/虚拟磁盘.vmdk 正式开始回收空间，等到进度跑满就完成了。 123$ ./vmware-vdiskmanager -k ~/VMWare/Ubuntu\ 64\ 位.vmwarevm/虚拟磁盘.vmdk Shrink: 100% done.Shrink completed successfully. 再来看看回收空间之后的空间大小。 12$ ls -l ~/VMWare/Ubuntu\ 64\ 位.vmwarevm/虚拟磁盘.vmdk-rw------- 1 chenke staff 8921939968 11 22 12:11 /Users/chenke/VMWare/Ubuntu 64 位.vmwarevm/虚拟磁盘.vmdk 可以看到，虚拟硬盘从14744485888字节减小到了8921939968字节，也就是13.73G 减小到了8.3G，可以说效果十分拔群了。]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Ubuntu</category>
+        <category>VMWare Fusion</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>VMWare Fusion</tag>
+        <tag>MacOSX</tag>
+        <tag>Ubuntu</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[每日一记]]></title>
@@ -49,8 +71,8 @@
         <category>Linux learning</category>
       </categories>
       <tags>
-        <tag>programming tools</tag>
         <tag>Linux</tag>
+        <tag>programming tools</tag>
         <tag>Vim/GVim</tag>
         <tag>bash</tag>
         <tag>Unix</tag>
@@ -149,8 +171,8 @@
       </categories>
       <tags>
         <tag>VPS</tag>
-        <tag>CentOS</tag>
         <tag>Linux</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>
@@ -250,14 +272,14 @@
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Readme：萌新的小博客_I'm a new bloger]]></title>
-    <url>%2Fabout-me%2Findex.html</url>
-    <content type="text"><![CDATA[关于我中学毕业于海南中学。本科在读于武汉理工大学-计算机科学与技术学院-软件工程专业。爱好写代码（虽然很菜），折腾，转专业后没有时间玩游戏了。 联系我QQ：641751205（请添加备注）邮箱：smallx@foxmail.com新浪微博：@SmallX努力学画Twitter:陈可@SmallXeon战网ID：SmallX#51441Steam：smaller_x My blog前博客用 Typecho 程序搭建于大二，起步太晚。托管于VirMach_VPS上。 本博客使用 Hexo 搭建并托管于 Github@Microsoft 仓库上。]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[categories]]></title>
     <url>%2Fcategories%2Findex.html</url>
     <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Readme：萌新的小博客_I'm a new bloger]]></title>
+    <url>%2Fabout-me%2Findex.html</url>
+    <content type="text"><![CDATA[关于我中学毕业于海南中学。本科在读于武汉理工大学-计算机科学与技术学院-软件工程专业。爱好写代码（虽然很菜），折腾，转专业后没有时间玩游戏了。 联系我QQ：641751205（请添加备注）邮箱：smallx@foxmail.com新浪微博：@SmallX努力学画Twitter:陈可@SmallXeon战网ID：SmallX#51441Steam：smaller_x My blog前博客用 Typecho 程序搭建于大二，起步太晚。托管于VirMach_VPS上。 本博客使用 Hexo 搭建并托管于 Github@Microsoft 仓库上。]]></content>
   </entry>
   <entry>
     <title><![CDATA[gallery]]></title>
