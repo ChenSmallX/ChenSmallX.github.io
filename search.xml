@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[MySQL混乱输出原因与解决办法]]></title>
+    <title><![CDATA[MySQL错位输出原因与解决办法]]></title>
     <url>%2F2018%2F11%2F23%2FMySQL-disorder-output-solution%2F</url>
     <content type="text"><![CDATA[使用数据导入的时候会因为解析不同的原因，使得数据类型不匹配，从而出现显示乱码（这种情况充其量也算是一种乱码了吧）。 解决办法：使用 DataGrip 将错误的NULL改为正确的&lt;null&gt;，将与此类型匹配的数据传入并覆盖源数据即可。 出现问题前倾提要：每日一记 终于找到问题所在使用数据导入的时候会因为解析不同的原因，使得数据类型不匹配，从而出现显示乱码（这种情况充其量也算是一种乱码了吧）。 解决办法：使用 DataGrip 将错误的NULL改为正确的&lt;null&gt;，将与此类型匹配的数据传入并覆盖源数据即可。 如果按照原来的错误输出，显示的应该是下面这样： 12345678910mysql&gt; SELECT * FROM v_dp;+--------------+-----------------+--------------+| departmentID | departName | comment |+--------------+-----------------+--------------+ | | 人力资源部 | NULL | | 经理办公室 | NULL | | 研发部 | NULL | | 市场部 | NULL+--------------+-----------------+--------------+6 rows in set (0.00 sec) 令我百思不得其解，用了很多种办法都没办法正确输出，曾一度不想继续做这个实验。 然而今天，在对数据库进行改动操作的时候，发现了下面的这种情况。 123456789101112131415161718mysql&gt; INSERT INTO v_dp VALUES(6,'广告部','推广产品');Query OK, 1 row affected (0.00 sec)mysql&gt; INSERT INTO department VALUES(7,'策划部','策划产品');Query OK, 1 row affected (0.01 sec)mysql&gt; SELECT * FROM v_dp;+--------------+-----------------+--------------+| departmentID | departName | comment |+--------------+-----------------+--------------+ | | 人力资源部 | NULL | | 经理办公室 | NULL | | 研发部 | NULL | | 市场部 | NULL| 6 | 广告部 | 推广产品 || 7 | 策划部 | 策划产品 |+--------------+-----------------+--------------+6 rows in set (0.00 sec) 出现了这样的情况，让我喜出望外，立马意识到，肯定是原来的NULL数据格式不正确。果不其然，打开 DataGrip 看了一下 comment 字段的数据，虽然表面上都是 NULL，但是右键 Set NULL 之后，神奇的事情出现了。正确的 NULL 识别应该为&lt;null&gt;。 全部 Set NULL 之后，再回到 command line 界面查询表就能看到表的打印完全舒服了。 123456789101112mysql&gt; SELECT * FROM v_dp;+--------------+-----------------+--------------+| departmentID | departName | comment |+--------------+-----------------+--------------+| 2 | 人力资源部 | NULL || 3 | 经理办公室 | NULL || 4 | 研发部 | NULL || 5 | 市场部 | NULL || 6 | 广告部 | 推广产品 || 7 | 策划部 | 策划产品 |+--------------+-----------------+--------------+6 rows in set (0.00 sec)]]></content>
       <categories>
@@ -289,9 +289,9 @@
     <content type="text"><![CDATA[{"name":"Case of Xeon","short_name":"SmallXeon","theme_color":"#2196f3","background_color":"#2196f3","display":"fullscreen","scope":"/","start_url":"/index.html","icons":[{"src":"img/icon/idpi.png","sizes":"36x36","type":"image/png"},{"src":"img/icon/mdpi.png","sizes":"48x48","type":"image/png"},{"src":"img/icon/xhdpi.png","sizes":"96x96","type":"image/png"},{"src":"img/icon/xxhdpi.png","sizes":"144x144","type":"image/png"},{"src":"img/icon/xxxhdpi.png","sizes":"192x192","type":"image/png"}]}]]></content>
   </entry>
   <entry>
-    <title><![CDATA[gallery]]></title>
-    <url>%2Fgallery%2Findex.html</url>
-    <content type="text"><![CDATA[gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入]]></content>
+    <title><![CDATA[Readme：萌新的小博客_I'm a new bloger]]></title>
+    <url>%2Fabout-me%2Findex.html</url>
+    <content type="text"><![CDATA[关于我中学毕业于海南中学。本科在读于武汉理工大学-计算机科学与技术学院-软件工程专业。爱好写代码（虽然很菜），折腾，转专业后没有时间玩游戏了。 联系我QQ：641751205（请添加备注）邮箱：smallx@foxmail.com新浪微博：@SmallX努力学画Twitter:陈可@SmallXeon战网ID：SmallX#51441Steam：smaller_x My blog前博客用 Typecho 程序搭建于大二，起步太晚。托管于VirMach_VPS上。 本博客使用 Hexo 搭建并托管于 Github@Microsoft 仓库上。]]></content>
   </entry>
   <entry>
     <title><![CDATA[categories]]></title>
@@ -299,9 +299,9 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[Readme：萌新的小博客_I'm a new bloger]]></title>
-    <url>%2Fabout-me%2Findex.html</url>
-    <content type="text"><![CDATA[关于我中学毕业于海南中学。本科在读于武汉理工大学-计算机科学与技术学院-软件工程专业。爱好写代码（虽然很菜），折腾，转专业后没有时间玩游戏了。 联系我QQ：641751205（请添加备注）邮箱：smallx@foxmail.com新浪微博：@SmallX努力学画Twitter:陈可@SmallXeon战网ID：SmallX#51441Steam：smaller_x My blog前博客用 Typecho 程序搭建于大二，起步太晚。托管于VirMach_VPS上。 本博客使用 Hexo 搭建并托管于 Github@Microsoft 仓库上。]]></content>
+    <title><![CDATA[gallery]]></title>
+    <url>%2Fgallery%2Findex.html</url>
+    <content type="text"><![CDATA[gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入 gallery插入]]></content>
   </entry>
   <entry>
     <title><![CDATA[tags]]></title>
