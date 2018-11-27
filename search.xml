@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>每日一记 - 写了一天C语言</title>
+      <link href="/2018/11/27/post-everyday-2018-11-27/"/>
+      <url>/2018/11/27/post-everyday-2018-11-27/</url>
+      
+        <content type="html"><![CDATA[<h1 id="今天的几件大事"><a href="#今天的几件大事" class="headerlink" title="今天的几件大事"></a>今天的几件大事</h1><ol><li>一看课表，第一节没课了！开心了一会。然后想起软件需求工程还有实验，哭辽 TvT</li><li>不同的操作系统上果然对标准库的实现是不同的。今天近距离接触了一次。</li></ol><p><strong>MACRO 居然是宏的意思</strong></p><h2 id="mac-osx-上的-malloc-和-Windows-上的-malloc-处于不同的头文件"><a href="#mac-osx-上的-malloc-和-Windows-上的-malloc-处于不同的头文件" class="headerlink" title="mac osx 上的 malloc 和 Windows 上的 malloc 处于不同的头文件"></a>mac osx 上的 malloc 和 Windows 上的 malloc 处于不同的头文件</h2><p>动态分配内存需要使用 <code>malloc</code> 函数，原型在 stdlib.h 里面，而使用它或者外围函数（例如 <code>malloc_size</code> or <code>_msize</code>）的时候还要包含一个本身的头文件，例如 Mac 下是 <malloc malloc.h=""> 而 Windows 下是在<malloc.h>。</malloc.h></malloc></p><p>而 access 函数在 Mac 下是在 unistd.h，在 Windows 下是在 io.h。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 每日一记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 每日一记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>每日一记 - 水一水，被复习和作业冲昏头脑</title>
       <link href="/2018/11/26/post-everyday-2018-11-26/"/>
       <url>/2018/11/26/post-everyday-2018-11-26/</url>
