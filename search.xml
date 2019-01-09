@@ -3,7 +3,32 @@
   
     
     <entry>
-      <title>post-everyday-2018-12-5</title>
+      <title>每日一记 - 初入 JavaScript</title>
+      <link href="/2018/12/10/post-everyday-2018-12-10/"/>
+      <url>/2018/12/10/post-everyday-2018-12-10/</url>
+      
+        <content type="html"><![CDATA[<h1 id="几件大事"><a href="#几件大事" class="headerlink" title="几件大事"></a>几件大事</h1><ol><li>因为组里需要前端，所以学一下 Vue.js 然而不会 js，所以学一下 js。</li><li>知乎上关于“大学生偷外卖”的问题热度超过2KW，狼灭真多，然而大快人心。</li><li>事情多的一批</li></ol><a id="more"></a><h2 id="入门-JS"><a href="#入门-JS" class="headerlink" title="入门 JS"></a>入门 JS</h2><p>万恶的数据库实验，大佬们主动申请写后端，那就必须有人写前端，然而组里没谁会前端。【着实难受<br>只好自己主动请缨。</p><p>之前在写协会网站的时候写的是静态页面，没怎么用 js，直接就是套着 bootstrap 撸一个外观，光有躯壳没有灵魂。今天和大佬聊天的时候自己说了一句自己都觉得真实的话：“码到用时方恨少。”真的是猛虎流泪.jpg</p><p>摸了一天 JS，最直观的感想就是，麻烦。</p><h2 id="看“偷外卖”话题有感"><a href="#看“偷外卖”话题有感" class="headerlink" title="看“偷外卖”话题有感"></a>看“偷外卖”话题有感</h2><h2 id="最近的事情有点多【mmp"><a href="#最近的事情有点多【mmp" class="headerlink" title="最近的事情有点多【mmp"></a>最近的事情有点多【mmp</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 每日一记 </category>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 每日一记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>每日一记 - 真想呆在床上不下来【冷死我了</title>
       <link href="/2018/12/05/post-everyday-2018-12-5/"/>
       <url>/2018/12/05/post-everyday-2018-12-5/</url>
       
@@ -667,11 +692,11 @@
       
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> shadowsocks/R </tag>
             
             <tag> 翻墙 </tag>
+            
+            <tag> VPS </tag>
             
         </tags>
       
