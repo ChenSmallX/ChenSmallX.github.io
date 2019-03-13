@@ -425,13 +425,13 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Linux Learning </category>
           
-          <category> programer walk </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> programming tools </category>
+          <category> Programer Walk </category>
           
-          <category> Linux learning </category>
+          <category> Programming Tools </category>
           
       </categories>
       
@@ -440,13 +440,13 @@
             
             <tag> Linux </tag>
             
-            <tag> programming tools </tag>
-            
             <tag> Vim/GVim </tag>
             
             <tag> bash </tag>
             
             <tag> Unix </tag>
+            
+            <tag> Programming Tools </tag>
             
         </tags>
       
@@ -462,20 +462,20 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> game </category>
+          <category> Game </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> games </tag>
+            <tag> Games </tag>
             
             <tag> Hacknet </tag>
             
-            <tag> hacker game </tag>
+            <tag> Hacker Game </tag>
             
         </tags>
       
@@ -491,7 +491,7 @@
       
       <categories>
           
-          <category> programer walk </category>
+          <category> Programer Walk </category>
           
           <category> Python 3 </category>
           
@@ -500,7 +500,7 @@
       
         <tags>
             
-            <tag> Programming language </tag>
+            <tag> Programming Language </tag>
             
             <tag> Python 3 </tag>
             
@@ -520,9 +520,9 @@
           
           <category> Linux Learning </category>
           
-          <category> geek&#39;s work </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> play with VPS </category>
+          <category> Play with VPS </category>
           
       </categories>
       
@@ -549,9 +549,9 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> play with VPS </category>
+          <category> Play with VPS </category>
           
       </categories>
       
@@ -580,7 +580,7 @@
       
       <categories>
           
-          <category> programer walk </category>
+          <category> Programer Walk </category>
           
           <category> JAVA </category>
           
@@ -589,7 +589,7 @@
       
         <tags>
             
-            <tag> Programming language </tag>
+            <tag> Programming Language </tag>
             
             <tag> JAVA </tag>
             
@@ -607,9 +607,9 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> play with VPS </category>
+          <category> Play with VPS </category>
           
       </categories>
       
@@ -618,9 +618,9 @@
             
             <tag> VPS </tag>
             
-            <tag> net-optimize </tag>
+            <tag> Net-Optimize </tag>
             
-            <tag> serverspeeder </tag>
+            <tag> ServerSpeeder </tag>
             
         </tags>
       
@@ -636,11 +636,11 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Linux Learning </category>
           
-          <category> play with VPS </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> Linux learning </category>
+          <category> Play with VPS </category>
           
       </categories>
       
@@ -667,9 +667,9 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> play with VPS </category>
+          <category> Play with VPS </category>
           
       </categories>
       
@@ -678,7 +678,7 @@
             
             <tag> VPS </tag>
             
-            <tag> VPS panel </tag>
+            <tag> VPS Panel </tag>
             
         </tags>
       
@@ -694,9 +694,9 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> play with VPS </category>
+          <category> Play with VPS </category>
           
       </categories>
       
@@ -705,9 +705,9 @@
             
             <tag> VPS </tag>
             
-            <tag> net-optimize </tag>
+            <tag> Net-Optimize </tag>
             
-            <tag> net-speeder </tag>
+            <tag> Net-Speeder </tag>
             
         </tags>
       
@@ -723,9 +723,9 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> play with VPS </category>
+          <category> Play with VPS </category>
           
       </categories>
       
@@ -734,7 +734,7 @@
             
             <tag> VPS </tag>
             
-            <tag> VPS panel </tag>
+            <tag> VPS Panel </tag>
             
             <tag> 宝塔面板 </tag>
             
@@ -752,9 +752,9 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> play with VPS </category>
+          <category> Play with VPS </category>
           
       </categories>
       
@@ -777,9 +777,9 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Geek&#39;s Work </category>
           
-          <category> play with VPS </category>
+          <category> Play with VPS </category>
           
       </categories>
       
@@ -788,7 +788,7 @@
             
             <tag> VPS </tag>
             
-            <tag> shadowsocks/R </tag>
+            <tag> Shadowsocks/R </tag>
             
             <tag> 翻墙 </tag>
             
@@ -806,11 +806,11 @@
       
       <categories>
           
-          <category> geek&#39;s work </category>
+          <category> Programer Walk </category>
           
-          <category> programer walk </category>
+          <category> Programming Tools </category>
           
-          <category> programming tools </category>
+          <category> Geek&#39;s work </category>
           
       </categories>
       
