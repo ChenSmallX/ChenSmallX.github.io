@@ -518,9 +518,9 @@
       
       <categories>
           
-          <category> Linux Learning </category>
-          
           <category> geek&#39;s work </category>
+          
+          <category> Linux Learning </category>
           
           <category> play with VPS </category>
           
@@ -529,9 +529,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
             <tag> ssh </tag>
             
@@ -647,9 +647,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
             <tag> CentOS </tag>
             
