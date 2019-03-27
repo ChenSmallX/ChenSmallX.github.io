@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title>每日一记 - NAS_Xynology 初步搭建</title>
+      <link href="/2019/03/25/post-everyday-2019-3-25/"/>
+      <url>/2019/03/25/post-everyday-2019-3-25/</url>
+      
+        <content type="html"><![CDATA[<p><strong>日期：2019年3月25日</strong><br><strong>天气：热 skr 人</strong></p><h1 id="几间大事"><a href="#几间大事" class="headerlink" title="几间大事"></a>几间大事</h1><ol><li>小宝贝拐拐这个周末来武汉陪我玩了两天，开心~【代价是超支了</li><li>回来之后抓紧时间把 J1900 NAS 搭建起来了，简单安装了黑群晖。【美滋滋</li></ol><a id="more"></a><h2 id="每日英语打卡"><a href="#每日英语打卡" class="headerlink" title="每日英语打卡"></a>每日英语打卡</h2><h3 id="Vocabulary"><a href="#Vocabulary" class="headerlink" title="Vocabulary"></a>Vocabulary</h3><h3 id="Listening"><a href="#Listening" class="headerlink" title="Listening"></a>Listening</h3><h3 id="Speaking"><a href="#Speaking" class="headerlink" title="Speaking"></a>Speaking</h3><h3 id="Translating"><a href="#Translating" class="headerlink" title="Translating"></a>Translating</h3><h2 id="NAS-安装了黑群晖"><a href="#NAS-安装了黑群晖" class="headerlink" title="NAS 安装了黑群晖"></a>NAS 安装了黑群晖</h2><h3 id="配置-ntfs-格式支持"><a href="#配置-ntfs-格式支持" class="headerlink" title="配置 ntfs 格式支持"></a>配置 ntfs 格式支持</h3><h4 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h4><h3 id="TodoList"><a href="#TodoList" class="headerlink" title="TodoList"></a>TodoList</h3><ul><li>[x] 安装系统</li><li>[ ] 设置 Time Machine 备份路径</li><li>[ ] 配置内网穿透</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 每日一记 </category>
+          
+          <category> 黑群晖 </category>
+          
+          <category> NAS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 每日一记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>每日一记 - 卸载 miniconda</title>
       <link href="/2019/03/20/post-everyday-2019-3-20/"/>
       <url>/2019/03/20/post-everyday-2019-3-20/</url>
