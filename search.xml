@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>每日一记</title>
+      <link href="/2019/04/01/post-everyday-2019-4-1/"/>
+      <url>/2019/04/01/post-everyday-2019-4-1/</url>
+      
+        <content type="html"><![CDATA[<p><strong>天气：凉转热转凉</strong></p><h1 id="几件大事"><a href="#几件大事" class="headerlink" title="几件大事"></a>几件大事</h1><ol><li>没什么大事，一切顺利。</li><li>黑裙 NAS 总体环境搭建完毕，后续会把一些东西记录下来。</li><li>愚人节快乐</li></ol><a id="more"></a><h2 id="每日英语打卡"><a href="#每日英语打卡" class="headerlink" title="每日英语打卡"></a>每日英语打卡</h2><h3 id="Vocabulary"><a href="#Vocabulary" class="headerlink" title="Vocabulary"></a>Vocabulary</h3><ul><li>超纲词汇表 P391、P392</li></ul><p>背了一边四级词汇书总共35个 list 之后，看到后面还有两个表，分别是超纲词汇表，熟词僻义表。<br>仔细看了看，觉得这也得背，于是就开始背了。背了两页之后，感觉自己还差的远呢。看着这些相对于四级的水平的超纲单词，我还十分的陌生，而托福二考就在下周了，心里就开始有些些慌起来。</p><p>List1 &amp; List2</p><p>需要反复的单词</p><blockquote><p>stir v. 动，拨动；使微动；激动；（某种感情）产生 n.  搅拌，搅动；激动，骚乱<br>minus n. 负数；减号 adj. 负的 prep. 减（去）<br>presence n.出席，到场；存在；仪表，仪态<br>resistance n. 反抗，抵制；抵抗力；抵抗性；阻力；电阻</p><p>definite adj. 明确的，肯定的<br>rebel n. 反叛分子，反对者 vi. 反叛，造反；反对，不服从<br>delegate n. 代表，代表团成员 vt. 委派（或选举）… 为代表；授（权），把…委托给<br>signature n. 署名，签字，签名<br>stoop vi. 俯身，弯身 n. 弯腰，曲背</p></blockquote><h3 id="Listening"><a href="#Listening" class="headerlink" title="Listening"></a>Listening</h3><p>VOA NEWS Standard<br>Title: 美国运用区块链技术模拟如何运营上市公司</p><p><img src="/img/punch/20190401.jpg" alt="听力打卡"></p><p>单词积累</p><blockquote><p>consult 商量<br>prospective 有前景的<br>equities 股票<br>non-profit 非盈利的<br>showcase 使展现<br>implement 实施</p></blockquote><hr><p>明天一样加油哦~！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 每日一记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 每日一记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>每日一记 - NAS 上跑 BaiduPCS-GO</title>
       <link href="/2019/03/29/post-everyday-2019-3-29/"/>
       <url>/2019/03/29/post-everyday-2019-3-29/</url>
@@ -546,9 +569,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Programer Walk </category>
           
@@ -639,9 +662,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Play with VPS </category>
           
@@ -650,9 +673,9 @@
       
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
             <tag> ssh </tag>
             
@@ -757,9 +780,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Play with VPS </category>
           
@@ -768,9 +791,9 @@
       
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
             <tag> CentOS </tag>
             
