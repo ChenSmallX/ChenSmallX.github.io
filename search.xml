@@ -30,7 +30,7 @@
       <link href="/2019/04/03/synology-something/"/>
       <url>/2019/04/03/synology-something/</url>
       
-        <content type="html"><![CDATA[<p>作为简单记录，这篇文章主要包括几个简单的点：</p><ol><li>在 J1900 上安装黑群晖【废话？</li><li>安装硬盘配置网络硬盘【NAS 基本操作</li><li>通过 <code>AFP</code> 协议设置 MacOS 的 <code>Time Machine</code> 备份到 NAS 上</li></ol><a id="more"></a><p>为什么这一篇包括了三点呢？<br>原因其实很简单，就是因为太简单了，所以合在一起写。</p><h1 id="安装黑群晖"><a href="#安装黑群晖" class="headerlink" title="安装黑群晖"></a>安装黑群晖</h1><blockquote><p>参考资料：<a href="https://post.smzdm.com/p/ax08ld2w/" target="_blank" rel="noopener">与时俱进，提升居家生活品质（篇四）：3分钟搞定SSD黑群晖安装</a></p></blockquote><p>我安装黑群晖是看了这篇大佬的教程，因为这篇是直接用了同配置机器安装完成后的硬盘的直接 dump，可以1：1还原新安装的机器的数据。</p><p>贴一个我自己的百度云分流：</p><blockquote><p>链接: <a href="https://pan.baidu.com/s/165QEk_F91n30yP-yuUoeUw" target="_blank" rel="noopener">https://pan.baidu.com/s/165QEk_F91n30yP-yuUoeUw</a> 提取码: q2vb </p></blockquote><p>不过使用这个镜像需要注意的是（个人猜测），因为原盘也是16g 固态 dump 出来的，所以建议用于大于等于16g 的固态硬盘进行写入，这样才能还原出原本的数据分区情况和避免硬盘出错。</p><p>还有一个写入镜像的工具：<a href="/file/DiskImage-V1.6-WinAll.exe">DiskImage-V1.6-WinAll</a>，这个工具的图标是个眼睛发亮的黑猫，刚开始我老是找不到它在哪。可以运行在 WinPE 上，所以放心食用。</p><h2 id="解压镜像文件"><a href="#解压镜像文件" class="headerlink" title="解压镜像文件"></a>解压镜像文件</h2><p>这个文件需要提前解压，从 zip 格式解压到 img 格式。不得不说刚开始我还是有些惊讶的，因为毕竟一个650M的文件可以解压出来一个14G 多的文件，实在压缩比有些高了。</p><p>但是装完之后回过头来想想，这里面大多是分区的零填充，压缩之后肯定会大幅压缩，这样就会出现神奇的压缩比。</p><h2 id="准备-PE-U盘"><a href="#准备-PE-U盘" class="headerlink" title="准备 PE U盘"></a>准备 PE U盘</h2><p>既然镜像有14G 多，那么 U 盘至少也要16G。</p><p>都知道 WinPE 是什么吧？不知道的可以左上角或者右上角叉叉退出了😂</p><p>要是让我推荐一款 PE 那绝对是 WePE，无论是临时使用还是长期做维护，都很适合，安装简单系统纯净，关键是装 win 的时候不会夹带私货。</p><blockquote><p><a href="http://www.wepe.com.cn" target="_blank" rel="noopener">微PE WePE 官网</a><br>PS: WePE打钱！</p></blockquote><p>把镜像和写入工具放到U盘里头。</p><h2 id="安装-Synology"><a href="#安装-Synology" class="headerlink" title="安装 Synology"></a>安装 Synology</h2><ol><li>插上 U盘</li><li>开机疯狂按 F2 选择进入U盘启动</li><li>使用 HD Tune 扫描固态坏块，确认无误之后进行下一步。坏块太多就去肛奸商。【当时我的固态里头就是20%的坏块</li><li>打开 DiskGenius 清空固态分区，提交改动</li><li>打开之前下载的<code>DiskImage-V1.6-WinAll.exe</code>，镜像位置选择解压好的镜像文件。磁盘位置选择整个固态硬盘，不要选择某个分区。16g 的固态软件内大概识别成14g 多。</li><li>点击开始写入。</li><li>坐与静等…</li></ol><p>写入完成之后再打开 DiskGenius 可以看到固态被分成了好几个格式化好的分区。这样就写入完成了。<br>接下来拔掉 U盘重启从硬盘启动，如果看到很多问号的话，那就说明安装成功了。</p><p>现在使用另一台同在局域网内的计算机，打开浏览器输入<a href="http://find.synology.com" target="_blank" rel="noopener">find.synology.com</a>或者直接点击这个，就会加载群晖官方的本地网络搜索工具，如果搜索到了会显示系统配置页面。配置用户还有地区等等各种参数，不过有一点，不要使用任何群晖的云服务，这样就会和群晖的服务器进行交互，有可能会被 ban 机。</p><h1 id="安装硬盘"><a href="#安装硬盘" class="headerlink" title="安装硬盘"></a>安装硬盘</h1><p>安装硬盘很简单，不过有一点不得不说，要在群晖上使用硬盘必须要格式化才行，因为群晖有他自己的硬盘格式和管理方法。</p><ol><li><p>将硬盘装入 NAS 硬盘插槽</p><p> 有一点很重要，就是务必要使用沉头螺丝，不然会因为螺丝凸起而没办法装入插槽中。【别问我为什么知道</p></li><li><p>打开储存空间管理器，可以看到未使用的硬盘显示为绿色，正在使用的硬盘显示为蓝色</p><p> <img src="/img/NAS/storageManager.png" alt="Storage Manager"></p></li><li><p>进入 RAID GROUP 选项卡，如果有空闲的硬盘空间，那么新建按钮就会显示为可用状态。点击新建。</p><p> 选择未使用的硬盘，选择格式的时候选择 Btrfs，这是群晖专属的硬盘格式，有日志功能和各种管理 iSCSI 的奇效。<br> Raid 选择 Base 就行，单硬盘作为一个空间来使用。<br> 新建出一个 Raid 组之后，这个硬盘即为可用状态。但是我们在系统里面还看不到哪里能用。<br> 原因在于由于是 NAS，系统只会将共享的空间呈现出来给你使用。所以答案很明显了，需要在硬盘上配置共享空间。</p></li><li></li></ol><h1 id="配置-Time-Machine"><a href="#配置-Time-Machine" class="headerlink" title="配置 Time Machine"></a>配置 Time Machine</h1>]]></content>
+        <content type="html"><![CDATA[<p>作为简单记录，这篇文章主要包括几个简单的点：</p><ol><li>在 J1900 上安装黑群晖【废话？</li><li>安装硬盘配置网络硬盘【NAS 基本操作</li><li>通过 <code>AFP</code> 协议设置 MacOS 的 <code>Time Machine</code> 备份到 NAS 上</li></ol><a id="more"></a><p>为什么这一篇包括了三点呢？<br>原因其实很简单，就是因为太简单了，所以合在一起写。</p><h1 id="安装黑群晖"><a href="#安装黑群晖" class="headerlink" title="安装黑群晖"></a>安装黑群晖</h1><blockquote><p>参考资料：<a href="https://post.smzdm.com/p/ax08ld2w/" target="_blank" rel="noopener">与时俱进，提升居家生活品质（篇四）：3分钟搞定SSD黑群晖安装</a></p></blockquote><p>我安装黑群晖是看了这篇大佬的教程，因为这篇是直接用了同配置机器安装完成后的硬盘的直接 dump，可以1：1还原新安装的机器的数据。</p><p>贴一个我自己的百度云分流：</p><blockquote><p>链接: <a href="https://pan.baidu.com/s/165QEk_F91n30yP-yuUoeUw" target="_blank" rel="noopener">https://pan.baidu.com/s/165QEk_F91n30yP-yuUoeUw</a> 提取码: q2vb </p></blockquote><p>不过使用这个镜像需要注意的是（个人猜测），因为原盘也是16g 固态 dump 出来的，所以建议用于大于等于16g 的固态硬盘进行写入，这样才能还原出原本的数据分区情况和避免硬盘出错。</p><p>还有一个写入镜像的工具：<a href="/file/DiskImage-V1.6-WinAll.exe.zip">DiskImage-V1.6-WinAll</a>，这个工具的图标是个眼睛发亮的黑猫，刚开始我老是找不到它在哪。可以运行在 WinPE 上，所以放心食用。</p><h2 id="解压镜像文件"><a href="#解压镜像文件" class="headerlink" title="解压镜像文件"></a>解压镜像文件</h2><p>这个文件需要提前解压，从 zip 格式解压到 img 格式。不得不说刚开始我还是有些惊讶的，因为毕竟一个650M的文件可以解压出来一个14G 多的文件，实在压缩比有些高了。</p><p>但是装完之后回过头来想想，这里面大多是分区的零填充，压缩之后肯定会大幅压缩，这样就会出现神奇的压缩比。</p><h2 id="准备-PE-U盘"><a href="#准备-PE-U盘" class="headerlink" title="准备 PE U盘"></a>准备 PE U盘</h2><p>既然镜像有14G 多，那么 U 盘至少也要16G。</p><p>都知道 WinPE 是什么吧？不知道的可以左上角或者右上角叉叉退出了😂</p><p>要是让我推荐一款 PE 那绝对是 WePE，无论是临时使用还是长期做维护，都很适合，安装简单系统纯净，关键是装 win 的时候不会夹带私货。</p><blockquote><p><a href="http://www.wepe.com.cn" target="_blank" rel="noopener">微PE WePE 官网</a><br>PS: WePE打钱！</p></blockquote><p>把镜像和写入工具放到U盘里头。</p><h2 id="安装-Synology"><a href="#安装-Synology" class="headerlink" title="安装 Synology"></a>安装 Synology</h2><ol><li>插上 U盘</li><li>开机疯狂按 F2 选择进入U盘启动</li><li>使用 HD Tune 扫描固态坏块，确认无误之后进行下一步。坏块太多就去肛奸商。【当时我的固态里头就是20%的坏块</li><li>打开 DiskGenius 清空固态分区，提交改动</li><li>打开之前下载的<code>DiskImage-V1.6-WinAll.exe</code>，镜像位置选择解压好的镜像文件。磁盘位置选择整个固态硬盘，不要选择某个分区。16g 的固态软件内大概识别成14g 多。</li><li>点击开始写入。</li><li>坐与静等…</li></ol><p>写入完成之后再打开 DiskGenius 可以看到固态被分成了好几个格式化好的分区。这样就写入完成了。<br>接下来拔掉 U盘重启从硬盘启动，如果看到很多问号的话，那就说明安装成功了。</p><p>现在使用另一台同在局域网内的计算机，打开浏览器输入<a href="http://find.synology.com" target="_blank" rel="noopener">find.synology.com</a>或者直接点击这个，就会加载群晖官方的本地网络搜索工具，如果搜索到了会显示系统配置页面。配置用户还有地区等等各种参数，不过有一点，不要使用任何群晖的云服务，这样就会和群晖的服务器进行交互，有可能会被 ban 机。</p><h1 id="安装硬盘"><a href="#安装硬盘" class="headerlink" title="安装硬盘"></a>安装硬盘</h1><p>安装硬盘很简单，不过有一点不得不说，要在群晖上使用硬盘必须要格式化才行，因为群晖有他自己的硬盘格式和管理方法。</p><ol><li><p>将硬盘装入 NAS 硬盘插槽</p><p> 有一点很重要，就是务必要使用沉头螺丝，不然会因为螺丝凸起而没办法装入插槽中。【别问我为什么知道</p></li><li><p>打开储存空间管理器，可以看到未使用的硬盘显示为绿色，正在使用的硬盘显示为蓝色</p><p> <img src="/img/NAS/storageManager.png" alt="Storage Manager"></p></li><li><p>进入 RAID GROUP 选项卡，如果有空闲的硬盘空间，那么新建按钮就会显示为可用状态。点击新建。</p><p> 选择未使用的硬盘，选择格式的时候选择 Btrfs，这是群晖专属的硬盘格式，有日志功能和各种管理 iSCSI 的奇效。<br> Raid 选择 Base 就行，单硬盘作为一个空间来使用。<br> 新建出一个 Raid 组之后，这个硬盘即为可用状态。但是我们在系统里面还看不到哪里能用。<br> 原因在于由于是 NAS，系统只会将共享的空间呈现出来给你使用。所以答案很明显了，需要在硬盘上配置共享空间。</p></li><li></li></ol><h1 id="配置-Time-Machine"><a href="#配置-Time-Machine" class="headerlink" title="配置 Time Machine"></a>配置 Time Machine</h1>]]></content>
       
       
       <categories>
@@ -644,9 +644,9 @@
       
       <categories>
           
-          <category> Linux Learning </category>
-          
           <category> Geek&#39;s Work </category>
+          
+          <category> Linux Learning </category>
           
           <category> Programer Walk </category>
           
@@ -737,9 +737,9 @@
       
       <categories>
           
-          <category> Linux Learning </category>
-          
           <category> Geek&#39;s Work </category>
+          
+          <category> Linux Learning </category>
           
           <category> Play with VPS </category>
           
@@ -748,9 +748,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
             <tag> ssh </tag>
             
@@ -855,9 +855,9 @@
       
       <categories>
           
-          <category> Linux Learning </category>
-          
           <category> Geek&#39;s Work </category>
+          
+          <category> Linux Learning </category>
           
           <category> Play with VPS </category>
           
@@ -866,9 +866,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
             <tag> CentOS </tag>
             
