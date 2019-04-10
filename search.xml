@@ -3,11 +3,61 @@
   
     
     <entry>
+      <title>每日一记 - 后天托福二考，很慌</title>
+      <link href="/2019/04/10/post-everyday-2019-04-10/"/>
+      <url>/2019/04/10/post-everyday-2019-04-10/</url>
+      
+        <content type="html"><![CDATA[<p><strong>日期：2019年4月10日</strong><br><strong>天气：骤冷</strong></p><h1 id="几件大事"><a href="#几件大事" class="headerlink" title="几件大事"></a>几件大事</h1><ol><li>距离托福二考还有3天【包括今天</li><li>设置了黑裙的 ipv6版本 aliddns</li><li>天气转变迅速，感冒了【压力也有点大</li><li>昨天在 steam 上买了 RiME【</li></ol><a id="more"></a><h2 id="每日英语打卡"><a href="#每日英语打卡" class="headerlink" title="每日英语打卡"></a>每日英语打卡</h2><h3 id="Vocabulary"><a href="#Vocabulary" class="headerlink" title="Vocabulary"></a>Vocabulary</h3><p>list 9 - 10</p><p>需要巩固的单词</p><blockquote><p>invest v. 投资，投入，授予<br>synthetic adj. 综合的，合成的；虚假的<br>curse n./v. 诅咒，咒骂，天谴；祸害，祸根<br>suspend vt. 暂停，终止；吊，悬<br>tide n. 潮，潮汐；潮流，趋势 v. 涨，落；使随潮水漂浮<br>cope vi. （成功地）应付，（妥善地）处理<br>faint adj. 模糊的，隐约的；微小的，微弱的；眩晕的 n./vi. 昏厥<br>conference n. （正式）会议，讨论会；讨论，商谈<br>hazard n. 危害，公害 vt. 尝试着做（或提出），冒…风险<br>swell vi. 膨胀，隆起；增长，增强，增多，扩大 n. 波浪起伏；鼓起，隆起；增强<br>pension n. 养老金，抚恤金 vt. 发给…养老金<br>liable adj. 易于…的，可能得</p><p>spur n. 刺激物 vt. 刺激，鞭策，激励<br>precise adj. 精确的，准确的；严谨的<br>screw n. 螺丝（钉） vt. 用螺丝钉固定，拧，拧紧<br>constitute vt. 组成，形成；设立；任命<br>prior adj. 在前的，优先的<br>hasitate vi. 犹豫，踌躇，含糊；不情愿<br>competent adj. 有能力的，能胜任的<br>encounter vt. 遭遇，遇到 n. 遭遇<br>provision n. 供应；准备，预备；条款，规定 来自 provide<br>reinforce vt. 增强，加强，增援<br>rational adj. 理性的，理智的；合理的</p></blockquote><h3 id="Listening"><a href="#Listening" class="headerlink" title="Listening"></a>Listening</h3><p>VOA NEWS Topic: 泰国大选结果出炉</p><p><img src="/img/punch/20190410.jpg" alt="punch：泰国大选结果出炉"></p><hr><p>明天也要加油哦~</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 每日一记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 每日一记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>黑裙 NAS - 简单配置</title>
+      <link href="/2019/04/03/synology-something/"/>
+      <url>/2019/04/03/synology-something/</url>
+      
+        <content type="html"><![CDATA[<p>作为简单记录，这篇文章主要包括几个简单的点：</p><ol><li>在 J1900 上安装黑群晖【废话？</li><li>安装硬盘配置网络硬盘【NAS 基本操作</li><li>通过 <code>AFP</code> 协议设置 MacOS 的 <code>Time Machine</code> 备份到 NAS 上</li></ol><a id="more"></a><p>为什么这一篇包括了三点呢？<br>原因其实很简单，就是因为太简单了，所以合在一起写。</p><h1 id="安装黑群晖"><a href="#安装黑群晖" class="headerlink" title="安装黑群晖"></a>安装黑群晖</h1><blockquote><p>参考资料：<a href="https://post.smzdm.com/p/ax08ld2w/" target="_blank" rel="noopener">与时俱进，提升居家生活品质（篇四）：3分钟搞定SSD黑群晖安装</a></p></blockquote><p>我安装黑群晖是看了这篇大佬的教程，因为这篇是直接用了同配置机器安装完成后的硬盘的直接 dump，可以1：1还原新安装的机器的数据。</p><p>贴一个我自己的百度云分流：</p><blockquote><p>链接: <a href="https://pan.baidu.com/s/165QEk_F91n30yP-yuUoeUw" target="_blank" rel="noopener">https://pan.baidu.com/s/165QEk_F91n30yP-yuUoeUw</a> 提取码: q2vb </p></blockquote><p>不过使用这个镜像需要注意的是（个人猜测），因为原盘也是16g 固态 dump 出来的，所以建议用于大于等于16g 的固态硬盘进行写入，这样才能还原出原本的数据分区情况和避免硬盘出错。</p><p>还有一个写入镜像的工具：<a href="/file/DiskImage-V1.6-WinAll.exe">DiskImage-V1.6-WinAll</a>，这个工具的图标是个眼睛发亮的黑猫，刚开始我老是找不到它在哪。可以运行在 WinPE 上，所以放心食用。</p><h2 id="解压镜像文件"><a href="#解压镜像文件" class="headerlink" title="解压镜像文件"></a>解压镜像文件</h2><p>这个文件需要提前解压，从 zip 格式解压到 img 格式。不得不说刚开始我还是有些惊讶的，因为毕竟一个650M的文件可以解压出来一个14G 多的文件，实在压缩比有些高了。</p><p>但是装完之后回过头来想想，这里面大多是分区的零填充，压缩之后肯定会大幅压缩，这样就会出现神奇的压缩比。</p><h2 id="准备-PE-U盘"><a href="#准备-PE-U盘" class="headerlink" title="准备 PE U盘"></a>准备 PE U盘</h2><p>既然镜像有14G 多，那么 U 盘至少也要16G。</p><p>都知道 WinPE 是什么吧？不知道的可以左上角或者右上角叉叉退出了😂</p><p>要是让我推荐一款 PE 那绝对是 WePE，无论是临时使用还是长期做维护，都很适合，安装简单系统纯净，关键是装 win 的时候不会夹带私货。</p><blockquote><p><a href="http://www.wepe.com.cn" target="_blank" rel="noopener">微PE WePE 官网</a><br>PS: WePE打钱！</p></blockquote><p>把镜像和写入工具放到U盘里头。</p><h2 id="安装-Synology"><a href="#安装-Synology" class="headerlink" title="安装 Synology"></a>安装 Synology</h2><ol><li>插上 U盘</li><li>开机疯狂按 F2 选择进入U盘启动</li><li>使用 HD Tune 扫描固态坏块，确认无误之后进行下一步。坏块太多就去肛奸商。【当时我的固态里头就是20%的坏块</li><li>打开 DiskGenius 清空固态分区，提交改动</li><li>打开之前下载的<code>DiskImage-V1.6-WinAll.exe</code>，镜像位置选择解压好的镜像文件。磁盘位置选择整个固态硬盘，不要选择某个分区。16g 的固态软件内大概识别成14g 多。</li><li>点击开始写入。</li><li>坐与静等…</li></ol><p>写入完成之后再打开 DiskGenius 可以看到固态被分成了好几个格式化好的分区。这样就写入完成了。<br>接下来拔掉 U盘重启从硬盘启动，如果看到很多问号的话，那就说明安装成功了。</p><p>现在使用另一台同在局域网内的计算机，打开浏览器输入<a href="http://find.synology.com" target="_blank" rel="noopener">find.synology.com</a>或者直接点击这个，就会加载群晖官方的本地网络搜索工具，如果搜索到了会显示系统配置页面。配置用户还有地区等等各种参数，不过有一点，不要使用任何群晖的云服务，这样就会和群晖的服务器进行交互，有可能会被 ban 机。</p><h1 id="安装硬盘"><a href="#安装硬盘" class="headerlink" title="安装硬盘"></a>安装硬盘</h1><p>安装硬盘很简单，不过有一点不得不说，要在群晖上使用硬盘必须要格式化才行，因为群晖有他自己的硬盘格式和管理方法。</p><ol><li><p>将硬盘装入 NAS 硬盘插槽</p><p> 有一点很重要，就是务必要使用沉头螺丝，不然会因为螺丝凸起而没办法装入插槽中。【别问我为什么知道</p></li><li><p>打开储存空间管理器，可以看到未使用的硬盘显示为绿色，正在使用的硬盘显示为蓝色</p><p> <img src="/img/NAS/storageManager.png" alt="Storage Manager"></p></li><li><p>进入 RAID GROUP 选项卡，如果有空闲的硬盘空间，那么新建按钮就会显示为可用状态。点击新建。</p><p> 选择未使用的硬盘，选择格式的时候选择 Btrfs，这是群晖专属的硬盘格式，有日志功能和各种管理 iSCSI 的奇效。<br> Raid 选择 Base 就行，单硬盘作为一个空间来使用。<br> 新建出一个 Raid 组之后，这个硬盘即为可用状态。但是我们在系统里面还看不到哪里能用。<br> 原因在于由于是 NAS，系统只会将共享的空间呈现出来给你使用。所以答案很明显了，需要在硬盘上配置共享空间。</p></li><li></li></ol><h1 id="配置-Time-Machine"><a href="#配置-Time-Machine" class="headerlink" title="配置 Time Machine"></a>配置 Time Machine</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> Geek&#39;s Work </category>
+          
+          <category> NAS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Synology </tag>
+            
+            <tag> 黑裙，NAS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>黑裙 NAS 搭建 - 初</title>
       <link href="/2019/04/01/synology-overview/"/>
       <url>/2019/04/01/synology-overview/</url>
       
-        <content type="html"><![CDATA[<p>初次接触 NAS，也是第一次接触这样子专用用途的 Linux，不得不说着实是一次奇妙的经历。原来本以为 NAS 对于我们来说没有太大用处，但是直到自己有了一个之后，真香！</p><a id="more"></a><hr><h1 id="黑裙？黑群晖！"><a href="#黑裙？黑群晖！" class="headerlink" title="黑裙？黑群晖！"></a>黑裙？黑群晖！</h1><p>黑群晖这个词，我刚开始也不太明白的，甚至觉得黑群晖是一个电脑品牌，只是名字很酷炫（然而严格意义上就是也是一个电脑整机品牌）。<br>但是我知道另一个名词，黑苹果。众所周知，要想享受苹果的 MacOS 系统就必须要购买苹果品牌的电脑才可以获得最好的系统体验。而老司机们出于钱包问题或者是折腾爱好，就捣鼓出来了黑苹果。<br>顾名思义，就是黑的苹果，不是真正的苹果系统，是装在非苹果电脑硬件系统上的苹果 MacOS 系统。</p><p>这么一想就很简单了。黑群晖，去掉黑字就是“群晖”，群晖是一家 NAS 的制造商，包括硬件和软件在内。</p><p><strong>群晖</strong></p><blockquote><p>群晖科技股份有限公司（品牌名称：Synology，简称群晖或群晖科技）为台湾一家网络附加储存（NAS）服务商，总部位于台北市。<br>截至2017年，群晖以Synology品牌行销全球，在中小企业及家用NAS市场占有率居世界首位[5]。<br>参考资料：<a href="https://zh.wikipedia.org/wiki/%E7%BE%A4%E6%9A%89%E7%A7%91%E6%8A%80" target="_blank" rel="noopener">群晖 - Wikipedia</a><br><a href="https://www.synology.cn/zh-cn" target="_blank" rel="noopener">群晖中文官网</a></p></blockquote><p>体验群晖硬件的话自然就是购买群晖本身的硬件来体验，黑不起来。而软件就可以运行在非群晖硬件上，获得群晖系统的体验和功能。所以说，黑群晖也就不是真正的群晖系统（包括软硬件），而是装在玩家自己 DIY 的 NAS 硬件系统上的群晖系统。</p><h2 id="NAS"><a href="#NAS" class="headerlink" title="NAS"></a>NAS</h2><p>那么 NAS 又是啥嘞。说实话，我才之前也没体验过 NAS 的，只是知道这么个东西，可以作为私有云来将资料存储在自己的云上，这样安全性和自由度就更高。</p><p><strong>网络附加存储</strong></p><blockquote><p>网络附加存储设备（英语：Network Attached Storage，缩写：NAS），是一种专门的数据存储技术的名称，它可以直接连接在计算机网络上面，对异质网络用户提供了集中式数据访问服务。出国带着可以使用内部网</p><p>参考资料：<a href="https://zh.wikipedia.org/wiki/%E7%B6%B2%E8%B7%AF%E9%99%84%E5%8A%A0%E5%84%B2%E5%AD%98" target="_blank" rel="noopener">NAS Wikipedia</a></p></blockquote><p>而维基也说了，NAS 的优点在于：</p><blockquote><p>NAS从两方面改善了数据的可用性：<br>即使相应的应用服务器不再工作了，仍然可以读出数据。<br>简易服务器本身不会崩溃，因为它避免了引起服务器崩溃的首要原因，即应用软件引起的问题。</p><p>NAS产品具有的优点包括：<br>NAS产品是真正即插即用产品。NAS设备一般支持多计算机平台，用户通过网络支持协议可进入相同的文档，因而NAS设备无需改造即可用于混合UNIX／Windows NT局域网内。<br>NAS设备的物理位置同样是灵活的，它们可放置在工作组内，靠近数据中心的应用服务器，或者也可放在其他地点，通过物理链路与网络连接起来。无需应用服务器的干预，NAS设备允许用户在网络上存储数据，这样既可减小CPU的开销，也能显著改善网络的性能。</p></blockquote><p>而这些都不是我上这台黑裙的重点。</p><p>重点在于某天（周二）的多媒体技术课上，看到群里大佬 LFX 在浏览器里头使用一个类似桌面环境的东西，于是我就问了一下，得知这是群晖系统的面板。于是就种草了。</p><p>怎么会因为看了一眼就喜欢上了呢？别说，还真是一见钟情。能有多惊艳呢？我先放两张图吧</p><p><img src="/img/NAS/login.png" alt="Login site"></p><p><img src="/img/NAS/desktop.png" alt="Desktop"></p><p>这简洁明了的界面，直观的 dashboard，实在是深得我心哇有木有。虽然我已经爱上 sh 的操作方式，但是不得不说，这样美观的鼠标操作的页面真的是太 cool 了。</p><p>话说回来，我虽然是种草了，但是却没有提上日程，毕竟硬件加上折腾成本也不便宜。但是！</p><h2 id="蜗牛星际-J1900-车来！"><a href="#蜗牛星际-J1900-车来！" class="headerlink" title="蜗牛星际 J1900 车来！"></a>蜗牛星际 J1900 车来！</h2><p><strong>硬件概况</strong></p><blockquote><p>CPU+主板：    J1900<br>内存：        4G<br>固态：        16G<br>网卡：        Intel i211 千兆<br>重点：        低功耗</p></blockquote><p>关于这辆车的由来，我个人也说不清，只能归纳为发了矿难-&gt;出机器-&gt;翻车-&gt;司机扶正-&gt;又翻车-&gt;又扶正-&gt;下放市场。</p><p>感兴趣可以看看这篇：<a href="https://post.smzdm.com/p/adwl2krk/?send_by=9714620998" target="_blank" rel="noopener">矿渣小分队 篇一：矿渣小分队之蜗牛星际主板补件测试</a></p><p>我上这辆车是跟着协会大佬一起上的，没办法，消息不灵通，只能跟着别人的消息走，不过也不算晚，赶在了最适合的时机上车。<br>为什么说是最合适的时机呢？看了上面那篇文章的同学一定也知道了这趟车的翻车性大大的有，而在不断的大佬出手扶正之后终于将车的所有性能榨干，并且登上了神车的神坛，稳如老狗。<br>而另一个因素就是价格，车刚开的时候，价格甚至炒到了400元一台。而经过一天的冷静之后，价格到达了市场最能够接受的270-300元一台。我就是在这个时候上了车。在之后货源慢慢的出手之后，物以稀为贵的定律又发挥出来了，慢慢的价格也回升到了350左右。</p><p>只能说机会是给有准备的人的（我哪有啥准备？）。</p><p>于是乎我就遇到了这种“在刚刚种草的时候车就来了”的奇妙时刻上车了。</p><hr><h1 id="J1900-黑裙可玩性"><a href="#J1900-黑裙可玩性" class="headerlink" title="J1900 黑裙可玩性"></a>J1900 黑裙可玩性</h1><p>正规硬件+正规软件，必定安安心心使用绝不折腾。但是跳出了规规矩矩使用的圈子，只要是 DIY，就必定可玩性 up up。就如同我现在这台 Macbook Pro 2015 T2，纯正的最后一代 A 面亮灯顶配机器，加上最新的 <code>Mojave 10.14.4</code> 系统，完全就安排的妥妥当当，安心的使用就行了，不用 xjr 折腾。</p><p>一台自由度极高并且功能齐全的黑群晖究竟能怎么折腾呢？<br>按照我的折腾时间线，大致可以列出这么多。</p><ol><li>在 J1900 上安装黑群晖【废话？</li><li>安装硬盘配置网络硬盘【NAS 基本操作</li><li>通过 <code>AFP</code> 协议设置 MacOS 的 <code>Time Machine</code> 备份到 NAS 上</li><li>使用阿里云服务器配置 <code>frp</code> 内网穿透，实现外网控制 NAS</li><li>配置 <code>Xware</code> 实现迅雷远程下载功能</li><li>配置 <code>BaiduPCS-GO</code> Web 端实现百度云不限速下载</li><li>配置 Photo Station （群晖官方套件）实现手机照片自动备份</li><li>配置 Music Station （群晖官方套件）实现手机远程聆听 NAS 内无损音源</li><li>配置 Video Station （群晖官方套件）实现 ipad 观看 NAS 内高清片源</li><li>配置计划任务和邮件通知，实现日志远程查看</li><li>配置主板BIOS和系统实现远程唤醒功能</li><li>… 【待续</li></ol><p>以上列出的全部我都已经全部实现了，所以说你所见即所得，后续都会趁热打铁写在博客里面，作为记录，也为茫然的和我一样的小萌新铺路。</p><hr><p>本文完~</p>]]></content>
+        <content type="html"><![CDATA[<p>初次接触 NAS，也是第一次接触这样子专用用途的 Linux，不得不说着实是一次奇妙的经历。原来本以为 NAS 对于我们来说没有太大用处，但是直到自己有了一个之后，真香！</p><a id="more"></a><hr><h1 id="黑裙？黑群晖！"><a href="#黑裙？黑群晖！" class="headerlink" title="黑裙？黑群晖！"></a>黑裙？黑群晖！</h1><p>黑群晖这个词，我刚开始也不太明白的，甚至觉得黑群晖是一个电脑品牌，只是名字很酷炫（然而严格意义上就是也是一个电脑整机品牌）。<br>但是我知道另一个名词，黑苹果。众所周知，要想享受苹果的 MacOS 系统就必须要购买苹果品牌的电脑才可以获得最好的系统体验。而老司机们出于钱包问题或者是折腾爱好，就捣鼓出来了黑苹果。<br>顾名思义，就是黑的苹果，不是真正的苹果系统，是装在非苹果电脑硬件系统上的苹果 MacOS 系统。</p><p>这么一想就很简单了。黑群晖，去掉黑字就是“群晖”，群晖是一家 NAS 的制造商，包括硬件和软件在内。</p><p><strong>群晖</strong></p><blockquote><p>群晖科技股份有限公司（品牌名称：Synology，简称群晖或群晖科技）为台湾一家网络附加储存（NAS）服务商，总部位于台北市。<br>截至2017年，群晖以Synology品牌行销全球，在中小企业及家用NAS市场占有率居世界首位[5]。<br>参考资料：<a href="https://zh.wikipedia.org/wiki/%E7%BE%A4%E6%9A%89%E7%A7%91%E6%8A%80" target="_blank" rel="noopener">群晖 - Wikipedia</a><br><a href="https://www.synology.cn/zh-cn" target="_blank" rel="noopener">群晖中文官网</a></p></blockquote><p>体验群晖硬件的话自然就是购买群晖本身的硬件来体验，黑不起来。而软件就可以运行在非群晖硬件上，获得群晖系统的体验和功能。所以说，黑群晖也就不是真正的群晖系统（包括软硬件），而是装在玩家自己 DIY 的 NAS 硬件系统上的群晖系统。</p><h2 id="NAS"><a href="#NAS" class="headerlink" title="NAS"></a>NAS</h2><p>那么 NAS 又是啥嘞。说实话，我才之前也没体验过 NAS 的，只是知道这么个东西，可以作为私有云来将资料存储在自己的云上，这样安全性和自由度就更高。</p><p><strong>网络附加存储</strong></p><blockquote><p>网络附加存储设备（英语：Network Attached Storage，缩写：NAS），是一种专门的数据存储技术的名称，它可以直接连接在计算机网络上面，对异质网络用户提供了集中式数据访问服务。出国带着可以使用内部网</p><p>参考资料：<a href="https://zh.wikipedia.org/wiki/%E7%B6%B2%E8%B7%AF%E9%99%84%E5%8A%A0%E5%84%B2%E5%AD%98" target="_blank" rel="noopener">NAS Wikipedia</a></p></blockquote><p>而维基也说了，NAS 的优点在于：</p><blockquote><p>NAS从两方面改善了数据的可用性：<br>即使相应的应用服务器不再工作了，仍然可以读出数据。<br>简易服务器本身不会崩溃，因为它避免了引起服务器崩溃的首要原因，即应用软件引起的问题。</p><p>NAS产品具有的优点包括：<br>NAS产品是真正即插即用产品。NAS设备一般支持多计算机平台，用户通过网络支持协议可进入相同的文档，因而NAS设备无需改造即可用于混合UNIX／Windows NT局域网内。<br>NAS设备的物理位置同样是灵活的，它们可放置在工作组内，靠近数据中心的应用服务器，或者也可放在其他地点，通过物理链路与网络连接起来。无需应用服务器的干预，NAS设备允许用户在网络上存储数据，这样既可减小CPU的开销，也能显著改善网络的性能。</p></blockquote><p>而这些都不是我上这台黑裙的重点。</p><p>重点在于某天（周二）的多媒体技术课上，看到群里大佬 LFX 在浏览器里头使用一个类似桌面环境的东西，于是我就问了一下，得知这是群晖系统的面板。于是就种草了。</p><p>怎么会因为看了一眼就喜欢上了呢？别说，还真是一见钟情。能有多惊艳呢？我先放两张图吧</p><p><img src="/img/NAS/login.png" alt="Login site"></p><p><img src="/img/NAS/desktop.png" alt="Desktop"></p><p>这简洁明了的界面，直观的 dashboard，实在是深得我心哇有木有。虽然我已经爱上 sh 的操作方式，但是不得不说，这样美观的鼠标操作的页面真的是太 cool 了。</p><p>话说回来，我虽然是种草了，但是却没有提上日程，毕竟硬件加上折腾成本也不便宜。但是！</p><h2 id="蜗牛星际-J1900-车来！"><a href="#蜗牛星际-J1900-车来！" class="headerlink" title="蜗牛星际 J1900 车来！"></a>蜗牛星际 J1900 车来！</h2><p><strong>硬件概况</strong></p><blockquote><p>CPU+主板：    J1900<br>内存：        4G<br>固态：        16G<br>网卡：        Intel i211 千兆<br>重点：        低功耗</p></blockquote><p>关于这辆车的由来，我个人也说不清，只能归纳为发了矿难-&gt;出机器-&gt;翻车-&gt;司机扶正-&gt;又翻车-&gt;又扶正-&gt;下放市场。</p><p>感兴趣可以看看这篇：<a href="https://post.smzdm.com/p/adwl2krk/?send_by=9714620998" target="_blank" rel="noopener">矿渣小分队 篇一：矿渣小分队之蜗牛星际主板补件测试</a></p><p>我上这辆车是跟着协会大佬一起上的，没办法，消息不灵通，只能跟着别人的消息走，不过也不算晚，赶在了最适合的时机上车。<br>为什么说是最合适的时机呢？看了上面那篇文章的同学一定也知道了这趟车的翻车性大大的有，而在不断的大佬出手扶正之后终于将车的所有性能榨干，并且登上了神车的神坛，稳如老狗。<br>而另一个因素就是价格，车刚开的时候，价格甚至炒到了400元一台。而经过一天的冷静之后，价格到达了市场最能够接受的270-300元一台。我就是在这个时候上了车。在之后货源慢慢的出手之后，物以稀为贵的定律又发挥出来了，慢慢的价格也回升到了350左右。</p><p>只能说机会是给有准备的人的（我哪有啥准备？）。</p><p>于是乎我就遇到了这种“在刚刚种草的时候车就来了”的奇妙时刻上车了。</p><hr><h1 id="J1900-黑裙可玩性"><a href="#J1900-黑裙可玩性" class="headerlink" title="J1900 黑裙可玩性"></a>J1900 黑裙可玩性</h1><p>正规硬件+正规软件，必定安安心心使用绝不折腾。但是跳出了规规矩矩使用的圈子，只要是 DIY，就必定可玩性 up up。就如同我现在这台 Macbook Pro 2015 T2，纯正的最后一代 A 面亮灯顶配机器，加上最新的 <code>Mojave 10.14.4</code> 系统，完全就安排的妥妥当当，安心的使用就行了，不用 xjr 折腾。</p><p>一台自由度极高并且功能齐全的黑群晖究竟能怎么折腾呢？<br>按照我的折腾时间线，大致可以列出这么多。</p><ol><li>在 J1900 上安装黑群晖【废话？</li><li>安装硬盘配置网络硬盘【NAS 基本操作</li><li>通过 <code>AFP</code> 协议设置 MacOS 的 <code>Time Machine</code> 备份到 NAS 上</li><li>使用阿里云服务器配置 <code>frp</code> 内网穿透，实现外网控制 NAS</li><li>配置 <code>Xware</code> 实现迅雷远程下载功能</li><li>配置 <code>BaiduPCS-GO</code> Web 端实现百度云不限速下载</li><li>配置人人美剧 Linux 客户端<code>rrshareweb</code>实现人人影视下载功能</li><li>配置 Photo Station （群晖官方套件）实现手机照片自动备份</li><li>配置 Music Station （群晖官方套件）实现手机远程聆听 NAS 内无损音源</li><li>配置 Video Station （群晖官方套件）实现 ipad 观看 NAS 内高清片源</li><li>配置计划任务和邮件通知，实现日志远程查看</li><li>配置主板BIOS和系统实现远程唤醒功能</li><li>… 【待续</li></ol><p>以上列出的全部我都已经全部实现了，所以说你所见即所得，后续都会趁热打铁写在博客里面，作为记录，也为茫然的和我一样的小萌新铺路。</p><hr><p>本文完~</p>]]></content>
       
       
       <categories>
@@ -594,9 +644,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Programer Walk </category>
           
@@ -687,9 +737,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Play with VPS </category>
           
@@ -698,9 +748,9 @@
       
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
             <tag> ssh </tag>
             
@@ -805,9 +855,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Play with VPS </category>
           
@@ -816,9 +866,9 @@
       
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
             <tag> CentOS </tag>
             
