@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.chensmallx.top/2019/07/24/leetcode-8-atoi/</loc>
+    <lastmod>2019-07-24T07:24:33.404Z</lastmod>
+  </url>  <url>
+    <loc>https://blog.chensmallx.top/2018/11/22/VMWare-Fusion-recycle-storage/</loc>
+    <lastmod>2019-07-24T03:54:01.990Z</lastmod>
+  </url>  <url>
     <loc>https://blog.chensmallx.top/2018/06/06/test/</loc>
     <lastmod>2019-07-24T03:49:48.125Z</lastmod>
   </url>  <url>
@@ -18,9 +24,6 @@
   </url>  <url>
     <loc>https://blog.chensmallx.top/2018/06/07/config-of-vscode-for-c-cpp-on-macos/</loc>
     <lastmod>2019-07-24T03:44:03.333Z</lastmod>
-  </url>  <url>
-    <loc>https://blog.chensmallx.top/2019/07/24/leetcode-8-atoi/</loc>
-    <lastmod>2019-07-24T03:42:43.482Z</lastmod>
   </url>  <url>
     <loc>https://blog.chensmallx.top/2019/04/23/post-everyday-2019-4-23/</loc>
     <lastmod>2019-04-23T11:50:49.006Z</lastmod>
@@ -123,9 +126,6 @@
   </url>  <url>
     <loc>https://blog.chensmallx.top/2018/11/23/post-everyday-2018-11-23/</loc>
     <lastmod>2018-11-25T07:00:40.002Z</lastmod>
-  </url>  <url>
-    <loc>https://blog.chensmallx.top/2018/11/22/VMWare-Fusion-recycle-storage/</loc>
-    <lastmod>2018-11-25T04:40:54.168Z</lastmod>
   </url>  <url>
     <loc>https://blog.chensmallx.top/2018/11/22/post-everyday-2018-11-22/</loc>
     <lastmod>2018-11-25T04:34:31.840Z</lastmod>
