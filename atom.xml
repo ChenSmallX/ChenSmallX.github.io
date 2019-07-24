@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Case of Xeon</title>
+  
+  <subtitle>_Now_you_see_me_</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://blog.chensmallx.top/"/>
+  <updated>2019-07-24T09:02:57.431Z</updated>
+  <id>https://blog.chensmallx.top/</id>
+  
+  <author>
+    <name>Small Xeon</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode-11.盛最多水的容器 &amp;&amp; OJ中加快C++速度的奇技淫巧</title>
+    <link href="https://blog.chensmallx.top/2019/07/24/leetcode-11-mostCapacity-boostOperation/"/>
+    <id>https://blog.chensmallx.top/2019/07/24/leetcode-11-mostCapacity-boostOperation/</id>
+    <published>2019-07-24T08:33:16.000Z</published>
+    <updated>2019-07-24T09:02:57.431Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
+    
+      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode题记 8.字符串转换整数(atoi)</title>
+    <link href="https://blog.chensmallx.top/2019/07/24/leetcode-8-atoi/"/>
+    <id>https://blog.chensmallx.top/2019/07/24/leetcode-8-atoi/</id>
+    <published>2019-07-24T03:21:32.000Z</published>
+    <updated>2019-07-24T08:47:01.048Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Programer Walk" scheme="https://blog.chensmallx.top/categories/Programer-Walk/"/>
+    
+      <category term="OJ" scheme="https://blog.chensmallx.top/categories/Programer-Walk/OJ/"/>
+    
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
+    
+      <category term="OJ" scheme="https://blog.chensmallx.top/tags/OJ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - 开始背多个单词来源</title>
+    <link href="https://blog.chensmallx.top/2019/04/23/post-everyday-2019-4-23/"/>
+    <id>https://blog.chensmallx.top/2019/04/23/post-everyday-2019-4-23/</id>
+    <published>2019-04-23T11:09:03.000Z</published>
+    <updated>2019-04-23T11:50:49.006Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2019年4月23日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：没雨不热很舒服&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;今晚出去看复联四二映【三点的场真酸爽&lt;/li&gt;
+&lt;li&gt;后天交中间件实验报告【明天睡醒就要写报告了&lt;/li&gt;
+&lt;li&gt;买了初中高中的语法书【把语法学完了就有底气了，不然一直觉得缺点什么&lt;/li&gt;
+&lt;li&gt;土钵鸡好咸&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记</title>
+    <link href="https://blog.chensmallx.top/2019/04/16/post-everyday-2019-4-16/"/>
+    <id>https://blog.chensmallx.top/2019/04/16/post-everyday-2019-4-16/</id>
+    <published>2019-04-16T02:56:13.000Z</published>
+    <updated>2019-04-23T11:08:32.675Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2019年4月16日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：凉转两件卫衣的热&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;来湖大和宝宝一起上自习&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - 后天托福二考，很慌</title>
+    <link href="https://blog.chensmallx.top/2019/04/10/post-everyday-2019-4-10/"/>
+    <id>https://blog.chensmallx.top/2019/04/10/post-everyday-2019-4-10/</id>
+    <published>2019-04-10T12:55:48.000Z</published>
+    <updated>2019-04-16T02:56:21.603Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2019年4月10日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：骤冷&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;距离托福二考还有3天【包括今天&lt;/li&gt;
+&lt;li&gt;设置了黑裙的 ipv6版本 aliddns&lt;/li&gt;
+&lt;li&gt;天气转变迅速，感冒了【压力也有点大&lt;/li&gt;
+&lt;li&gt;昨天在 steam 上买了 RiME【&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>黑裙 NAS - 简单配置</title>
+    <link href="https://blog.chensmallx.top/2019/04/03/synology-something/"/>
+    <id>https://blog.chensmallx.top/2019/04/03/synology-something/</id>
+    <published>2019-04-03T05:06:33.000Z</published>
+    <updated>2019-04-15T07:02:08.735Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作为简单记录，这篇文章主要包括几个简单的点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 J1900 上安装黑群晖【废话？&lt;/li&gt;
+&lt;li&gt;安装硬盘配置网络硬盘【NAS 基本操作&lt;/li&gt;
+&lt;li&gt;通过 &lt;code&gt;AFP&lt;/code&gt; 协议设置 MacOS 的 &lt;code&gt;Time Machine&lt;/code&gt; 备份到 NAS 上&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="Geek&#39;s Work" scheme="https://blog.chensmallx.top/categories/Geek-s-Work/"/>
+    
+      <category term="NAS" scheme="https://blog.chensmallx.top/categories/Geek-s-Work/NAS/"/>
+    
+    
+      <category term="Synology" scheme="https://blog.chensmallx.top/tags/Synology/"/>
+    
+      <category term="黑裙，NAS" scheme="https://blog.chensmallx.top/tags/%E9%BB%91%E8%A3%99%EF%BC%8CNAS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>黑裙 NAS 搭建 - 初</title>
+    <link href="https://blog.chensmallx.top/2019/04/01/synology-overview/"/>
+    <id>https://blog.chensmallx.top/2019/04/01/synology-overview/</id>
+    <published>2019-04-01T15:39:53.000Z</published>
+    <updated>2019-04-02T06:30:36.179Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;初次接触 NAS，也是第一次接触这样子专用用途的 Linux，不得不说着实是一次奇妙的经历。原来本以为 NAS 对于我们来说没有太大用处，但是直到自己有了一个之后，真香！&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Geek&#39;s Work" scheme="https://blog.chensmallx.top/categories/Geek-s-Work/"/>
+    
+      <category term="NAS" scheme="https://blog.chensmallx.top/categories/Geek-s-Work/NAS/"/>
+    
+    
+      <category term="Synology" scheme="https://blog.chensmallx.top/tags/Synology/"/>
+    
+      <category term="黑裙" scheme="https://blog.chensmallx.top/tags/%E9%BB%91%E8%A3%99/"/>
+    
+      <category term="NAS" scheme="https://blog.chensmallx.top/tags/NAS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - 黑裙 NAS 环境搭建完毕</title>
+    <link href="https://blog.chensmallx.top/2019/04/01/post-everyday-2019-4-1/"/>
+    <id>https://blog.chensmallx.top/2019/04/01/post-everyday-2019-4-1/</id>
+    <published>2019-04-01T13:43:44.000Z</published>
+    <updated>2019-04-01T15:34:53.127Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;天气：凉转热转凉&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;没什么大事，一切顺利。&lt;/li&gt;
+&lt;li&gt;黑裙 NAS 总体环境搭建完毕，后续会把一些东西记录下来。&lt;/li&gt;
+&lt;li&gt;愚人节快乐&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - NAS 上跑 BaiduPCS-GO</title>
+    <link href="https://blog.chensmallx.top/2019/03/29/post-everyday-2019-3-29/"/>
+    <id>https://blog.chensmallx.top/2019/03/29/post-everyday-2019-3-29/</id>
+    <published>2019-03-29T15:37:37.000Z</published>
+    <updated>2019-03-29T15:57:15.677Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2019年3月29日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：有点微凉&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;搞定了 NAS 上的百度云的问题&lt;/li&gt;
+&lt;li&gt;开始学离散数学了&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记</title>
+    <link href="https://blog.chensmallx.top/2019/03/25/post-everyday-2019-3-25/"/>
+    <id>https://blog.chensmallx.top/2019/03/25/post-everyday-2019-3-25/</id>
+    <published>2019-03-25T07:08:41.000Z</published>
+    <updated>2019-04-01T15:51:53.691Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2019年3月25日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：热 skr 人&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几间大事&quot;&gt;&lt;a href=&quot;#几间大事&quot; class=&quot;headerlink&quot; title=&quot;几间大事&quot;&gt;&lt;/a&gt;几间大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;小宝贝拐拐这个周末来武汉陪我玩了两天，开心~【代价是超支了&lt;/li&gt;
+&lt;li&gt;回来之后抓紧时间把 J1900 NAS 搭建起来了，简单安装了黑群晖。【美滋滋&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - 卸载 miniconda</title>
+    <link href="https://blog.chensmallx.top/2019/03/20/post-everyday-2019-3-20/"/>
+    <id>https://blog.chensmallx.top/2019/03/20/post-everyday-2019-3-20/</id>
+    <published>2019-03-20T10:48:20.000Z</published>
+    <updated>2019-03-20T15:17:41.403Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2019年3月20日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：地上有水转超级热&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件事情&quot;&gt;&lt;a href=&quot;#几件事情&quot; class=&quot;headerlink&quot; title=&quot;几件事情&quot;&gt;&lt;/a&gt;几件事情&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;从今天起，要严格控制饮食规律。&lt;/li&gt;
+&lt;li&gt;给 GoPro 买了一些配件，可以用来做行车记录仪了。【hhh&lt;/li&gt;
+&lt;li&gt;把机子里面的&lt;code&gt;miniconda&lt;/code&gt;卸载了，卸载的过程很简单；用回了&lt;code&gt;Python3.7&lt;/code&gt;，之后应该是需要用&lt;code&gt;virtual-env&lt;/code&gt;来控制多版本&lt;code&gt;Python&lt;/code&gt;了。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - 单纯英语打卡</title>
+    <link href="https://blog.chensmallx.top/2019/03/18/post-everyday-2019-3-19/"/>
+    <id>https://blog.chensmallx.top/2019/03/18/post-everyday-2019-3-19/</id>
+    <published>2019-03-18T12:45:47.000Z</published>
+    <updated>2019-03-20T15:13:25.203Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;卖家补发了一个 msata SSD 16g 来，总算是没翻车&lt;/li&gt;
+&lt;li&gt;没了&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - NAS 到了</title>
+    <link href="https://blog.chensmallx.top/2019/03/15/post-everyday-2019-3-15/"/>
+    <id>https://blog.chensmallx.top/2019/03/15/post-everyday-2019-3-15/</id>
+    <published>2019-03-15T14:10:22.000Z</published>
+    <updated>2019-03-20T15:13:31.595Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2019年3月15日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：晴转热死&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;成功上车蜗牛星际的 J1900 NAS 系统，简直就是买几箱送电脑。&lt;/li&gt;
+&lt;li&gt;昨晚尝试了一次早睡早起，今天中午没有睡午觉导致下午第一节课有些困，其他的一切正常，学习时间多出了许多，并且很有状态。&lt;/li&gt;
+&lt;li&gt;晚餐吃到了辣椒，先是感觉巨苦无比，接着是猛兽狂辣，辣出泪来，真实难受。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+      <category term="My English Learning" scheme="https://blog.chensmallx.top/categories/My-English-Learning/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - 打卡阵地转移</title>
+    <link href="https://blog.chensmallx.top/2019/03/13/post-everyday-2019-3-13/"/>
+    <id>https://blog.chensmallx.top/2019/03/13/post-everyday-2019-3-13/</id>
+    <published>2019-03-13T05:35:26.000Z</published>
+    <updated>2019-03-20T15:13:51.384Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2019年3月13日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：晴转阴 加小雾霾&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;今天开始2019年的每日一记。【我鸽我自己！【每天文本编辑时间不超过30分钟！&lt;/li&gt;
+&lt;li&gt;继续英语的打卡。【看了老师给我的打卡例子，我自己也想到了自己的打卡办法。&lt;/li&gt;
+&lt;li&gt;升升的中百罗森开门了。【开心&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+      <category term="My English Learning" scheme="https://blog.chensmallx.top/categories/My-English-Learning/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>成为一个能够独当一面的搞机高手需要懂的技能清单（系统篇）</title>
+    <link href="https://blog.chensmallx.top/2019/01/25/be-expert-skills-system/"/>
+    <id>https://blog.chensmallx.top/2019/01/25/be-expert-skills-system/</id>
+    <published>2019-01-25T05:28:11.000Z</published>
+    <updated>2019-01-25T05:34:33.423Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="计算机协会" scheme="https://blog.chensmallx.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
+    
+    
+      <category term="计算机协会" scheme="https://blog.chensmallx.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>成为一个能够独当一面的搞机高手需要懂的技能清单（硬件篇）</title>
+    <link href="https://blog.chensmallx.top/2019/01/25/be-expert-skills-hardware/"/>
+    <id>https://blog.chensmallx.top/2019/01/25/be-expert-skills-hardware/</id>
+    <published>2019-01-25T05:27:40.000Z</published>
+    <updated>2019-01-25T05:34:41.702Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="计算机协会" scheme="https://blog.chensmallx.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
+    
+    
+      <category term="计算机协会" scheme="https://blog.chensmallx.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计算机协会干事寒假作业-2019</title>
+    <link href="https://blog.chensmallx.top/2019/01/25/computerInstitution-winterassignment-2019/"/>
+    <id>https://blog.chensmallx.top/2019/01/25/computerInstitution-winterassignment-2019/</id>
+    <published>2019-01-25T05:18:15.000Z</published>
+    <updated>2019-01-25T06:48:05.775Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="计算机协会" scheme="https://blog.chensmallx.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
+    
+    
+      <category term="计算机协会" scheme="https://blog.chensmallx.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - 初入 JavaScript</title>
+    <link href="https://blog.chensmallx.top/2018/12/10/post-everyday-2018-12-10/"/>
+    <id>https://blog.chensmallx.top/2018/12/10/post-everyday-2018-12-10/</id>
+    <published>2018-12-10T15:00:53.000Z</published>
+    <updated>2019-07-24T03:46:25.805Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;因为组里需要前端，所以学一下 Vue.js 然而不会 js，所以学一下 js。&lt;/li&gt;
+&lt;li&gt;知乎上关于“大学生偷外卖”的问题热度超过2KW，狼灭真多，然而大快人心。&lt;/li&gt;
+&lt;li&gt;事情多的一批&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="Programer Walk" scheme="https://blog.chensmallx.top/categories/Programer-Walk/"/>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+      <category term="JavaScript" scheme="https://blog.chensmallx.top/categories/Programer-Walk/JavaScript/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - 真想呆在床上不下来【冷死我了</title>
+    <link href="https://blog.chensmallx.top/2018/12/05/post-everyday-2018-12-5/"/>
+    <id>https://blog.chensmallx.top/2018/12/05/post-everyday-2018-12-5/</id>
+    <published>2018-12-05T15:06:35.000Z</published>
+    <updated>2019-01-09T09:58:58.348Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2018年12月5日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：阵雨转雨&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件事情&quot;&gt;&lt;a href=&quot;#几件事情&quot; class=&quot;headerlink&quot; title=&quot;几件事情&quot;&gt;&lt;/a&gt;几件事情&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;开始重新学 c++。&lt;/li&gt;
+&lt;li&gt;把电脑拿到床上用真是美滋滋。（要去买床上桌了蛤蛤穷了）&lt;/li&gt;
+&lt;li&gt;完成了系统的两个报告。&lt;/li&gt;
+&lt;li&gt;明天开始学习编译原理（以实验为契机吧）。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日一记 - 皮了几天美滋滋</title>
+    <link href="https://blog.chensmallx.top/2018/12/04/post-everyday-2018-12-4/"/>
+    <id>https://blog.chensmallx.top/2018/12/04/post-everyday-2018-12-4/</id>
+    <published>2018-12-04T13:19:49.000Z</published>
+    <updated>2018-12-04T15:54:41.081Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;日期：2018年12月4日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：阴转小雨&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;浪过了几天，生活回到正轨。&lt;/li&gt;
+&lt;li&gt;后天交系统实验，心慌慌。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+    
+      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
+    
+  </entry>
+  
+</feed>
