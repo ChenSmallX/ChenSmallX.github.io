@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.chensmallx.top/2019/07/29/set-specific-language-MacOS-app/</loc>
+    <lastmod>2019-07-29T10:04:31.532Z</lastmod>
+  </url>  <url>
+    <loc>https://blog.chensmallx.top/2018/11/22/VMWare-Fusion-recycle-storage/</loc>
+    <lastmod>2019-07-29T09:48:52.494Z</lastmod>
+  </url>  <url>
     <loc>https://blog.chensmallx.top/2019/07/29/leetcode-21-mergeTwoLists/</loc>
     <lastmod>2019-07-29T09:07:20.306Z</lastmod>
   </url>  <url>
@@ -21,9 +27,6 @@
   </url>  <url>
     <loc>https://blog.chensmallx.top/2019/07/25/leetcode-2-addTwoNumbers/</loc>
     <lastmod>2019-07-25T09:04:44.567Z</lastmod>
-  </url>  <url>
-    <loc>https://blog.chensmallx.top/2018/11/22/VMWare-Fusion-recycle-storage/</loc>
-    <lastmod>2019-07-24T03:54:01.990Z</lastmod>
   </url>  <url>
     <loc>https://blog.chensmallx.top/2018/06/06/test/</loc>
     <lastmod>2019-07-24T03:49:48.125Z</lastmod>

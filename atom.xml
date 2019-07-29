@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.chensmallx.top/"/>
-  <updated>2019-07-29T09:07:20.306Z</updated>
+  <updated>2019-07-29T10:04:31.532Z</updated>
   <id>https://blog.chensmallx.top/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>给 Mac App 设置专门的语言</title>
+    <link href="https://blog.chensmallx.top/2019/07/29/set-specific-language-MacOS-app/"/>
+    <id>https://blog.chensmallx.top/2019/07/29/set-specific-language-MacOS-app/</id>
+    <published>2019-07-29T09:45:58.000Z</published>
+    <updated>2019-07-29T10:04:31.532Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>有这个需求呢，主要是因为平时写文案的时候用WPS会用到自动序号，如果在英文模式下，中文序号会自动联想，但是在设置中却无法自己设置，只能设置英文的序号。Word也一样。</p><p>所以需要单独设置语言。</p><h2 id="更改-Mac-App-的默认启动语言"><a href="#更改-Mac-App-的默认启动语言" class="headerlink" title="更改 Mac App 的默认启动语言"></a>更改 Mac App 的默认启动语言</h2><p>如果希望始终以某种与系统不同的语言启动 App，则需要使用defaults write命令来修改 App 的默认设置。语法如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write [App Bundle ID] AppleLanguages <span class="string">'([App Lang])'</span></span><br></pre></td></tr></table></figure><p>如果我要单独设置WPS的语言，则输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.kingsoft.wpsoffice.mac AppleLanguages <span class="string">'zh'</span></span><br></pre></td></tr></table></figure><p>那么问题来了，要怎么知道这个 App Bundle ID 是什么呢？当然也是有命令的啦~</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdls -name kMDItemCFBundleIdentifier [App Location]</span><br></pre></td></tr></table></figure><p>例如要查看WPS的 App Bundle ID，那么就用.app路径替换进去，如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mdls -name kMDItemCFBundleIdentifier /Applications/wpsoffice.app</span><br><span class="line">kMDItemCFBundleIdentifier = <span class="string">"com.kingsoft.wpsoffice.mac"</span></span><br></pre></td></tr></table></figure><p>那么，问题又来了，我们怎么知道软件支持不支持中文呢？再来一串命令，当然，这只是普通的列出语言资源文件而已。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls /Applications/wpsoffice.app/Contents/Resources | grep lproj</span><br><span class="line">en.lproj</span><br><span class="line">zh-Hans.lproj</span><br><span class="line">zh-Hant.lproj</span><br></pre></td></tr></table></figure><p>如果以后英文水平进步了，只需要写英文文档，想要改过来了呢？那也是有办法的。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults delete [App Bundle ID] AppleLanguages</span><br></pre></td></tr></table></figure><hr><p>明天也要加油哦~</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Geek&#39;s Work" scheme="https://blog.chensmallx.top/categories/Geek-s-Work/"/>
+    
+    
+      <category term="MacOS" scheme="https://blog.chensmallx.top/tags/MacOS/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode题解 21.合并两个有序链表</title>
@@ -570,34 +598,6 @@
     
     
       <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>成为一个能够独当一面的搞机高手需要懂的技能清单（系统篇）</title>
-    <link href="https://blog.chensmallx.top/2019/01/25/be-expert-skills-system/"/>
-    <id>https://blog.chensmallx.top/2019/01/25/be-expert-skills-system/</id>
-    <published>2019-01-25T05:28:11.000Z</published>
-    <updated>2019-01-25T05:34:33.423Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>能够熟练制作一个 PE 启动 U盘 <ol><li>了解各种 PE 的种类，以及优缺点</li><li>掌握各种 PE 内工具的用法<br> GHOST，Windows 安装器，DiskGenius，傲梅分区助手，分区魔术师，HDTune 等</li></ol></li><li>熟练掌握分区概念，并能够熟练使用分区工具对硬盘进行分区<ol><li>明白：“分区表格式 and 引导方式 and 主流系统采用哪种引导方式” 之间的关系</li><li>懂得如何建立不同种类的分区表，了解不同种类分区表之间的性能差异和优缺点</li></ol></li><li>熟练安装各个版本的 Windows 7 or 10 系统 （Windows XP 可选，建议学一下原版安装）<ol><li>光碟 or U盘镜像启动 setup</li><li>PE 内 setup.exe</li><li>系统内虚拟光驱启动 setup.exe</li><li>GHOST &lt;&lt; sys.gho</li><li>Windows 安装器 &lt;&lt; install.win</li><li>解压镜像到硬盘分区，启动 setup.exe 或引导分区启动【所谓的的“硬盘安装”</li><li>安装备用系统到虚拟硬盘镜像 VHD 并引导【骚操作</li></ol></li><li>对新装系统进行配置，直到能够满足日常使用。并形成自己的习惯体系。<ol><li>激活系统<br> 破解软件、淘宝买码</li><li>设置系统<br> 显示、电源、网络、安全、个性化、账户权限、隐私等各种设置</li><li>安装驱动<ol><li>哪些驱动必备？</li><li>装驱动的顺序？【讲究】</li></ol></li><li>安装必备软件<ol><li>系统辅助防火墙</li><li>通讯、常用工具等</li></ol></li></ol></li><li>对控制面板中的组建有全局性了解，对系统功能的各种入口也应该有充分的意识灵感（跟着感觉走就能够找到功能的入口）</li><li>对 windows/system32 中的工具熟练使用</li><li>学会使用 cmd/powershell</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="计算机协会" scheme="https://blog.chensmallx.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
-    
-    
-      <category term="计算机协会" scheme="https://blog.chensmallx.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
     
   </entry>
   

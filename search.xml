@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>给 Mac App 设置专门的语言</title>
+      <link href="/2019/07/29/set-specific-language-MacOS-app/"/>
+      <url>/2019/07/29/set-specific-language-MacOS-app/</url>
+      
+        <content type="html"><![CDATA[<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>有这个需求呢，主要是因为平时写文案的时候用WPS会用到自动序号，如果在英文模式下，中文序号会自动联想，但是在设置中却无法自己设置，只能设置英文的序号。Word也一样。</p><p>所以需要单独设置语言。</p><h2 id="更改-Mac-App-的默认启动语言"><a href="#更改-Mac-App-的默认启动语言" class="headerlink" title="更改 Mac App 的默认启动语言"></a>更改 Mac App 的默认启动语言</h2><p>如果希望始终以某种与系统不同的语言启动 App，则需要使用defaults write命令来修改 App 的默认设置。语法如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write [App Bundle ID] AppleLanguages <span class="string">'([App Lang])'</span></span><br></pre></td></tr></table></figure><p>如果我要单独设置WPS的语言，则输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.kingsoft.wpsoffice.mac AppleLanguages <span class="string">'zh'</span></span><br></pre></td></tr></table></figure><p>那么问题来了，要怎么知道这个 App Bundle ID 是什么呢？当然也是有命令的啦~</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdls -name kMDItemCFBundleIdentifier [App Location]</span><br></pre></td></tr></table></figure><p>例如要查看WPS的 App Bundle ID，那么就用.app路径替换进去，如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mdls -name kMDItemCFBundleIdentifier /Applications/wpsoffice.app</span><br><span class="line">kMDItemCFBundleIdentifier = <span class="string">"com.kingsoft.wpsoffice.mac"</span></span><br></pre></td></tr></table></figure><p>那么，问题又来了，我们怎么知道软件支持不支持中文呢？再来一串命令，当然，这只是普通的列出语言资源文件而已。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls /Applications/wpsoffice.app/Contents/Resources | grep lproj</span><br><span class="line">en.lproj</span><br><span class="line">zh-Hans.lproj</span><br><span class="line">zh-Hant.lproj</span><br></pre></td></tr></table></figure><p>如果以后英文水平进步了，只需要写英文文档，想要改过来了呢？那也是有办法的。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults delete [App Bundle ID] AppleLanguages</span><br></pre></td></tr></table></figure><hr><p>明天也要加油哦~</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Geek&#39;s Work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MacOS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>leetcode题解 21.合并两个有序链表</title>
       <link href="/2019/07/29/leetcode-21-mergeTwoLists/"/>
       <url>/2019/07/29/leetcode-21-mergeTwoLists/</url>
@@ -767,11 +790,11 @@
       
       <categories>
           
+          <category> Geek&#39;s Work </category>
+          
           <category> Linux Learning </category>
           
           <category> Ubuntu </category>
-          
-          <category> Geek&#39;s Wrok </category>
           
           <category> VMWare Fusion </category>
           
@@ -877,9 +900,9 @@
           
           <category> Geek&#39;s Work </category>
           
-          <category> Programer Walk </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Programer Walk </category>
           
           <category> Programming Tools </category>
           
