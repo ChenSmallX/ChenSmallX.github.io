@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.chensmallx.top/"/>
-  <updated>2019-07-25T02:03:23.575Z</updated>
+  <updated>2019-07-29T09:07:20.306Z</updated>
   <id>https://blog.chensmallx.top/</id>
   
   <author>
@@ -17,89 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>leetcode题记 15.三数之和</title>
-    <link href="https://blog.chensmallx.top/2019/07/25/leetcode-15-threeSum/"/>
-    <id>https://blog.chensmallx.top/2019/07/25/leetcode-15-threeSum/</id>
-    <published>2019-07-25T01:34:14.000Z</published>
-    <updated>2019-07-25T02:03:23.575Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
-    
-      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode题记 14.最长公共前缀</title>
-    <link href="https://blog.chensmallx.top/2019/07/25/leetcode-14-longestCommonPrefix/"/>
-    <id>https://blog.chensmallx.top/2019/07/25/leetcode-14-longestCommonPrefix/</id>
-    <published>2019-07-25T01:22:24.000Z</published>
-    <updated>2019-07-25T01:37:50.140Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
-    
-      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode题记 11.盛最多水的容器 &amp;&amp; OJ中加快C++速度的奇技淫巧</title>
-    <link href="https://blog.chensmallx.top/2019/07/24/leetcode-11-mostCapacity-boostOperation/"/>
-    <id>https://blog.chensmallx.top/2019/07/24/leetcode-11-mostCapacity-boostOperation/</id>
-    <published>2019-07-24T08:33:16.000Z</published>
-    <updated>2019-07-25T01:34:48.352Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
-    
-      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode题记 8.字符串转换整数(atoi)</title>
-    <link href="https://blog.chensmallx.top/2019/07/24/leetcode-8-atoi/"/>
-    <id>https://blog.chensmallx.top/2019/07/24/leetcode-8-atoi/</id>
-    <published>2019-07-24T03:21:32.000Z</published>
-    <updated>2019-07-24T08:47:01.048Z</updated>
+    <title>leetcode题解 21.合并两个有序链表</title>
+    <link href="https://blog.chensmallx.top/2019/07/29/leetcode-21-mergeTwoLists/"/>
+    <id>https://blog.chensmallx.top/2019/07/29/leetcode-21-mergeTwoLists/</id>
+    <published>2019-07-29T08:51:39.000Z</published>
+    <updated>2019-07-29T09:07:20.306Z</updated>
     
     <summary type="html">
     
@@ -120,7 +42,191 @@
     
       <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
     
+      <category term="链表" scheme="https://blog.chensmallx.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
       <category term="OJ" scheme="https://blog.chensmallx.top/tags/OJ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode题记 20.有效的括号</title>
+    <link href="https://blog.chensmallx.top/2019/07/29/leetcode-20-validBracket/"/>
+    <id>https://blog.chensmallx.top/2019/07/29/leetcode-20-validBracket/</id>
+    <published>2019-07-29T07:02:58.000Z</published>
+    <updated>2019-07-29T07:56:39.139Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
+    
+      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="栈" scheme="https://blog.chensmallx.top/tags/%E6%A0%88/"/>
+    
+      <category term="递归" scheme="https://blog.chensmallx.top/tags/%E9%80%92%E5%BD%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode题记 2.两数相加</title>
+    <link href="https://blog.chensmallx.top/2019/07/25/leetcode-2-addTwoNumbers/"/>
+    <id>https://blog.chensmallx.top/2019/07/25/leetcode-2-addTwoNumbers/</id>
+    <published>2019-07-25T08:56:18.000Z</published>
+    <updated>2019-07-25T09:04:44.567Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Programer Walk" scheme="https://blog.chensmallx.top/categories/Programer-Walk/"/>
+    
+      <category term="OJ" scheme="https://blog.chensmallx.top/categories/Programer-Walk/OJ/"/>
+    
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
+    
+      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="链表" scheme="https://blog.chensmallx.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode题记 15.三数之和</title>
+    <link href="https://blog.chensmallx.top/2019/07/25/leetcode-15-threeSum/"/>
+    <id>https://blog.chensmallx.top/2019/07/25/leetcode-15-threeSum/</id>
+    <published>2019-07-25T01:34:14.000Z</published>
+    <updated>2019-07-25T09:06:23.491Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
+    
+      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="遍历" scheme="https://blog.chensmallx.top/tags/%E9%81%8D%E5%8E%86/"/>
+    
+      <category term="双指针" scheme="https://blog.chensmallx.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode题记 14.最长公共前缀</title>
+    <link href="https://blog.chensmallx.top/2019/07/25/leetcode-14-longestCommonPrefix/"/>
+    <id>https://blog.chensmallx.top/2019/07/25/leetcode-14-longestCommonPrefix/</id>
+    <published>2019-07-25T01:22:24.000Z</published>
+    <updated>2019-07-25T09:06:29.587Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
+    
+      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="遍历" scheme="https://blog.chensmallx.top/tags/%E9%81%8D%E5%8E%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode题记 11.盛最多水的容器 &amp;&amp; OJ中加快C++速度的奇技淫巧</title>
+    <link href="https://blog.chensmallx.top/2019/07/24/leetcode-11-mostCapacity-boostOperation/"/>
+    <id>https://blog.chensmallx.top/2019/07/24/leetcode-11-mostCapacity-boostOperation/</id>
+    <published>2019-07-24T08:33:16.000Z</published>
+    <updated>2019-07-25T09:06:34.682Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
+    
+      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="遍历" scheme="https://blog.chensmallx.top/tags/%E9%81%8D%E5%8E%86/"/>
+    
+      <category term="双指针" scheme="https://blog.chensmallx.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode题记 8.字符串转换整数(atoi)</title>
+    <link href="https://blog.chensmallx.top/2019/07/24/leetcode-8-atoi/"/>
+    <id>https://blog.chensmallx.top/2019/07/24/leetcode-8-atoi/</id>
+    <published>2019-07-24T03:21:32.000Z</published>
+    <updated>2019-07-25T09:04:50.222Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Programer Walk" scheme="https://blog.chensmallx.top/categories/Programer-Walk/"/>
+    
+      <category term="OJ" scheme="https://blog.chensmallx.top/categories/Programer-Walk/OJ/"/>
+    
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
+    
+      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="剪枝" scheme="https://blog.chensmallx.top/tags/%E5%89%AA%E6%9E%9D/"/>
     
   </entry>
   
@@ -452,86 +558,6 @@
     
     
       <category term="计算机协会" scheme="https://blog.chensmallx.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>成为一个能够独当一面的搞机高手需要懂的技能清单（硬件篇）</title>
-    <link href="https://blog.chensmallx.top/2019/01/25/be-expert-skills-hardware/"/>
-    <id>https://blog.chensmallx.top/2019/01/25/be-expert-skills-hardware/</id>
-    <published>2019-01-25T05:27:40.000Z</published>
-    <updated>2019-01-25T05:34:41.702Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="计算机协会" scheme="https://blog.chensmallx.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
-    
-    
-      <category term="计算机协会" scheme="https://blog.chensmallx.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算机协会干事寒假作业-2019</title>
-    <link href="https://blog.chensmallx.top/2019/01/25/computerInstitution-winterassignment-2019/"/>
-    <id>https://blog.chensmallx.top/2019/01/25/computerInstitution-winterassignment-2019/</id>
-    <published>2019-01-25T05:18:15.000Z</published>
-    <updated>2019-01-25T06:48:05.775Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="计算机协会" scheme="https://blog.chensmallx.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
-    
-    
-      <category term="计算机协会" scheme="https://blog.chensmallx.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>每日一记 - 初入 JavaScript</title>
-    <link href="https://blog.chensmallx.top/2018/12/10/post-everyday-2018-12-10/"/>
-    <id>https://blog.chensmallx.top/2018/12/10/post-everyday-2018-12-10/</id>
-    <published>2018-12-10T15:00:53.000Z</published>
-    <updated>2019-07-24T03:46:25.805Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;因为组里需要前端，所以学一下 Vue.js 然而不会 js，所以学一下 js。&lt;/li&gt;
-&lt;li&gt;知乎上关于“大学生偷外卖”的问题热度超过2KW，狼灭真多，然而大快人心。&lt;/li&gt;
-&lt;li&gt;事情多的一批&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="Programer Walk" scheme="https://blog.chensmallx.top/categories/Programer-Walk/"/>
-    
-      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
-    
-      <category term="JavaScript" scheme="https://blog.chensmallx.top/categories/Programer-Walk/JavaScript/"/>
-    
-    
-      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
     
   </entry>
   
