@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.chensmallx.top/"/>
-  <updated>2019-07-29T10:04:31.532Z</updated>
+  <updated>2019-07-30T03:31:53.225Z</updated>
   <id>https://blog.chensmallx.top/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode题记 23.合并K个有序链表</title>
+    <link href="https://blog.chensmallx.top/2019/07/30/leetcode-23-mergeKLists/"/>
+    <id>https://blog.chensmallx.top/2019/07/30/leetcode-23-mergeKLists/</id>
+    <published>2019-07-30T02:29:26.000Z</published>
+    <updated>2019-07-30T03:31:53.225Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。</p><p>示例:</p><blockquote><p>输入:</p><p>[</p><p>1-&gt;4-&gt;5,</p><p>1-&gt;3-&gt;4,</p><p>2-&gt;6</p><p>]</p><p>输出: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</p></blockquote><p>来源：<a href="https://leetcode-cn.com/problems/merge-k-sorted-lists" target="_blank" rel="noopener">力扣（LeetCode）</a></p><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>这道题一共有5种官方解法，每种解法都对应不同的水平。<br>分别是：</p><ol><li>暴力遍历法</li><li>逐一比较法</li><li>优先队列法</li><li>逐一合并法 &amp; 分治+合并法</li></ol><h3 id="暴力遍历法"><a href="#暴力遍历法" class="headerlink" title="暴力遍历法"></a>暴力遍历法</h3><p>暴力遍历法思想很简单，即为多个链表转化为一个数组，对数组进行排序后再将数组转化为链表。因为链表转化为数组是O(N)，而数组转化为链表也是O(N)，所以我觉得这里头影响最大的就是排序算法。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr;</span><br><span class="line">        <span class="keyword">int</span> k = lists.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            ListNode *p = lists[i];</span><br><span class="line">            <span class="keyword">while</span> (p != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                arr.push_back(p-&gt;val);</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        sort(arr.begin(), arr.end());</span><br><span class="line"></span><br><span class="line">        ListNode head(-1), *p;</span><br><span class="line">        p = &amp;head;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.size(); i++) &#123;</span><br><span class="line">            p-&gt;next = <span class="keyword">new</span> ListNode(arr[i]);</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>执行用时 : 32 ms, 在所有 C++ 提交中击败了97.09%的用户<br>内存消耗 :11.6 MB, 在所有 C++ 提交中击败了67.33%的用户</p><h3 id="逐一合并法-amp-分治-合并法"><a href="#逐一合并法-amp-分治-合并法" class="headerlink" title="逐一合并法 &amp; 分治+合并法"></a>逐一合并法 &amp; 分治+合并法</h3><p>逐一合并法，即按照顺序将第1个链表与之后的每个链表合并。需要用到之前写过的<a href="https://hexo.chensmallx.top/2019/07/29/leetcode-21-mergeTwoLists/" target="_blank" rel="noopener">合并两个有序链表</a>的方法作为核心合并算法，并且合并算法的快慢差距在这题里面更加的放大了。由于逐一合并法和分治合并法对链表的合并次数都相同，而逐一合并法的算法分析结果是O(kN)（N为总节点数），而分治法的算法分析结果是O(NlogN)。所以选取分治合并法。</p><p>其中k和logN的差距点在于，逐一合并法里面，对于已经合并排序过的节点在之后的合并排序中都会排序一次，而分治合并则在前面第一趟分治中有没重复运算的节点，所以就更加的节约了时间。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">merge2Lists</span><span class="params">(ListNode *l1, ListNode *l2)</span> </span>&#123;</span><br><span class="line">        <span class="function">ListNode <span class="title">head</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">register</span> ListNode *o = &amp;head;</span><br><span class="line">        <span class="keyword">while</span> (l1 &amp;&amp; l2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (l1-&gt;val &lt;= l2-&gt;val) &#123;</span><br><span class="line">                o-&gt;next = l1;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                o-&gt;next = l2;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            o = o-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l1) &#123;</span><br><span class="line">            o-&gt;next = l1;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (l2) &#123;</span><br><span class="line">            o-&gt;next = l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">register</span> <span class="keyword">int</span> step = <span class="number">1</span>, k = lists.size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> lists[<span class="number">0</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> merge2Lists(lists[<span class="number">0</span>], lists[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (step &lt; k) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k-step; i+=step*<span class="number">2</span>) &#123;</span><br><span class="line">                lists[i] = merge2Lists(lists[i], lists[i+step]);</span><br><span class="line">            &#125;</span><br><span class="line">            step *= <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lists[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>执行用时 :32 ms, 在所有 C++ 提交中击败了97.12%的用户<br>内存消耗 : 10.7 MB, 在所有 C++ 提交中击败了98.35%的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Programer Walk" scheme="https://blog.chensmallx.top/categories/Programer-Walk/"/>
+    
+      <category term="OJ" scheme="https://blog.chensmallx.top/categories/Programer-Walk/OJ/"/>
+    
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
+    
+      <category term="链表" scheme="https://blog.chensmallx.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="OJ" scheme="https://blog.chensmallx.top/tags/OJ/"/>
+    
+      <category term="分治" scheme="https://blog.chensmallx.top/tags/%E5%88%86%E6%B2%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>给 Mac App 设置专门的语言</title>
@@ -559,35 +595,6 @@
 &lt;li&gt;成功上车蜗牛星际的 J1900 NAS 系统，简直就是买几箱送电脑。&lt;/li&gt;
 &lt;li&gt;昨晚尝试了一次早睡早起，今天中午没有睡午觉导致下午第一节课有些困，其他的一切正常，学习时间多出了许多，并且很有状态。&lt;/li&gt;
 &lt;li&gt;晚餐吃到了辣椒，先是感觉巨苦无比，接着是猛兽狂辣，辣出泪来，真实难受。&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
-    
-      <category term="My English Learning" scheme="https://blog.chensmallx.top/categories/My-English-Learning/"/>
-    
-    
-      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>每日一记 - 打卡阵地转移</title>
-    <link href="https://blog.chensmallx.top/2019/03/13/post-everyday-2019-3-13/"/>
-    <id>https://blog.chensmallx.top/2019/03/13/post-everyday-2019-3-13/</id>
-    <published>2019-03-13T05:35:26.000Z</published>
-    <updated>2019-03-20T15:13:51.384Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>日期：2019年3月13日</strong><br><strong>天气：晴转阴 加小雾霾</strong></p><h1 id="几件大事"><a href="#几件大事" class="headerlink" title="几件大事"></a>几件大事</h1><ol><li>今天开始2019年的每日一记。【我鸽我自己！【每天文本编辑时间不超过30分钟！</li><li>继续英语的打卡。【看了老师给我的打卡例子，我自己也想到了自己的打卡办法。</li><li>升升的中百罗森开门了。【开心</li></ol><a id="more"></a><h2 id="每日英语打卡"><a href="#每日英语打卡" class="headerlink" title="每日英语打卡"></a>每日英语打卡</h2><h3 id="Vocabulary"><a href="#Vocabulary" class="headerlink" title="Vocabulary"></a>Vocabulary</h3><p>list 28</p><blockquote><p>burden n. 重担，精神压力<br>deserve vt. 应受，值得<br>outset n. 开始，开端</p></blockquote><h3 id="Listening"><a href="#Listening" class="headerlink" title="Listening"></a>Listening</h3><p>VOA NEWS Standard English<br>Title: 大批非洲移民顶风冒雪进入美加边境</p><p><img src="/img/punch/20190313-listening.jpg" alt="listening punch time card"></p><p>单词积累</p><blockquote><p>fence n. 栅栏，围墙<br>prairie n. 大草原<br>frostbite  n. 冻伤，冻疮<br>hypothermia n. 低温</p></blockquote><h2 id="升升的罗森有点坑"><a href="#升升的罗森有点坑" class="headerlink" title="升升的罗森有点坑"></a>升升的罗森有点坑</h2><p>Lowson 开门了，今天一早去体验了一下。主要有几个问题。</p><ol><li>新店开业，人有点多。</li><li>服务员不专业，我跟他说“弹牙鱼蛋”，他说“鸭鱼蛋”。还要问旁边的人。</li><li>活动和其他 Lowson 不同步。别的店铺买四送一，送的是任意一串，而这里只能送小香肠。【坑</li></ol><hr><p>明天也要继续加油！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;日期：2019年3月13日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：晴转阴 加小雾霾&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;今天开始2019年的每日一记。【我鸽我自己！【每天文本编辑时间不超过30分钟！&lt;/li&gt;
-&lt;li&gt;继续英语的打卡。【看了老师给我的打卡例子，我自己也想到了自己的打卡办法。&lt;/li&gt;
-&lt;li&gt;升升的中百罗森开门了。【开心&lt;/li&gt;
 &lt;/ol&gt;
     
     </summary>
