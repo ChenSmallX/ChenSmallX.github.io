@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title>leetcode题记-46.全排列</title>
+      <link href="/2019/08/22/leetcode-46-permute/"/>
+      <url>/2019/08/22/leetcode-46-permute/</url>
+      
+        <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个没有重复数字的序列，返回其所有可能的全排列。</p><p>示例:</p><blockquote><p>输入: [1,2,3]<br>输出:[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]</p></blockquote><p>来源：<a href="https://leetcode-cn.com/problems/permutations" target="_blank" rel="noopener">力扣（LeetCode）</a></p><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>解这道题主要用了通过递归实现回溯的办法。<br>在处理数组的过程中，先确定当前正在遍历的位，例如第一位，那么就将每一位和第一位互换，然后在下一个递归过程中将第二位和其他数字依次替换，这样的过程和人类的思维几乎一样。</p><p>具体可以看这个<a href="https://leetcode-cn.com/problems/permutations/solution/quan-pai-lie-by-leetcode/" target="_blank" rel="noopener">leetcode 官方题解</a>，讲的还是很具体的，还有动图可以看。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; permute(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">1</span>) &#123;</span><br><span class="line">            res.push_back(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;nums[<span class="number">0</span>]&#125;);</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        process(nums, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">process</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> front)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (front == nums.size() - <span class="number">1</span>) &#123;</span><br><span class="line">            res.push_back(nums);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = front; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; _nums = nums;</span><br><span class="line">            <span class="keyword">int</span> temp = _nums[front];</span><br><span class="line">            _nums[front] = _nums[i];</span><br><span class="line">            _nums[i] = temp;</span><br><span class="line">            process(_nums, front + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>执行用时 : 16 ms, 在所有 C++ 提交中击败了86.15%的用户<br>内存消耗 : 10.2 MB, 在所有 C++ 提交中击败了13.65%的用户</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programer Walk </category>
+          
+          <category> OJ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> OJ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>leetcode题记-1114.按序打印</title>
       <link href="/2019/08/21/leetcode-1114-Foo-Bar/"/>
       <url>/2019/08/21/leetcode-1114-Foo-Bar/</url>
@@ -949,9 +976,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Ubuntu </category>
           
@@ -1057,11 +1084,11 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
+          <category> Programer Walk </category>
           
           <category> Linux Learning </category>
           
-          <category> Programer Walk </category>
+          <category> Geek&#39;s Work </category>
           
           <category> Programming Tools </category>
           
@@ -1150,9 +1177,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Play with VPS </category>
           
@@ -1161,9 +1188,9 @@
       
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
             <tag> ssh </tag>
             
@@ -1268,9 +1295,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Linux Learning </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Play with VPS </category>
           
@@ -1279,9 +1306,9 @@
       
         <tags>
             
-            <tag> VPS </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> VPS </tag>
             
             <tag> CentOS </tag>
             
@@ -1438,9 +1465,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Programer Walk </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Programming Tools </category>
           
