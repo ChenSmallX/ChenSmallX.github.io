@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title>leetcode题记-344.反转字符串</title>
+      <link href="/2019/09/06/leetcode-344-reverseString/"/>
+      <url>/2019/09/06/leetcode-344-reverseString/</url>
+      
+        <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。</p><p>不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。</p><p>你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。</p><p>示例 1：</p><blockquote><p>输入：[“h”,”e”,”l”,”l”,”o”]<br>输出：[“o”,”l”,”l”,”e”,”h”]</p></blockquote><p>示例 2：</p><blockquote><p>输入：[“H”,”a”,”n”,”n”,”a”,”h”]<br>输出：[“h”,”a”,”n”,”n”,”a”,”H”]</p></blockquote><p>来源：<a href="https://leetcode-cn.com/problems/reverse-string" target="_blank" rel="noopener">力扣（LeetCode）</a></p><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="解法一（辣鸡解法）直接下标交换"><a href="#解法一（辣鸡解法）直接下标交换" class="headerlink" title="解法一（辣鸡解法）直接下标交换"></a>解法一（辣鸡解法）直接下标交换</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseString</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = s.size();</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length / <span class="number">2</span>; i++) &#123;</span><br><span class="line">            c = s[i];</span><br><span class="line">            s[i] = s[length - <span class="number">1</span> - i];</span><br><span class="line">            s[length - <span class="number">1</span> - i] = c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>结果</p><blockquote><p>执行用时 : 72 ms, 在所有 C++ 提交中击败了54.97%的用户<br>内存消耗 : 15.2 MB, 在所有 C++ 提交中击败了79.02%的用户</p></blockquote><h3 id="解法二-双指针法"><a href="#解法二-双指针法" class="headerlink" title="解法二 双指针法"></a>解法二 双指针法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">char</span>&amp; x, <span class="keyword">char</span>&amp; y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> c = x;</span><br><span class="line">        x = y;</span><br><span class="line">        y = c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseString</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = s.size() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            swap(s[i], s[j]);</span><br><span class="line">            i++, j--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>结果</p><blockquote><p>执行用时 : 64 ms, 在所有 C++ 提交中击败了85.40%的用户<br>内存消耗 : 15.1 MB, 在所有 C++ 提交中击败了90.38%的用户</p></blockquote><p>双指针的确比直接诶计算下标快了不少，毕竟在算加减的时候双指针法只用了两个基本的加减，而直接计算下标（算上改变i）则需要5此加减法，消耗了两倍多的计算量。</p><h3 id="优化的双指针"><a href="#优化的双指针" class="headerlink" title="优化的双指针"></a>优化的双指针</h3><h4 id="优化一-C-swap"><a href="#优化一-C-swap" class="headerlink" title="优化一 C++ swap"></a>优化一 C++ swap</h4><p>这里使用了c++自带的<code>swap()</code>函数，在底层上应该是有改进的，并且在使用的时候将自增运算运用得淋漓尽致，于是乎又加快了不少。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseString</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = s.size() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            swap(s[i++], s[j--]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>结果</p><blockquote><p>执行用时 : 60 ms, 在所有 C++ 提交中击败了94.45%的用户<br>内存消耗 : 15 MB, 在所有 C++ 提交中击败了94.68%的用户</p></blockquote><h4 id="优化二-位运算"><a href="#优化二-位运算" class="headerlink" title="优化二 位运算"></a>优化二 位运算</h4><p>这算是奇技淫巧的一种了，就是两个变量来回异或就可以交换数据，而且是从bit层面进行运算的，可以说是速度特别的快了。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseString</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = s.size() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            s[i] ^= s[j];</span><br><span class="line">            s[j] ^= s[i];</span><br><span class="line">            s[i++] ^= s[j--];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>结果</p><blockquote><p>执行用时 : 52 ms, 在所有 C++ 提交中击败了99.76%的用户<br>内存消耗 : 15.3 MB, 在所有 C++ 提交中击败了75.25%的用户</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programer Walk </category>
+          
+          <category> OJ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> OJ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>leetcode题记 292.Nim游戏</title>
       <link href="/2019/09/05/leetcode-292-canWinNum/"/>
       <url>/2019/09/05/leetcode-292-canWinNum/</url>
@@ -1111,9 +1138,9 @@
       
       <categories>
           
-          <category> Programer Walk </category>
-          
           <category> Geek&#39;s Work </category>
+          
+          <category> Programer Walk </category>
           
           <category> Linux Learning </category>
           
@@ -1206,9 +1233,9 @@
           
           <category> Geek&#39;s Work </category>
           
-          <category> Linux Learning </category>
-          
           <category> Play with VPS </category>
+          
+          <category> Linux Learning </category>
           
       </categories>
       
@@ -1324,9 +1351,9 @@
           
           <category> Geek&#39;s Work </category>
           
-          <category> Linux Learning </category>
-          
           <category> Play with VPS </category>
+          
+          <category> Linux Learning </category>
           
       </categories>
       
@@ -1492,9 +1519,9 @@
       
       <categories>
           
-          <category> Programer Walk </category>
-          
           <category> Geek&#39;s Work </category>
+          
+          <category> Programer Walk </category>
           
           <category> Programming Tools </category>
           
