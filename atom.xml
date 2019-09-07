@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.chensmallx.top/"/>
-  <updated>2019-09-06T16:40:34.914Z</updated>
+  <updated>2019-09-07T02:36:56.030Z</updated>
   <id>https://blog.chensmallx.top/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>leetcode-557.reverseWord</title>
+    <title>leetcode题记-557.反转字符串中的单词III</title>
     <link href="https://blog.chensmallx.top/2019/09/07/leetcode-557-reverseWord/"/>
     <id>https://blog.chensmallx.top/2019/09/07/leetcode-557-reverseWord/</id>
     <published>2019-09-06T16:21:58.000Z</published>
-    <updated>2019-09-06T16:40:34.914Z</updated>
+    <updated>2019-09-07T02:36:56.030Z</updated>
     
     <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。</p><p>示例 1:</p><p>输入: “Let’s take LeetCode contest”<br>输出: “s’teL ekat edoCteeL tsetnoc”</p><p>来源：<a href="https://leetcode-cn.com/problems/reverse-words-in-a-string-iii" target="_blank" rel="noopener">力扣（LeetCode）</a></p><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>这道题以另一题作为基础，就是上一篇<a href="https://hexo.chensmallx.top/2019/09/06/leetcode-344-reverseString/" target="_blank" rel="noopener">leetcode题记-344.反转字符串</a>。</p><p>这里要注意的就是，这是一个“双指针法”，在运行的过程中会有一个头指针固定，尾指针不断向前移动，遇到空格即为头指针和尾指针之间为一个单词，对这个单词进行反转即可。而使用的交换算法是反转字符串中最快速的异或交换法，实际上还是一个双指针法。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseString</span><span class="params">(<span class="keyword">int</span> front, <span class="keyword">int</span> tail, <span class="built_in">string</span>&amp; str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (front &lt; tail) &#123;</span><br><span class="line">            str[front] ^= str[tail];</span><br><span class="line">            str[tail] ^= str[front];</span><br><span class="line">            str[front++] ^= str[tail--];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">reverseWords</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> front = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">' '</span>) &#123;</span><br><span class="line">                reverseString(front, i - <span class="number">1</span>, s);</span><br><span class="line">                front = i + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        reverseString(front, s.length() - <span class="number">1</span>, s);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><blockquote><p>执行用时 : 16 ms, 在所有 C++ 提交中击败了98.24%的用户<br>内存消耗 : 11.6 MB, 在所有 C++ 提交中击败了95.48%的用户</p></blockquote>]]></content>
     
