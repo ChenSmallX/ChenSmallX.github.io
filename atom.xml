@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.chensmallx.top/"/>
-  <updated>2019-09-07T02:36:56.030Z</updated>
+  <updated>2019-09-07T06:15:38.374Z</updated>
   <id>https://blog.chensmallx.top/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++模板类多文件编译 无定义 解决办法</title>
+    <link href="https://blog.chensmallx.top/2019/09/07/C-template-multi-files-compile/"/>
+    <id>https://blog.chensmallx.top/2019/09/07/C-template-multi-files-compile/</id>
+    <published>2019-09-07T05:44:45.000Z</published>
+    <updated>2019-09-07T06:15:38.374Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x01-实现模板类"><a href="#0x01-实现模板类" class="headerlink" title="0x01 实现模板类"></a>0x01 实现模板类</h2><p>通常在C/C++中实现一个类，都是将声明放在.h文件中，将定义（实现）放在.c或者.cpp文件中，例如：</p><h3 id="通常示例多文件编译"><a href="#通常示例多文件编译" class="headerlink" title="通常示例多文件编译"></a>通常示例多文件编译</h3><p>myClass.h</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MY_CLASS_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_CLASS_H</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myClass</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    myClass();</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure><p>myClass.cpp</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"myClass.h"</span></span></span><br><span class="line"></span><br><span class="line">myClass::myClass() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure><p>myClass.main.cpp</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"myClass.h"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">myClass <span class="title">mClass</span><span class="params">()</span></span>;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>然后编译的时候直接运行makefile或者执行命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g++ -c myClass.cpp</span><br><span class="line">g++ -c myClass.main.cpp</span><br><span class="line">g++ myClass.o myClass.main.o -o main</span><br><span class="line">./main</span><br></pre></td></tr></table></figure><p>就可以运行了。这在没有设计模板类的时候一切都会很顺利，但是只要涉及到了模板类就…</p><h3 id="模板类多文件遇到的问题"><a href="#模板类多文件遇到的问题" class="headerlink" title="模板类多文件遇到的问题"></a>模板类多文件遇到的问题</h3><p>就拿一个循环队列来举例子吧。</p><p>cycleQueue.hpp</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CYCLE_QUEUE_HPP</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CYCLE_QUEUE_HPP</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;exception&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">cycleQueue</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> front;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> tail;</span><br><span class="line">    T* data;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    cycleQueue(<span class="keyword">unsigned</span> <span class="keyword">int</span> nsize);</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure><p>cycleQueue.cpp</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cycleQueue.hpp"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">cycleQueue</span>&lt;T&gt;:</span>:cycleQueue(<span class="keyword">unsigned</span> <span class="keyword">int</span> nsize)</span><br><span class="line">    :size(nsize + <span class="number">1</span>),</span><br><span class="line">    front(<span class="number">0</span>),</span><br><span class="line">    tail(<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">int</span> <span class="title">cycleQueue</span>&lt;T&gt;:</span>:length()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> len = (<span class="keyword">int</span>)tail - (<span class="keyword">int</span>)front;</span><br><span class="line">    <span class="keyword">return</span> len &gt;= <span class="number">0</span> ? len : -len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>cycleQueue.main.cpp</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cycleQueue.hpp"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cycleQueue&lt;<span class="keyword">int</span>&gt; <span class="built_in">queue</span>(<span class="number">5</span>);</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>按照常理，正常使用g++编译即可生成main可执行文件，但是在执行最后一步链接的时候会出现问题。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ g++ -c cycleQueue.cpp</span><br><span class="line">$ g++ -c cycleQueue.main.cpp</span><br><span class="line">$ g++ cycleQueue.o cycleQueue.main.o -o main</span><br><span class="line">Undefined symbols <span class="keyword">for</span> architecture x86_64:</span><br><span class="line">  <span class="string">"cycleQueue&lt;int&gt;::isFull()"</span>, referenced from:</span><br><span class="line">      _main <span class="keyword">in</span> cycleQueue.main.o</span><br><span class="line">  <span class="string">"cycleQueue&lt;int&gt;::length()"</span>, referenced from:</span><br><span class="line">      _main <span class="keyword">in</span> cycleQueue.main.o</span><br><span class="line">  <span class="string">"cycleQueue&lt;int&gt;::deQueue()"</span>, referenced from:</span><br><span class="line">      _main <span class="keyword">in</span> cycleQueue.main.o</span><br><span class="line">  <span class="string">"cycleQueue&lt;int&gt;::enQueue(int)"</span>, referenced from:</span><br><span class="line">      _main <span class="keyword">in</span> cycleQueue.main.o</span><br><span class="line">  <span class="string">"cycleQueue&lt;int&gt;::isEmpty()"</span>, referenced from:</span><br><span class="line">      _main <span class="keyword">in</span> cycleQueue.main.o</span><br><span class="line">  <span class="string">"cycleQueue&lt;int&gt;::cycleQueue(unsigned int)"</span>, referenced from:</span><br><span class="line">      _main <span class="keyword">in</span> cycleQueue.main.o</span><br><span class="line">  <span class="string">"cycleQueue&lt;int&gt;::~cycleQueue()"</span>, referenced from:</span><br><span class="line">      _main <span class="keyword">in</span> cycleQueue.main.o</span><br><span class="line">ld: symbol(s) not found <span class="keyword">for</span> architecture x86_64</span><br><span class="line">collect2: error: ld returned 1 <span class="built_in">exit</span> status</span><br></pre></td></tr></table></figure><p>可以看到，单独编译实现代码的时候是可以通过的，但是在两个文件链接起来的时候出现了问题。经过查找资料，貌似是因为实现文件中实现的是<code>cycleQueue&lt;T&gt;</code>这个类型，但是main中使用了<code>cycleQueue&lt;int&gt;</code>这个类型，所以编译器找不到这个类型的定义。</p><p>想了想，这好办啊，只要把实现的定义也加进去就好了呀。</p><p>于是乎，cycleQueue.hpp就成了：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CYCLE_QUEUE_HPP</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CYCLE_QUEUE_HPP</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;exception&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">cycleQueue</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cycleQueue.cpp"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure><p>而为了解决include重复问题，cycleQueue.cpp也变成了：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CYCLE_QUEUE_CPP</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CYCLE_QUEUE_CPP</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cycleQueue.hpp"</span></span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure><p>于是乎，搭配makefile就可以快速实现编译了</p><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">cycleQueue: cycleQueue.o cycleQueue.main.o</span></span><br><span class="line">g++ cycleQueue.o cycleQueue.main.o -o cycleQueue</span><br><span class="line">make clean</span><br><span class="line"></span><br><span class="line"><span class="section">cycleQueue.o: cycleQueue.cpp</span></span><br><span class="line">g++ -c cycleQueue.cpp</span><br><span class="line"></span><br><span class="line"><span class="section">cycleQueue.main.o: cycleQueue.main.cpp</span></span><br><span class="line">g++ -c cycleQueue.main.cpp</span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">rm *.o</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ ls -la</span><br><span class="line">total 32</span><br><span class="line">drwxr-xr-x  6 chenke  staff  192 Sep  7 13:50 .</span><br><span class="line">drwxr-xr-x  3 chenke  staff   96 Sep  7 14:10 ..</span><br><span class="line">-rw-r--r--  1 chenke  staff  956 Sep  7 13:40 cycleQueue.cpp</span><br><span class="line">-rw-r--r--  1 chenke  staff  403 Sep  7 13:32 cycleQueue.hpp</span><br><span class="line">-rw-r--r--  1 chenke  staff  695 Sep  7 13:43 cycleQueue.main.cpp</span><br><span class="line">-rw-r--r--  1 chenke  staff  242 Sep  7 13:01 makefile</span><br><span class="line"></span><br><span class="line">$ make</span><br><span class="line">g++ -c cycleQueue.cpp</span><br><span class="line">g++ -c cycleQueue.main.cpp</span><br><span class="line">g++ cycleQueue.o cycleQueue.main.o -o cycleQueue</span><br><span class="line">make clean</span><br><span class="line">rm *.o</span><br><span class="line"></span><br><span class="line">$ ls -la</span><br><span class="line">total 80</span><br><span class="line">drwxr-xr-x  7 chenke  staff    224 Sep  7 14:12 .</span><br><span class="line">drwxr-xr-x  3 chenke  staff     96 Sep  7 14:10 ..</span><br><span class="line">-rwxr-xr-x  1 chenke  staff  20512 Sep  7 14:12 cycleQueue</span><br><span class="line">-rw-r--r--  1 chenke  staff    956 Sep  7 13:40 cycleQueue.cpp</span><br><span class="line">-rw-r--r--  1 chenke  staff    403 Sep  7 13:32 cycleQueue.hpp</span><br><span class="line">-rw-r--r--  1 chenke  staff    695 Sep  7 13:43 cycleQueue.main.cpp</span><br><span class="line">-rw-r--r--  1 chenke  staff    242 Sep  7 13:01 makefile</span><br></pre></td></tr></table></figure><hr><p>一顿操作猛如虎23333</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="template" scheme="https://blog.chensmallx.top/tags/template/"/>
+    
+      <category term="模板" scheme="https://blog.chensmallx.top/tags/%E6%A8%A1%E6%9D%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode题记-557.反转字符串中的单词III</title>
@@ -406,9 +436,9 @@
     </summary>
     
     
-      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
-    
       <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
     
       <category term="栈" scheme="https://blog.chensmallx.top/tags/%E6%A0%88/"/>
     
@@ -442,9 +472,9 @@
       <category term="OJ" scheme="https://blog.chensmallx.top/categories/Programer-Walk/OJ/"/>
     
     
-      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
-    
       <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
     
       <category term="链表" scheme="https://blog.chensmallx.top/tags/%E9%93%BE%E8%A1%A8/"/>
     
@@ -472,9 +502,9 @@
     </summary>
     
     
-      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
-    
       <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
     
       <category term="遍历" scheme="https://blog.chensmallx.top/tags/%E9%81%8D%E5%8E%86/"/>
     
@@ -504,9 +534,9 @@
     </summary>
     
     
-      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
-    
       <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
     
       <category term="遍历" scheme="https://blog.chensmallx.top/tags/%E9%81%8D%E5%8E%86/"/>
     
@@ -534,9 +564,9 @@
     </summary>
     
     
-      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
-    
       <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
     
       <category term="遍历" scheme="https://blog.chensmallx.top/tags/%E9%81%8D%E5%8E%86/"/>
     
@@ -570,9 +600,9 @@
       <category term="OJ" scheme="https://blog.chensmallx.top/categories/Programer-Walk/OJ/"/>
     
     
-      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
-    
       <category term="C++" scheme="https://blog.chensmallx.top/tags/C/"/>
+    
+      <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
     
       <category term="剪枝" scheme="https://blog.chensmallx.top/tags/%E5%89%AA%E6%9E%9D/"/>
     
@@ -620,34 +650,6 @@
       &lt;p&gt;&lt;strong&gt;日期：2019年4月16日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：凉转两件卫衣的热&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;来湖大和宝宝一起上自习&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
-    
-    
-      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>每日一记 - 后天托福二考，很慌</title>
-    <link href="https://blog.chensmallx.top/2019/04/10/post-everyday-2019-4-10/"/>
-    <id>https://blog.chensmallx.top/2019/04/10/post-everyday-2019-4-10/</id>
-    <published>2019-04-10T12:55:48.000Z</published>
-    <updated>2019-04-16T02:56:21.603Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>日期：2019年4月10日</strong><br><strong>天气：骤冷</strong></p><h1 id="几件大事"><a href="#几件大事" class="headerlink" title="几件大事"></a>几件大事</h1><ol><li>距离托福二考还有3天【包括今天</li><li>设置了黑裙的 ipv6版本 aliddns</li><li>天气转变迅速，感冒了【压力也有点大</li><li>昨天在 steam 上买了 RiME【</li></ol><a id="more"></a><h2 id="每日英语打卡"><a href="#每日英语打卡" class="headerlink" title="每日英语打卡"></a>每日英语打卡</h2><h3 id="Vocabulary"><a href="#Vocabulary" class="headerlink" title="Vocabulary"></a>Vocabulary</h3><p>list 9 - 10</p><p>需要巩固的单词</p><blockquote><p>invest v. 投资，投入，授予<br>synthetic adj. 综合的，合成的；虚假的<br>curse n./v. 诅咒，咒骂，天谴；祸害，祸根<br>suspend vt. 暂停，终止；吊，悬<br>tide n. 潮，潮汐；潮流，趋势 v. 涨，落；使随潮水漂浮<br>cope vi. （成功地）应付，（妥善地）处理<br>faint adj. 模糊的，隐约的；微小的，微弱的；眩晕的 n./vi. 昏厥<br>conference n. （正式）会议，讨论会；讨论，商谈<br>hazard n. 危害，公害 vt. 尝试着做（或提出），冒…风险<br>swell vi. 膨胀，隆起；增长，增强，增多，扩大 n. 波浪起伏；鼓起，隆起；增强<br>pension n. 养老金，抚恤金 vt. 发给…养老金<br>liable adj. 易于…的，可能得</p><p>spur n. 刺激物 vt. 刺激，鞭策，激励<br>precise adj. 精确的，准确的；严谨的<br>screw n. 螺丝（钉） vt. 用螺丝钉固定，拧，拧紧<br>constitute vt. 组成，形成；设立；任命<br>prior adj. 在前的，优先的<br>hasitate vi. 犹豫，踌躇，含糊；不情愿<br>competent adj. 有能力的，能胜任的<br>encounter vt. 遭遇，遇到 n. 遭遇<br>provision n. 供应；准备，预备；条款，规定 来自 provide<br>reinforce vt. 增强，加强，增援<br>rational adj. 理性的，理智的；合理的</p></blockquote><h3 id="Listening"><a href="#Listening" class="headerlink" title="Listening"></a>Listening</h3><p>VOA NEWS Topic: 泰国大选结果出炉</p><p><img src="/img/punch/20190410.jpg" alt="punch：泰国大选结果出炉"></p><hr><p>明天也要加油哦~</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;日期：2019年4月10日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：骤冷&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;距离托福二考还有3天【包括今天&lt;/li&gt;
-&lt;li&gt;设置了黑裙的 ipv6版本 aliddns&lt;/li&gt;
-&lt;li&gt;天气转变迅速，感冒了【压力也有点大&lt;/li&gt;
-&lt;li&gt;昨天在 steam 上买了 RiME【&lt;/li&gt;
 &lt;/ol&gt;
     
     </summary>
