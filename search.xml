@@ -3,6 +3,35 @@
   
     
     <entry>
+      <title>leetcode题记-206.反转链表</title>
+      <link href="/2019/09/07/leetcode-206-reverseList/"/>
+      <url>/2019/09/07/leetcode-206-reverseList/</url>
+      
+        <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>反转一个单链表。</p><p>示例:</p><blockquote><p>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p></blockquote><p>进阶:<br>你可以迭代或递归地反转链表。你能否用两种方法解决这道题？</p><p>来源：<a href="https://leetcode-cn.com/problems/reverse-linked-list" target="_blank" rel="noopener">力扣（LeetCode）</a></p><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">register</span> ListNode *prev = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">register</span> ListNode* curr = head;</span><br><span class="line">        <span class="keyword">register</span> ListNode* temp;</span><br><span class="line">        <span class="keyword">while</span> (curr != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            temp = curr-&gt;next;</span><br><span class="line">            curr-&gt;next = prev;</span><br><span class="line">            prev = curr;</span><br><span class="line">            curr = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>结果</p><blockquote><p>执行用时 : 16 ms, 在所有 C++ 提交中击败了53.05%的用户<br>内存消耗 : 9.2 MB, 在所有 C++ 提交中击败了28.08%的用户</p></blockquote><h3 id="递归法"><a href="#递归法" class="headerlink" title="递归法"></a>递归法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">NULL</span> || head-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode* p = reverseList(head-&gt;next);</span><br><span class="line">        head-&gt;next-&gt;next = head;</span><br><span class="line">        head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>结果</p><blockquote><p>执行用时 : 12 ms, 在所有 C++ 提交中击败了85.51%的用户<br>内存消耗 : 9.1 MB, 在所有 C++ 提交中击败了47.27%的用户</p></blockquote><p>这个递归法有点意思，看了很久才赚过弯来。<br>在读代码+一步步画图解析之后，终于明白了其中的原理。<br>一行一行的讲解吧：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (head == <span class="literal">NULL</span> || head-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span> head;</span><br></pre></td></tr></table></figure><p>第一行是每个递归都需要的开始返回的条件。<br>第一个条件<code>head == NULL</code> 是处理<code>[]</code>这样的链表的特殊条件，并且在第二个条件<code>head-&gt;next == NULL</code>之前进行运算是为了防止在<code>[]</code>这样的空链表中运行<code>head-&gt;next</code>导致内存访问错误。<br>第二个条件是正常的递归跳出。搭配第2句、第5句就可以将尾节点不断的往上层调用栈返回。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ListNode* p = reverseList(head-&gt;next);</span><br></pre></td></tr></table></figure><p>使用一个临时指针将第一句返回的尾节点存起来，以便最后返回。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">head-&gt;next-&gt;next = head;</span><br><span class="line">head-&gt;next = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure><p>这两句要一起看，我们先来看看每一次递归调用栈运行的时候链表的情况吧，以链表<code>[1,2,3,4,null]</code>为例。n在那个节点下面就代表那个节点的next指向null，h代表head指向，p代表临时指针p指向（最后返回的p也是这个）。</p><p>初始状态：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1-&gt;2-&gt;3-&gt;4</span><br><span class="line">         n</span><br></pre></td></tr></table></figure><p>第3层调用栈</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">      h  p</span><br><span class="line">1-&gt;2-&gt;3&lt;-4</span><br><span class="line">      n</span><br></pre></td></tr></table></figure><p>第2层调用栈</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   h     p</span><br><span class="line">1-&gt;2&lt;-3&lt;-4</span><br><span class="line">   n</span><br></pre></td></tr></table></figure><p>第1层调用栈</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h        p</span><br><span class="line">1&lt;-2&lt;-3&lt;-4</span><br><span class="line">n</span><br></pre></td></tr></table></figure><p>可以看出在head指向的那个节点处运算过后就会将后一个节点的next指向本节点，以此往复就会将整条链表都换向。<br>而将本节点的next指向null我觉得是加强算法完整性来做的，因为是一个函数自己递归，所以要保证最后返回的链表最后一个节点要指向null，所以需要这一步。<br>可以看出p指针永远都是指向尾节点，并且一层一层的往上返回，感觉这一点设计很巧妙就是了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programer Walk </category>
+          
+          <category> OJ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> OJ </tag>
+            
+            <tag> 链表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>C++模板类多文件编译 无定义 解决办法</title>
       <link href="/2019/09/07/C-template-multi-files-compile/"/>
       <url>/2019/09/07/C-template-multi-files-compile/</url>
@@ -1186,11 +1215,11 @@
       
       <categories>
           
+          <category> Programer Walk </category>
+          
           <category> Linux Learning </category>
           
           <category> Geek&#39;s Work </category>
-          
-          <category> Programer Walk </category>
           
           <category> Programming Tools </category>
           
@@ -1567,9 +1596,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Programer Walk </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Programming Tools </category>
           
