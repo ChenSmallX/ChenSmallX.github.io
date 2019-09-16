@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.chensmallx.top/about-me/index.html</loc>
+    
+    <lastmod>2019-09-16T14:51:26.841Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.chensmallx.top/2019/09/07/leetcode-206-reverseList/</loc>
     
     <lastmod>2019-09-07T16:49:12.653Z</lastmod>
@@ -446,13 +453,6 @@
     <loc>https://blog.chensmallx.top/2018/07/13/computerInstitution-summerassignment-2018/</loc>
     
     <lastmod>2018-07-13T06:47:53.808Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.chensmallx.top/about-me/index.html</loc>
-    
-    <lastmod>2018-07-13T03:38:21.305Z</lastmod>
     
   </url>
   
