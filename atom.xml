@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.chensmallx.top/"/>
-  <updated>2019-09-07T16:49:12.653Z</updated>
+  <updated>2019-10-25T02:58:08.762Z</updated>
   <id>https://blog.chensmallx.top/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决MacOS上mail.app自动弹出的另一种办法</title>
+    <link href="https://blog.chensmallx.top/2019/10/25/solve-mac-mail-pop-up-bug/"/>
+    <id>https://blog.chensmallx.top/2019/10/25/solve-mac-mail-pop-up-bug/</id>
+    <published>2019-10-25T02:24:53.000Z</published>
+    <updated>2019-10-25T02:58:08.762Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x00-发现问题"><a href="#0x00-发现问题" class="headerlink" title="0x00 发现问题"></a>0x00 发现问题</h2><p>因为平时都使用mac自带的mail.app来对邮箱进行管理，所以使用习惯基本就是不会关闭，最多是用command+W暂时的关闭窗口。<br>但是最近出现了一个问题：正常关闭mail的窗口之后，会时不时自动弹出mail的窗口；如果是在桌面还好，如果是正在全屏使用软件，突然被mail弹出占用半个屏幕，那可太难受了。</p><h2 id="0x01-初步解决方法"><a href="#0x01-初步解决方法" class="headerlink" title="0x01 初步解决方法"></a>0x01 初步解决方法</h2><p>在逛v2ex的时候看到一位仁兄提到使用command+H来隐藏窗口，通过这样“关闭”的mail窗口就不会自动弹出，测试之后发现的确不会弹出来。此事到此就告一段落，但是…</p><h2 id="0x02-符合习惯的终极解决方法"><a href="#0x02-符合习惯的终极解决方法" class="headerlink" title="0x02 符合习惯的终极解决方法"></a>0x02 符合习惯的终极解决方法</h2><p>在习惯中，其他软件都是使用command+W来关闭窗口，只有mail是用command+H来关闭，有时候总是记不住，还是手贱使用了command+H，这样一来，还是时常会被“半屏”打扰。</p><p>今天闲来无事，看了一下mac上快捷键修改的问题，这一看就发现了转机。</p><p>下面教程正式开始：</p><ol><li> &gt; System Preference &gt; Keyboard &gt; Shortcuts &gt; App shortcuts</li><li>点击加号添加一个新的选项</li><li>输入配置如下：<blockquote><p>Application: Mail.app // 列表中手动选择<br>Menu Title: Hide Mail // mail中顶栏菜单中的实际操作名称<br>Keyboard Shortcut: ⌘W // 直接在键盘使用command+W就可以设定了</p></blockquote></li><li>点击add</li><li>关闭 System Preference</li><li>重新启动 Mail.app（其实关闭没必要，过一会就会改过来）</li></ol><p>现在就能开心的使用command+W来“关闭”mail的窗口也不会被“半屏”打扰到啦~</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Geek&#39;s Work" scheme="https://blog.chensmallx.top/categories/Geek-s-Work/"/>
+    
+      <category term="MacOS" scheme="https://blog.chensmallx.top/categories/Geek-s-Work/MacOS/"/>
+    
+    
+      <category term="MacOS" scheme="https://blog.chensmallx.top/tags/MacOS/"/>
+    
+      <category term="mail.app" scheme="https://blog.chensmallx.top/tags/mail-app/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode题记-206.反转链表</title>
@@ -639,34 +671,6 @@
       <category term="leetcode" scheme="https://blog.chensmallx.top/tags/leetcode/"/>
     
       <category term="剪枝" scheme="https://blog.chensmallx.top/tags/%E5%89%AA%E6%9E%9D/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>每日一记 - 开始背多个单词来源</title>
-    <link href="https://blog.chensmallx.top/2019/04/23/post-everyday-2019-4-23/"/>
-    <id>https://blog.chensmallx.top/2019/04/23/post-everyday-2019-4-23/</id>
-    <published>2019-04-23T11:09:03.000Z</published>
-    <updated>2019-04-23T11:50:49.006Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>日期：2019年4月23日</strong><br><strong>天气：没雨不热很舒服</strong></p><h1 id="几件大事"><a href="#几件大事" class="headerlink" title="几件大事"></a>几件大事</h1><ol><li>今晚出去看复联四二映【三点的场真酸爽</li><li>后天交中间件实验报告【明天睡醒就要写报告了</li><li>买了初中高中的语法书【把语法学完了就有底气了，不然一直觉得缺点什么</li><li>土钵鸡好咸</li></ol><a id="more"></a><h2 id="每日英语打卡"><a href="#每日英语打卡" class="headerlink" title="每日英语打卡"></a>每日英语打卡</h2><h3 id="Vocabulary"><a href="#Vocabulary" class="headerlink" title="Vocabulary"></a>Vocabulary</h3><p>经过了上次考试，我得出结论：<br>    虽然只要掌握 CET4 的词汇就足够对付托福，但是还是不应该止步于此，更多的单词需要认识，并且认识之后可以令考试更加得心应手，阅读速度加快，听力时听到学术名词不会那么懵逼。<br>    所以我开始背托福单词了，当然 CET4 也不落下。</p><h4 id="CET4-list-17-18"><a href="#CET4-list-17-18" class="headerlink" title="CET4 list 17-18"></a>CET4 list 17-18</h4><p>还需要巩固的单词</p><blockquote><p>mechanic  goodness    tragedy advocate    crucial conscious<br>chill breadth regardless  valid   intensity   definitely  fruitful    expectation positive    treaty  elaborate</p></blockquote><p>还不认识的单词</p><blockquote><p>lean  tractor inspect revenue slope<br>contemporary  remedy  confine tray    comb</p></blockquote><h4 id="TOEFL-Vocabulary-Classified"><a href="#TOEFL-Vocabulary-Classified" class="headerlink" title="TOEFL Vocabulary Classified"></a>TOEFL Vocabulary Classified</h4><p>背学科专有名词就很不一样，基本都是很有特点的，无论是之前接触过的，还是新学的，都不会像以前背的单词一样那么容易混淆。</p><p>word list 1 Biology</p><p>新学词：</p><blockquote><p>mimicry<br>Darwinism<br>proliferate<br>propagate<br>subsist<br>fermentation<br>respiration<br>membrane<br>viability</p></blockquote><h4 id="百词斩"><a href="#百词斩" class="headerlink" title="百词斩"></a>百词斩</h4><p>时隔多月，又开始背百词斩了。背百词斩的一个原因很简单，因为是为了多认识单词，而且百词斩每天30个单词也算是一个不费太多时间又可以慢慢积累的方法。</p><h3 id="Listening"><a href="#Listening" class="headerlink" title="Listening"></a>Listening</h3><p>VOA 常速英语 Title：最小的熊互相“交谈”的方法</p><p><img src="/img/punch/20190423.jpg" alt="听写：最小的熊互相“交谈”的方法"></p><h3 id="Speaking"><a href="#Speaking" class="headerlink" title="Speaking"></a>Speaking</h3><p>因为只读半个小时，所以反反复复来来去去也只读了三段，包查单词什么的。<br>太久不正经读书之后，读起来还是很不熟练的。要多读，以后早起读书，嘻嘻</p><p><img src="/img/punch/20190423-s.jpg" alt="Speaking: TPO1 passage1 GroundWater"></p><hr><p>明天也要加油哦~！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;日期：2019年4月23日&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;天气：没雨不热很舒服&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;几件大事&quot;&gt;&lt;a href=&quot;#几件大事&quot; class=&quot;headerlink&quot; title=&quot;几件大事&quot;&gt;&lt;/a&gt;几件大事&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;今晚出去看复联四二映【三点的场真酸爽&lt;/li&gt;
-&lt;li&gt;后天交中间件实验报告【明天睡醒就要写报告了&lt;/li&gt;
-&lt;li&gt;买了初中高中的语法书【把语法学完了就有底气了，不然一直觉得缺点什么&lt;/li&gt;
-&lt;li&gt;土钵鸡好咸&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="每日一记" scheme="https://blog.chensmallx.top/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
-    
-    
-      <category term="每日一记" scheme="https://blog.chensmallx.top/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E8%AE%B0/"/>
     
   </entry>
   

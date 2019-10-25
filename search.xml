@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title>解决MacOS上mail.app自动弹出的另一种办法</title>
+      <link href="/2019/10/25/solve-mac-mail-pop-up-bug/"/>
+      <url>/2019/10/25/solve-mac-mail-pop-up-bug/</url>
+      
+        <content type="html"><![CDATA[<h2 id="0x00-发现问题"><a href="#0x00-发现问题" class="headerlink" title="0x00 发现问题"></a>0x00 发现问题</h2><p>因为平时都使用mac自带的mail.app来对邮箱进行管理，所以使用习惯基本就是不会关闭，最多是用command+W暂时的关闭窗口。<br>但是最近出现了一个问题：正常关闭mail的窗口之后，会时不时自动弹出mail的窗口；如果是在桌面还好，如果是正在全屏使用软件，突然被mail弹出占用半个屏幕，那可太难受了。</p><h2 id="0x01-初步解决方法"><a href="#0x01-初步解决方法" class="headerlink" title="0x01 初步解决方法"></a>0x01 初步解决方法</h2><p>在逛v2ex的时候看到一位仁兄提到使用command+H来隐藏窗口，通过这样“关闭”的mail窗口就不会自动弹出，测试之后发现的确不会弹出来。此事到此就告一段落，但是…</p><h2 id="0x02-符合习惯的终极解决方法"><a href="#0x02-符合习惯的终极解决方法" class="headerlink" title="0x02 符合习惯的终极解决方法"></a>0x02 符合习惯的终极解决方法</h2><p>在习惯中，其他软件都是使用command+W来关闭窗口，只有mail是用command+H来关闭，有时候总是记不住，还是手贱使用了command+H，这样一来，还是时常会被“半屏”打扰。</p><p>今天闲来无事，看了一下mac上快捷键修改的问题，这一看就发现了转机。</p><p>下面教程正式开始：</p><ol><li> &gt; System Preference &gt; Keyboard &gt; Shortcuts &gt; App shortcuts</li><li>点击加号添加一个新的选项</li><li>输入配置如下：<blockquote><p>Application: Mail.app // 列表中手动选择<br>Menu Title: Hide Mail // mail中顶栏菜单中的实际操作名称<br>Keyboard Shortcut: ⌘W // 直接在键盘使用command+W就可以设定了</p></blockquote></li><li>点击add</li><li>关闭 System Preference</li><li>重新启动 Mail.app（其实关闭没必要，过一会就会改过来）</li></ol><p>现在就能开心的使用command+W来“关闭”mail的窗口也不会被“半屏”打扰到啦~</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Geek&#39;s Work </category>
+          
+          <category> MacOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MacOS </tag>
+            
+            <tag> mail.app </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>leetcode题记-206.反转链表</title>
       <link href="/2019/09/07/leetcode-206-reverseList/"/>
       <url>/2019/09/07/leetcode-206-reverseList/</url>
@@ -1215,11 +1242,11 @@
       
       <categories>
           
+          <category> Programer Walk </category>
+          
           <category> Linux Learning </category>
           
           <category> Geek&#39;s Work </category>
-          
-          <category> Programer Walk </category>
           
           <category> Programming Tools </category>
           
@@ -1596,9 +1623,9 @@
       
       <categories>
           
-          <category> Geek&#39;s Work </category>
-          
           <category> Programer Walk </category>
+          
+          <category> Geek&#39;s Work </category>
           
           <category> Programming Tools </category>
           
