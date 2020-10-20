@@ -3,11 +3,34 @@
   
     
     <entry>
+      <title>HEXO博客实现多端同步</title>
+      <link href="/2020/06/30/hexo-all-files-sync-by-github/"/>
+      <url>/2020/06/30/hexo-all-files-sync-by-github/</url>
+      
+        <content type="html"><![CDATA[<p>马上要去深圳入职了，难免要碰到换电脑或者是在多台设备上写博文的场景。<br>就比如在家要用台式机，在深圳的出租屋要用笔记本，在公司要用公司的台式机，Hexo又是基于静态的pages，没有typecho那样可以在线写博文的后台系统，所以今天就把MacBook上的Hexo源文件做了多端同步。</p><p>本博文仅作记录。</p><h2 id="源文件同步"><a href="#源文件同步" class="headerlink" title="源文件同步"></a>源文件同步</h2><p>在博客源文件目录生成git配置和与github远端关联。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin 仓库链接</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"设置同步"</span></span><br><span class="line">git push --<span class="built_in">set</span>-upstream origin master  <span class="comment"># 以后就可以直接git push了</span></span><br></pre></td></tr></table></figure><p>这里我用了另一个仓库做博客源文件存放地，因为如果使用另一个分支来存放的话，难免有命令输错的时候，比如<code>git push origin hexo</code>不小心顺手打成<code>git push</code>或者<code>git push origin master</code>（这都是有可能的，毕竟这些都是熟手操作了），这样子就全盘覆灭。再者就是在github被微软收购之后，每个帐号下的仓库个数已经没有限制了（private仓库也一样），所以这样做更安全，更方便。</p><p>还有一点是Hexo在创建博客之初即为支持git仓库同步，最好的证据就是在博客根目录下有一个<code>.gitignore</code>文件用于非必须文件的忽略。</p><h2 id="第三方主题同步"><a href="#第三方主题同步" class="headerlink" title="第三方主题同步"></a>第三方主题同步</h2><p>我用的主题是<a href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans/" target="_blank" rel="noopener">Melody</a>，采用了Hexo的data files特性，只用在<code>source/_data/melody.yml</code>中对主题配置进行改动，而不用改动主题本身文件，所以支持主题平滑升级，具体可以直接到melody官方文档里看看。</p><p>因为修改主题配置无需改动文件，已经升级主题只需要在主题目录中<code>git pull</code>即可，这样索性就讲主题设置为git仓库的一个submodule即可。无需像其他的主题一样要fork一份主题文件到自己的账号下。</p><p>首先删除原来的melody主题文件（这里无需担心出问题，因为还会下回来），然后以submodule的形式将melody的文件下载到主题路径下即可。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf theme/melody</span><br><span class="line">git submodule add https://github.com/Molunerfinn/hexo-theme-melody themes/melody</span><br></pre></td></tr></table></figure><p>等待它下好即可重新使用博客。以下命令测试一下能不能用：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo g; hexo s</span><br><span class="line"><span class="comment"># 然后浏览器登录 http://127.0.0.1:4000 查看结果</span></span><br></pre></td></tr></table></figure><hr><h2 id="在新的机器上配置博客环境"><a href="#在新的机器上配置博客环境" class="headerlink" title="在新的机器上配置博客环境"></a>在新的机器上配置博客环境</h2><h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p><strong>MacOS</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node  <span class="comment"># 高版本node.js自带npm</span></span><br></pre></td></tr></table></figure></p><p><strong>Linux</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></table></figure></p><p><strong>Windows</strong><br>前往<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">Mode.js</a>官网下载安装包安装。</p><p><strong>可选操作：npm换源</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org  <span class="comment"># 更换淘宝源</span></span><br></pre></td></tr></table></figure></p><h3 id="搭建Hexo环境"><a href="#搭建Hexo环境" class="headerlink" title="搭建Hexo环境"></a>搭建Hexo环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g  <span class="comment"># 安装hexo脚手架</span></span><br></pre></td></tr></table></figure><h3 id="克隆仓库和同步主题子模块"><a href="#克隆仓库和同步主题子模块" class="headerlink" title="克隆仓库和同步主题子模块"></a>克隆仓库和同步主题子模块</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> 仓库链接 dir_name  <span class="comment"># 克隆本仓库</span></span><br><span class="line"><span class="built_in">cd</span> dir_name</span><br><span class="line">git submodule init</span><br><span class="line">git submodule update</span><br></pre></td></tr></table></figure><h3 id="安装Hexo配置和主题所需依赖"><a href="#安装Hexo配置和主题所需依赖" class="headerlink" title="安装Hexo配置和主题所需依赖"></a>安装Hexo配置和主题所需依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在博客目录下运行</span></span><br><span class="line">npm i  <span class="comment"># 安装依赖</span></span><br></pre></td></tr></table></figure><h3 id="每次写完博客同步到仓库"><a href="#每次写完博客同步到仓库" class="headerlink" title="每次写完博客同步到仓库"></a>每次写完博客同步到仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"新增XXX文章"</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure><hr><p>这样即可完成博客在多个终端中的同步问题了。<br>当然，这篇博文就是在家里头的台式机上写好并部署、同步到github上的~<br>美汁汁</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> HEXO </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>解决MacOS上mail.app自动弹出的另一种办法</title>
       <link href="/2019/10/25/solve-mac-mail-pop-up-bug/"/>
       <url>/2019/10/25/solve-mac-mail-pop-up-bug/</url>
       
-        <content type="html"><![CDATA[<h2 id="0x00-发现问题"><a href="#0x00-发现问题" class="headerlink" title="0x00 发现问题"></a>0x00 发现问题</h2><p>因为平时都使用mac自带的mail.app来对邮箱进行管理，所以使用习惯基本就是不会关闭，最多是用command+W暂时的关闭窗口。<br>但是最近出现了一个问题：正常关闭mail的窗口之后，会时不时自动弹出mail的窗口；如果是在桌面还好，如果是正在全屏使用软件，突然被mail弹出占用半个屏幕，那可太难受了。</p><h2 id="0x01-初步解决方法"><a href="#0x01-初步解决方法" class="headerlink" title="0x01 初步解决方法"></a>0x01 初步解决方法</h2><p>在逛v2ex的时候看到一位仁兄提到使用command+H来隐藏窗口，通过这样“关闭”的mail窗口就不会自动弹出，测试之后发现的确不会弹出来。此事到此就告一段落，但是…</p><h2 id="0x02-符合习惯的终极解决方法"><a href="#0x02-符合习惯的终极解决方法" class="headerlink" title="0x02 符合习惯的终极解决方法"></a>0x02 符合习惯的终极解决方法</h2><p>在习惯中，其他软件都是使用command+W来关闭窗口，只有mail是用command+H来关闭，有时候总是记不住，还是手贱使用了command+H，这样一来，还是时常会被“半屏”打扰。</p><p>今天闲来无事，看了一下mac上快捷键修改的问题，这一看就发现了转机。</p><p>下面教程正式开始：</p><ol><li> &gt; System Preference &gt; Keyboard &gt; Shortcuts &gt; App shortcuts</li><li>点击加号添加一个新的选项</li><li>输入配置如下：<blockquote><p>Application: Mail.app // 列表中手动选择<br>Menu Title: Hide Mail // mail中顶栏菜单中的实际操作名称<br>Keyboard Shortcut: ⌘W // 直接在键盘使用command+W就可以设定了</p></blockquote></li><li>点击add</li><li>关闭 System Preference</li><li>重新启动 Mail.app（其实关闭没必要，过一会就会改过来）</li></ol><p>现在就能开心的使用command+W来“关闭”mail的窗口也不会被“半屏”打扰到啦~</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="0x00-发现问题"><a href="#0x00-发现问题" class="headerlink" title="0x00 发现问题"></a>0x00 发现问题</h2><p>因为平时都使用mac自带的mail.app来对邮箱进行管理，所以使用习惯基本就是不会关闭，最多是用command+W暂时的关闭窗口。<br>但是最近出现了一个问题：正常关闭mail的窗口之后，会时不时自动弹出mail的窗口；如果是在桌面还好，如果是正在全屏使用软件，突然被mail弹出占用半个屏幕，那可太难受了。</p><h2 id="0x01-初步解决方法"><a href="#0x01-初步解决方法" class="headerlink" title="0x01 初步解决方法"></a>0x01 初步解决方法</h2><p>在逛v2ex的时候看到一位仁兄提到使用command+H来隐藏窗口，通过这样“关闭”的mail窗口就不会自动弹出，测试之后发现的确不会弹出来。此事到此就告一段落，但是…</p><h2 id="0x02-符合习惯的终极解决方法"><a href="#0x02-符合习惯的终极解决方法" class="headerlink" title="0x02 符合习惯的终极解决方法"></a>0x02 符合习惯的终极解决方法</h2><p>在习惯中，其他软件都是使用command+W来关闭窗口，只有mail是用command+H来关闭，有时候总是记不住，还是手贱使用了command+W，这样一来，还是时常会被“半屏”打扰。</p><p>今天闲来无事，看了一下mac上快捷键修改的问题，这一看就发现了转机。</p><p>下面教程正式开始：</p><ol><li> &gt; System Preference &gt; Keyboard &gt; Shortcuts &gt; App shortcuts</li><li>点击加号添加一个新的选项</li><li>输入配置如下：<blockquote><p>Application: Mail.app // 列表中手动选择<br>Menu Title: Hide Mail // mail中顶栏菜单中的实际操作名称<br>Keyboard Shortcut: ⌘W // 直接在键盘使用command+W就可以设定了</p></blockquote></li><li>点击add</li><li>关闭 System Preference</li><li>重新启动 Mail.app（其实关闭没必要，过一会就会改过来）</li></ol><p>现在就能开心的使用command+W来“关闭”mail的窗口也不会被“半屏”打扰到啦~</p>]]></content>
       
       
       <categories>
@@ -50,9 +73,9 @@
             
             <tag> leetcode </tag>
             
-            <tag> OJ </tag>
-            
             <tag> 链表 </tag>
+            
+            <tag> OJ </tag>
             
         </tags>
       
@@ -336,9 +359,9 @@
             
             <tag> leetcode </tag>
             
-            <tag> OJ </tag>
-            
             <tag> 链表 </tag>
+            
+            <tag> OJ </tag>
             
             <tag> 分治 </tag>
             
@@ -390,9 +413,9 @@
             
             <tag> leetcode </tag>
             
-            <tag> OJ </tag>
-            
             <tag> 链表 </tag>
+            
+            <tag> OJ </tag>
             
         </tags>
       
@@ -1034,9 +1057,9 @@
       
       <categories>
           
-          <category> 每日一记 </category>
-          
           <category> HEXO </category>
+          
+          <category> 每日一记 </category>
           
       </categories>
       
@@ -1059,9 +1082,9 @@
       
       <categories>
           
-          <category> 每日一记 </category>
-          
           <category> HEXO </category>
+          
+          <category> 每日一记 </category>
           
       </categories>
       
@@ -1134,9 +1157,9 @@
       
       <categories>
           
-          <category> Linux Learning </category>
-          
           <category> Geek&#39;s Work </category>
+          
+          <category> Linux Learning </category>
           
           <category> Ubuntu </category>
           
@@ -1244,9 +1267,9 @@
           
           <category> Programer Walk </category>
           
-          <category> Linux Learning </category>
-          
           <category> Geek&#39;s Work </category>
+          
+          <category> Linux Learning </category>
           
           <category> Programming Tools </category>
           
@@ -1335,9 +1358,9 @@
       
       <categories>
           
-          <category> Linux Learning </category>
-          
           <category> Geek&#39;s Work </category>
+          
+          <category> Linux Learning </category>
           
           <category> Play with VPS </category>
           
@@ -1346,9 +1369,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
             <tag> ssh </tag>
             
@@ -1453,9 +1476,9 @@
       
       <categories>
           
-          <category> Linux Learning </category>
-          
           <category> Geek&#39;s Work </category>
+          
+          <category> Linux Learning </category>
           
           <category> Play with VPS </category>
           
@@ -1464,9 +1487,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> Linux </tag>
             
             <tag> CentOS </tag>
             

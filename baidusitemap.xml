@@ -2,7 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://blog.chensmallx.top/2019/10/25/solve-mac-mail-pop-up-bug/</loc>
-    <lastmod>2019-10-25T02:58:08.762Z</lastmod>
+    <lastmod>2020-10-20T15:06:51.489Z</lastmod>
+  </url>  <url>
+    <loc>https://blog.chensmallx.top/2020/06/30/hexo-all-files-sync-by-github/</loc>
+    <lastmod>2020-07-09T05:19:19.779Z</lastmod>
+  </url>  <url>
+    <loc>https://blog.chensmallx.top/2018/06/06/hello-hexo/</loc>
+    <lastmod>2020-06-29T16:44:13.698Z</lastmod>
   </url>  <url>
     <loc>https://blog.chensmallx.top/2019/09/07/leetcode-206-reverseList/</loc>
     <lastmod>2019-09-07T16:49:12.653Z</lastmod>
@@ -75,9 +81,6 @@
   </url>  <url>
     <loc>https://blog.chensmallx.top/2018/11/23/MySQL-disorder-output-solution/</loc>
     <lastmod>2019-07-24T03:45:11.350Z</lastmod>
-  </url>  <url>
-    <loc>https://blog.chensmallx.top/2018/06/06/hello-hexo/</loc>
-    <lastmod>2019-07-24T03:44:43.887Z</lastmod>
   </url>  <url>
     <loc>https://blog.chensmallx.top/2018/06/07/config-of-vscode-for-c-cpp-on-macos/</loc>
     <lastmod>2019-07-24T03:44:03.333Z</lastmod>
