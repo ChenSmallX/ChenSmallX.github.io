@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="搭建一台稳如狗的 ShadowsockS/R 服务器"><meta name="keywords" content="VPS,Shadowsocks/R,开拓眼界"><meta name="author" content="SmallXeon"><meta name="copyright" content="SmallXeon"><title>搭建一台稳如狗的 ShadowsockS/R 服务器 | Case of Xeon</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-3407535148645575',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?185d8da67933791c43d61b695fbd7008";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-120435702-1', 'auto');
+ga('send', 'pageview');</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66453607";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '6.2.0'
+} </script><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Case of Xeon" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ShadowSocks-x2F-ShadowSocksR"><span class="toc-number">1.</span> <span class="toc-text">ShadowSocks&#x2F;ShadowSocksR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">前期准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%EF%BC%88%E4%BC%98%E5%8C%96%EF%BC%89-VPS-%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="toc-number">3.</span> <span class="toc-text">配置（优化） VPS 的网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ShadowSocks"><span class="toc-number">4.</span> <span class="toc-text">ShadowSocks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ShadowSocksR"><span class="toc-number">5.</span> <span class="toc-text">ShadowSocksR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%EF%BC%88%E6%B5%8B%E8%AF%95%EF%BC%89%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E5%A5%BD%E7%9A%84-SS-x2F-SSR"><span class="toc-number">6.</span> <span class="toc-text">连接（测试）自己搭建好的 SS&#x2F;SSR</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avator.jpg"></div><div class="author-info__name text-center">SmallXeon</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="/about-me">👔Résumé</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">73</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">79</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">8</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links List</div><a class="author-info-links__name text-center" href="https://hexo.chensmallx.top">This site</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://untitled.pw/">Untitle Spot</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://molunerfinn.com">MARKSZのBlog(author of melody)</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.zhengwenfeng.com">郑文峰的博客</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/computer_engineering_science_tech_1920x1080.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Case of Xeon</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">🏠Home</a><a class="site-page" href="/archives">⏱Timeline</a><a class="site-page" href="/tags">🔖Tags</a><a class="site-page" href="/categories">📚Categories</a><a class="site-page" href="/gallery">🖼Gallery</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title">搭建一台稳如狗的 ShadowsockS/R 服务器</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-08</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Geek-s-Work/">Geek's Work</a><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">1.1k</span><span class="post-meta__separator">|</span><span>Reading time: 4 min</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="ShadowSocks-x2F-ShadowSocksR"><a href="#ShadowSocks-x2F-ShadowSocksR" class="headerlink" title="ShadowSocks&#x2F;ShadowSocksR"></a>ShadowSocks&#x2F;ShadowSocksR</h2><p>一款基于 <code>Socks5</code> 的代理软件，可以用于搭建虚拟专用网络通道（不多说，怕喝茶）。<br>下面一段摘自维基百科-<a target="_blank" rel="noopener" href="http://https//zh.wikipedia.org/wiki/Shadowsocks" title="Shadowsocks">Shadowsocks</a></p>
+<blockquote>
+<p>Shadowsocks可以指：一种基于Socks5代理方式的加密传输协议，也可以指实现这个协议的各种传输包。目前包使用Python、C、C++、C#、Go语言等编程语言开发，大部分主要实现（iOS平台的除外）采用Apache许可证、GPL、MIT许可证等多种自由软件许可协议开放源代码。shadowsocks分为服务器端和客户端，在使用之前，需要先将服务器端部署到服务器上面，然后通过客户端连接并创建本地代理。</p>
+<p>在中国大陆，本工具也被广泛用于突破防火长城（GFW），以浏览被封锁、屏蔽或干扰的内容。2015年8月22日，Shadowsocks原作者Clowwindy称受到了C-N&#x2F;G-O-V的压力，宣布停止维护此计划（项目）并移除其个人页面所存储的源代码。因为移除之前就有大量的复制副本，所以事实上并未停止维护，而是转由其他贡献者们持续维护中。</p>
+</blockquote>
+<p>维基上没有收录 ShadowsocksR，所以我也不误人子弟了~</p>
+<p>说白了就是开拓眼界的好东西。</p>
+<hr>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
+<li>拥有一台 VPS 服务器，并且满足以下要求：<ol>
+<li>处在长城防火墙（GFW）之外，可访问外网，可从内网访问（可以 ping，可以 ssh）。（此处的内外相对于防火墙而言）</li>
+<li>掌握了其 root 权限（可以调用也可以）</li>
+<li>内存大于64MB</li>
+<li>关于选购可以随便看看我写的这篇文章<a target="_blank" rel="noopener" href="http://blog.chensmallx.top/2018/06/08/recommend-VPS-recently/" title="最近用的VPS推荐">最近用的VPS推荐</a></li>
+</ol>
+</li>
+<li>掌握简单的 Linux 使用技能，具体命令如下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">基本的：</span><br><span class="line">  <span class="built_in">cd</span> [-options] [args ...]</span><br><span class="line">  <span class="built_in">ls</span> [-options] [file ...]</span><br><span class="line">  <span class="built_in">rm</span> [-options] [file ...]</span><br><span class="line">  ./</span><br><span class="line">  reboot  or  shutdown</span><br><span class="line">  ...</span><br><span class="line">进阶的：</span><br><span class="line">  curl  [options] [URL...]</span><br><span class="line">  wget [options] [URL ...]</span><br><span class="line">  apt-get [options] [options] ...</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>会使用 ssh 工具登录自己的 vps<ul>
+<li>比如 windows 上的 putty，xshell 等，mac 上的 termimal，Linux 的 bash 等等。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="配置（优化）-VPS-的网络"><a href="#配置（优化）-VPS-的网络" class="headerlink" title="配置（优化） VPS 的网络"></a>配置（优化） VPS 的网络</h2><p> VPS 的系统推荐使用 CentOS 或者 Debian，单纯的为服务器设计的系统，资料齐全以及使用面广。【Ubuntu 还是不要用吧，个人不推荐使用（包括个人机 PC）】</p>
+<p>可以根据需求在 <a target="_blank" rel="noopener" href="http://blog.chensmallx.top/index.php/category/VPS/%22%E6%8A%98%E8%85%BE%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8_VPS%22">折腾云服务器_VPS</a> 里面选择进行配置和优化。</p>
+<p> 强烈推荐使用 <a target="_blank" rel="noopener" href="http://blog.chensmallx.top/index.php/VPS/vps-network-optimization-netspeeder.html" title="net-speeder">net-speeder</a> 进行网络优化。</p>
+<hr>
+<p>下面就是搭建 SS&#x2F;SSR 的本身</p>
+<h2 id="ShadowSocks"><a href="#ShadowSocks" class="headerlink" title="ShadowSocks"></a>ShadowSocks</h2><p>搭建脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br><span class="line"><span class="built_in">chmod</span> +x shadowsocks.sh</span><br><span class="line">./shadowsocks.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocks.log</span><br></pre></td></tr></table></figure>
+
+<h2 id="ShadowSocksR"><a href="#ShadowSocksR" class="headerlink" title="ShadowSocksR"></a>ShadowSocksR</h2><p>搭建脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line"><span class="built_in">chmod</span> +x shadowsocks-all.sh</span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocks-all.log</span><br></pre></td></tr></table></figure>
+
+<p>在脚本运行的过程中，脚本会提示我们选择加密方式，选择服务端口，设置账号、密码等等。<br>我个人是比较倾向于传统的配置方式，至少用了这么久还没翻车过。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Your Server IP<span class="punctuation">:</span>  ***</span><br><span class="line">Your Server Port<span class="punctuation">:</span>  <span class="number">443</span></span><br><span class="line">Your Password<span class="punctuation">:</span>  ***</span><br><span class="line">Your Local IP<span class="punctuation">:</span>  <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">Your Local Port<span class="punctuation">:</span>  <span class="number">1080</span></span><br><span class="line">Your Encryption Method<span class="punctuation">:</span>  aes<span class="number">-256</span>-cfb</span><br></pre></td></tr></table></figure>
+
+<p>启动 | 停止 | 重启 | 状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/shadowsocks-python start | stop | restart | status</span><br><span class="line"></span><br><span class="line">/etc/init.d/shadowsocks-r start | stop | restart | status</span><br><span class="line"></span><br><span class="line">/etc/init.d/shadowsocks-go start | stop | restart | status</span><br><span class="line"></span><br><span class="line">/etc/init.d/shadowsocks-libev start | stop | restart | status</span><br></pre></td></tr></table></figure>
+
+<p>修改配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/etc/shadowsocks-python/config.json</span><br><span class="line"></span><br><span class="line">/etc/shadowsocks-r/config.json</span><br><span class="line"></span><br><span class="line">/etc/shadowsocks-go/config.json</span><br><span class="line"></span><br><span class="line">/etc/shadowsocks-libev/config.json</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="连接（测试）自己搭建好的-SS-x2F-SSR"><a href="#连接（测试）自己搭建好的-SS-x2F-SSR" class="headerlink" title="连接（测试）自己搭建好的 SS&#x2F;SSR"></a>连接（测试）自己搭建好的 SS&#x2F;SSR</h2><p>在 <a target="_blank" rel="noopener" href="https://dl.onetive.com/" title="全版本 SSR 客户端下载">全版本 SSR 客户端下载</a> 下载自己设备能使用的软件版本（SSR 和 SS 的软件之间可以互联，但是 SSR 是粉色的，更骚更好看）。如果不喜欢的话可以在出墙之后上 GooglePlay 上下载 Shadowsocks 的 APP。<br>在 github 上也有下载各种平台版本的 Shadowsocks</p>
+<blockquote>
+<p>windows：shadowsocks-gui</p>
+<p>linux&#x2F;unix(macOS): shadowsocks-qt5 or shadowsocks-py</p>
+</blockquote>
+<p>运行软件后，将我们服务端的配置填入本地软件设置中（或者编辑 shadowsocks 软件目录下的 config.json），然后运行服务即可。<br>测试：登录 <a target="_blank" rel="noopener" href="http://www.google.com/">www.google.com</a> ，如果可以登录即证明已经在墙外了。</p>
+<hr>
+<p>推荐：PAC 模式。PAC 可以说是服务的一种简单配置，配置中含有一定的地址集合，可通过规则使流量分流。例如：</p>
+<ol>
+<li>海外地址走服务器，墙内地址走直连</li>
+<li>需要安全链接的走服务器，不需要安全链接的走直连</li>
+<li>……</li>
+</ol>
+<hr>
+<p>明天也要一样加油哦~</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">SmallXeon</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hexo.chensmallx.top/2018/06/08/build-shadowsocks-r-like-a-stable-dog/">https://hexo.chensmallx.top/2018/06/08/build-shadowsocks-r-like-a-stable-dog/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/VPS/">VPS</a><a class="post-meta__tags" href="/tags/Shadowsocks-R/">Shadowsocks/R</a><a class="post-meta__tags" href="/tags/%E5%BC%80%E6%8B%93%E7%9C%BC%E7%95%8C/">开拓眼界</a></div><div class="social-share pull-right" data-disabled="linkedin, diandian, tencent"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/06/08/recommend-VPS-recently/"><i class="fa fa-chevron-left">  </i><span>最近用的VPS推荐</span></a></div><div class="next-post pull-right"><a href="/2018/06/07/config-of-vscode-for-c-cpp-on-macos/"><span>关于 Vsocde 的配置文件问题</span><i class="fa fa-chevron-right"></i></a></div></nav><div class="post-adv">一些推广链接<br> <table border=0 width="80%" frame=void rules=rows > <tr> <th> 几个便宜量大的小✈场： <a target="_blank" rel="noopener" href="https://fastlink-aff.com/auth/register?code=FjoR">FASTLINK</a>, <a target="_blank" rel="noopener" href="https://oxycontin.top/aff.php?aff=1014">YToo</a>, </th> <th> 论坛邀请注册： <a target="_blank" rel="noopener" href="https://www.v2ex.com/?r=SmallXeon"><img src="https://www.v2ex.com/static/img/v2ex@2x.png" height="15px" ></a>, </th> </tr> <tr> <th> 便宜量大但是稳定性不足的VPS： <a target="_blank" rel="noopener" href="https://billing.virmach.com/aff.php?aff=4570">Virmach<img src="https://imgsa.baidu.com/forum/pic/item/9358d109b3de9c824aed32106281800a18d843a1.jpg" height="15px" ></a>, </th> <th> 价格略贵但好用的VPN： <a target="_blank" rel="noopener" href="https://app.cloudcone.com/?ref=8165"><img src="https://app.cloudcone.com/assets/img/logo-foo.png" height="15px" ></a>, <a target="_blank" rel="noopener" href="https://www.digitalocean.com/?refcode=5a7aeb1abf81"><img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg" height="15px" ></a>, </th> </tr> </table></div><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '75eea99fbaa476d396ec',
+  clientSecret: 'b019e8a827f40619f9e561b234552d05288e732e',
+  repo: 'ChenSmallX.github.io',
+  owner: 'ChenSmallX',
+  admin: 'ChenSmallX',
+  id: md5(decodeURI(location.pathname)),
+  language: 'en'
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/computer_engineering_science_tech_1920x1080.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2017 - 2022 By SmallXeon</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">Host - Github Pages | Deploy - Github Action | Edit - <a target="_blank" rel="noopener" href="https://github.com/ChenSmallX">ChenSmallX</a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

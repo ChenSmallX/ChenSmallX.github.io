@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="黑裙 NAS - 简单配置"><meta name="keywords" content="Synology,黑裙，NAS"><meta name="author" content="SmallXeon"><meta name="copyright" content="SmallXeon"><title>黑裙 NAS - 简单配置 | Case of Xeon</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-3407535148645575',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?185d8da67933791c43d61b695fbd7008";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-120435702-1', 'auto');
+ga('send', 'pageview');</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66453607";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '6.2.0'
+} </script><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Case of Xeon" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%BB%91%E7%BE%A4%E6%99%96"><span class="toc-number">1.</span> <span class="toc-text">安装黑群晖</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">解压镜像文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87-PE-U%E7%9B%98"><span class="toc-number">1.2.</span> <span class="toc-text">准备 PE U盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Synology"><span class="toc-number">1.3.</span> <span class="toc-text">安装 Synology</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%A1%AC%E7%9B%98"><span class="toc-number">2.</span> <span class="toc-text">安装硬盘</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avator.jpg"></div><div class="author-info__name text-center">SmallXeon</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="/about-me">👔Résumé</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">73</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">79</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">8</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links List</div><a class="author-info-links__name text-center" href="https://hexo.chensmallx.top">This site</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://untitled.pw/">Untitle Spot</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://molunerfinn.com">MARKSZのBlog(author of melody)</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.zhengwenfeng.com">郑文峰的博客</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/topimg.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Case of Xeon</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">🏠Home</a><a class="site-page" href="/archives">⏱Timeline</a><a class="site-page" href="/tags">🔖Tags</a><a class="site-page" href="/categories">📚Categories</a><a class="site-page" href="/gallery">🖼Gallery</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title">黑裙 NAS - 简单配置</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-03</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Geek-s-Work/">Geek's Work</a><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">1.3k</span><span class="post-meta__separator">|</span><span>Reading time: 3 min</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>作为简单记录，这篇文章主要包括几个简单的点：</p>
+<ol>
+<li>在 J1900 上安装黑群晖【废话？</li>
+<li>安装硬盘配置网络硬盘【NAS 基本操作</li>
+<li>通过 <code>AFP</code> 协议设置 MacOS 的 <code>Time Machine</code> 备份到 NAS 上</li>
+</ol>
+<span id="more"></span>
+
+<p>为什么这一篇包括了三点呢？<br>原因其实很简单，就是因为太简单了，所以合在一起写。</p>
+<h2 id="安装黑群晖"><a href="#安装黑群晖" class="headerlink" title="安装黑群晖"></a>安装黑群晖</h2><blockquote>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://post.smzdm.com/p/ax08ld2w/">与时俱进，提升居家生活品质（篇四）：3分钟搞定SSD黑群晖安装</a></p>
+</blockquote>
+<p>我安装黑群晖是看了这篇大佬的教程，因为这篇是直接用了同配置机器安装完成后的硬盘的直接 dump，可以1：1还原新安装的机器的数据。</p>
+<p>贴一个我自己的百度云分流：</p>
+<blockquote>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/165QEk_F91n30yP-yuUoeUw">https://pan.baidu.com/s/165QEk_F91n30yP-yuUoeUw</a> 提取码: q2vb</p>
+</blockquote>
+<p>不过使用这个镜像需要注意的是（个人猜测），因为原盘也是16g 固态 dump 出来的，所以建议用于大于等于16g 的固态硬盘进行写入，这样才能还原出原本的数据分区情况和避免硬盘出错。</p>
+<p>还有一个写入镜像的工具：<a href="/file/DiskImage-V1.6-WinAll.exe.zip">DiskImage-V1.6-WinAll</a>，这个工具的图标是个眼睛发亮的黑猫，刚开始我老是找不到它在哪。可以运行在 WinPE 上，所以放心食用。</p>
+<h3 id="解压镜像文件"><a href="#解压镜像文件" class="headerlink" title="解压镜像文件"></a>解压镜像文件</h3><p>这个文件需要提前解压，从 zip 格式解压到 img 格式。不得不说刚开始我还是有些惊讶的，因为毕竟一个650M的文件可以解压出来一个14G 多的文件，实在压缩比有些高了。</p>
+<p>但是装完之后回过头来想想，这里面大多是分区的零填充，压缩之后肯定会大幅压缩，这样就会出现神奇的压缩比。</p>
+<h3 id="准备-PE-U盘"><a href="#准备-PE-U盘" class="headerlink" title="准备 PE U盘"></a>准备 PE U盘</h3><p>既然镜像有14G 多，那么 U 盘至少也要16G。</p>
+<p>都知道 WinPE 是什么吧？不知道的可以左上角或者右上角叉叉退出了😂</p>
+<p>要是让我推荐一款 PE 那绝对是 WePE，无论是临时使用还是长期做维护，都很适合，安装简单系统纯净，关键是装 win 的时候不会夹带私货。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.wepe.com.cn/">微PE WePE 官网</a><br>PS: WePE打钱！</p>
+</blockquote>
+<p>把镜像和写入工具放到U盘里头。</p>
+<h3 id="安装-Synology"><a href="#安装-Synology" class="headerlink" title="安装 Synology"></a>安装 Synology</h3><ol>
+<li>插上 U盘</li>
+<li>开机疯狂按 F2 选择进入U盘启动</li>
+<li>使用 HD Tune 扫描固态坏块，确认无误之后进行下一步。坏块太多就去肛奸商。【当时我的固态里头就是20%的坏块</li>
+<li>打开 DiskGenius 清空固态分区，提交改动</li>
+<li>打开之前下载的<code>DiskImage-V1.6-WinAll.exe</code>，镜像位置选择解压好的镜像文件。磁盘位置选择整个固态硬盘，不要选择某个分区。16g 的固态软件内大概识别成14g 多。</li>
+<li>点击开始写入。</li>
+<li>坐与静等…</li>
+</ol>
+<p>写入完成之后再打开 DiskGenius 可以看到固态被分成了好几个格式化好的分区。这样就写入完成了。<br>接下来拔掉 U盘重启从硬盘启动，如果看到很多问号的话，那就说明安装成功了。</p>
+<p>现在使用另一台同在局域网内的计算机，打开浏览器输入<a target="_blank" rel="noopener" href="http://find.synology.com/">find.synology.com</a>或者直接点击这个，就会加载群晖官方的本地网络搜索工具，如果搜索到了会显示系统配置页面。配置用户还有地区等等各种参数，不过有一点，不要使用任何群晖的云服务，这样就会和群晖的服务器进行交互，有可能会被 ban 机。</p>
+<h2 id="安装硬盘"><a href="#安装硬盘" class="headerlink" title="安装硬盘"></a>安装硬盘</h2><p>安装硬盘很简单，不过有一点不得不说，要在群晖上使用硬盘必须要格式化才行，因为群晖有他自己的硬盘格式和管理方法。</p>
+<ol>
+<li><p>将硬盘装入 NAS 硬盘插槽</p>
+<p> 有一点很重要，就是务必要使用沉头螺丝，不然会因为螺丝凸起而没办法装入插槽中。【别问我为什么知道</p>
+</li>
+<li><p>打开储存空间管理器，可以看到未使用的硬盘显示为绿色，正在使用的硬盘显示为蓝色</p>
+<p> <img src="/../img/NAS/storageManager.png" alt="Storage Manager"></p>
+</li>
+<li><p>进入 RAID GROUP 选项卡，如果有空闲的硬盘空间，那么新建按钮就会显示为可用状态。点击新建。</p>
+<p> 选择未使用的硬盘，选择格式的时候选择 Btrfs，这是群晖专属的硬盘格式，有日志功能和各种管理 iSCSI 的奇效。<br> Raid 选择 Base 就行，单硬盘作为一个空间来使用。<br> 新建出一个 Raid 组之后，这个硬盘即为可用状态。但是我们在系统里面还看不到哪里能用。<br> 原因在于由于是 NAS，系统只会将共享的空间呈现出来给你使用。所以答案很明显了，需要在硬盘上配置共享空间。</p>
+</li>
+</ol>
+<p>未完待续…（太懒了）</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">SmallXeon</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hexo.chensmallx.top/2019/04/03/synology-something/">https://hexo.chensmallx.top/2019/04/03/synology-something/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Synology/">Synology</a><a class="post-meta__tags" href="/tags/%E9%BB%91%E8%A3%99%EF%BC%8CNAS/">黑裙，NAS</a></div><div class="social-share pull-right" data-disabled="linkedin, diandian, tencent"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/04/10/post-everyday-2019-4-10/"><i class="fa fa-chevron-left">  </i><span>后天托福二考，很慌</span></a></div><div class="next-post pull-right"><a href="/2019/04/01/synology-overview/"><span>黑裙 NAS 搭建 - 初</span><i class="fa fa-chevron-right"></i></a></div></nav><div class="post-adv">一些推广链接<br> <table border=0 width="80%" frame=void rules=rows > <tr> <th> 几个便宜量大的小✈场： <a target="_blank" rel="noopener" href="https://fastlink-aff.com/auth/register?code=FjoR">FASTLINK</a>, <a target="_blank" rel="noopener" href="https://oxycontin.top/aff.php?aff=1014">YToo</a>, </th> <th> 论坛邀请注册： <a target="_blank" rel="noopener" href="https://www.v2ex.com/?r=SmallXeon"><img src="https://www.v2ex.com/static/img/v2ex@2x.png" height="15px" ></a>, </th> </tr> <tr> <th> 便宜量大但是稳定性不足的VPS： <a target="_blank" rel="noopener" href="https://billing.virmach.com/aff.php?aff=4570">Virmach<img src="https://imgsa.baidu.com/forum/pic/item/9358d109b3de9c824aed32106281800a18d843a1.jpg" height="15px" ></a>, </th> <th> 价格略贵但好用的VPN： <a target="_blank" rel="noopener" href="https://app.cloudcone.com/?ref=8165"><img src="https://app.cloudcone.com/assets/img/logo-foo.png" height="15px" ></a>, <a target="_blank" rel="noopener" href="https://www.digitalocean.com/?refcode=5a7aeb1abf81"><img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg" height="15px" ></a>, </th> </tr> </table></div><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '75eea99fbaa476d396ec',
+  clientSecret: 'b019e8a827f40619f9e561b234552d05288e732e',
+  repo: 'ChenSmallX.github.io',
+  owner: 'ChenSmallX',
+  admin: 'ChenSmallX',
+  id: md5(decodeURI(location.pathname)),
+  language: 'en'
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/topimg.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2017 - 2022 By SmallXeon</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">Host - Github Pages | Deploy - Github Action | Edit - <a target="_blank" rel="noopener" href="https://github.com/ChenSmallX">ChenSmallX</a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

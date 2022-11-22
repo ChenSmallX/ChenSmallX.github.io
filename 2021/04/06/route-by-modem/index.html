@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="K2P代理MAN端设备上网"><meta name="keywords" content="K2P,iptables,network,MAN,modem,网络,城域网,光猫"><meta name="author" content="SmallXeon"><meta name="copyright" content="SmallXeon"><title>K2P代理MAN端设备上网 | Case of Xeon</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-3407535148645575',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?185d8da67933791c43d61b695fbd7008";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-120435702-1', 'auto');
+ga('send', 'pageview');</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66453607";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '6.2.0'
+} </script><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Case of Xeon" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E6%9C%89%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91"><span class="toc-number">1.</span> <span class="toc-text">原有网络拓扑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E8%B1%A1"><span class="toc-number">2.</span> <span class="toc-text">现象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%94%99"><span class="toc-number">3.</span> <span class="toc-text">排错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%E5%88%B0NAS"><span class="toc-number">3.1.</span> <span class="toc-text">路由器到NAS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%E7%BD%91%E5%8F%A3%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BA%A4%E6%8D%A2%E6%80%A7%E8%83%BD"><span class="toc-number">3.2.</span> <span class="toc-text">路由器网口之间的交换性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAS%E4%B8%AD%E7%9A%84%E7%A1%AC%E7%9B%98%E8%AF%BB%E5%8F%96%E9%80%9F%E5%BA%A6"><span class="toc-number">3.3.</span> <span class="toc-text">NAS中的硬盘读取速度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">4.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%80%9D%E8%B7%AF-amp-%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">配置思路&amp;方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MAN%E7%AB%AF%E9%9C%80%E8%A6%81%E8%AE%BF%E9%97%AELAN%E7%AB%AF"><span class="toc-number">5.1.</span> <span class="toc-text">MAN端需要访问LAN端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86MAN%E7%AB%AF%E8%AE%BE%E5%A4%87%E4%B8%8A%E7%BD%91"><span class="toc-number">5.2.</span> <span class="toc-text">代理MAN端设备上网</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0-amp-%E5%B1%95%E6%9C%9B"><span class="toc-number">6.</span> <span class="toc-text">后记&amp;展望</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avator.jpg"></div><div class="author-info__name text-center">SmallXeon</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="/about-me">👔Résumé</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">73</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">79</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">8</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links List</div><a class="author-info-links__name text-center" href="https://hexo.chensmallx.top">This site</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://untitled.pw/">Untitle Spot</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://molunerfinn.com">MARKSZのBlog(author of melody)</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.zhengwenfeng.com">郑文峰的博客</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/topimg.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Case of Xeon</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">🏠Home</a><a class="site-page" href="/archives">⏱Timeline</a><a class="site-page" href="/tags">🔖Tags</a><a class="site-page" href="/categories">📚Categories</a><a class="site-page" href="/gallery">🖼Gallery</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title">K2P代理MAN端设备上网</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-04-06</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Geek-s-Work/">Geek's Work</a><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">4.8k</span><span class="post-meta__separator">|</span><span>Reading time: 15 min</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>近日入坑了pt站点，并在NAS上新增了一个12T的希捷银河氦气盘，在闲暇之余下载一些大包刷刷上传量之外，总是逮着喜欢的资源就肆无忌惮的下载（上传量能刷得很快哈哈哈），不得不说，pt站的资源确实是优质，和普罗大众共用的bt确实不同，种子资源、做种量根本都是不能比拟的。</p>
+<p>然而随之而来的问题就是，优质的资源它总得要播放才能看才能听吧？而播放过程中某个环节出了问题，则会影响整体的观感体验，没错，我就遇到了。</p>
+<h2 id="原有网络拓扑"><a href="#原有网络拓扑" class="headerlink" title="原有网络拓扑"></a>原有网络拓扑</h2><p>下载的资源大多都是1080P、2K、4K的视频格式文件，而后两者大多还是蓝光原盘的ios或者是BDMV包，1080P的视频一两个小时可以从2G到10多G不等，而到了2K、4K级别的资源，少说也是一个多小时得有个20G到80G不等，这样就对NAS这种网络存储设备使用场景产生一定的考验，或者说是整条网络链路质量的考验。</p>
+<p>现在手上的涉及到这一套基于网络的播放、网络设备就这么几个，电信给的普通光猫，K2P，蜗牛星际A款，小米电视E55A。</p>
+<p>为啥要说是普通光猫呢？因为它就是最典型的单千兆+三百兆配置，其中千兆桥接出来给K2P拨号上网代理家庭网络上网，其他接口暂时没有使用。</p>
+<p>K2P这么一款经典的全千兆良心路由器就没有什么好多说的了，刷了padavan（老毛子），更新了hiboy的v5驱动版本。而作为经典矿渣的蜗牛，我的这个蜗牛星际A款是第一批上的车，里头还是原装绿色主板，J1900，16G内存，单千兆网口，刷了黑群晖6.1.7（DS3617xs）。</p>
+<p>小米电视和K2P之间使用5G wifi连接，使用小米自带的测速功能，测试与公网之间的速度可以达到20MB&#x2F;S，算是还行的程度，但是尚未知电视和NAS之间的速度，并且公网与内网之间的差别还有延迟等各种问题，以及延迟对小量数据的随机读取的影响等等。</p>
+<p>总览一下，原来的网络拓扑如下图所示：</p>
+<p><img src="/../img/NAS/route-by-modem-origin-topo.png" alt="原有网络拓扑"></p>
+<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>基于以上这一套网络拓扑，在通过小米电视观看1080P视频文件的时候就还好，而如果是观看2K以上清晰度视频的时候，就会出现播放一会，就要转圈圈读取一会的情况，频率大概是<strong>10s</strong>一次，非常影响观影体验。遇到这种情况，就算不是强迫症，也会想要去改善一番。</p>
+<p>在尝试过将蓝光原盘拷贝到U盘中插入电视进行本地播放，并且非常顺畅之后，基本上就确认问题出现在视频文件数据传输到电视上这个环节了。</p>
+<p>而影响视频文件从NAS通过wifi传输到电视上速度的因素也有很多，比如硬盘读速度、NAS到路由器的传输速率、路由器到电视之间的wifi传输速率、路由器各网口之间的交换速率，都有可能影响，所以我又开始了漫漫的排错之路。</p>
+<h2 id="排错"><a href="#排错" class="headerlink" title="排错"></a>排错</h2><p>在排错的策略上，我采取的是由易到难的顺序进行的。每个环节按照排错难易度来排序，以我个人的理解，可以排成下面这样：</p>
+<ol>
+<li>路由器到NAS（或者其他有线连接的终端）</li>
+<li>路由器网口之间的交换性能</li>
+<li>NAS中的硬盘读取速度</li>
+<li>路由器通过wifi到电视（这基本没法测，因为电视的操作系统没法进入后台，只能直接放电影来观察现象）</li>
+</ol>
+<h3 id="路由器到NAS"><a href="#路由器到NAS" class="headerlink" title="路由器到NAS"></a>路由器到NAS</h3><p>测试链路带宽质量，最方便也最普适的方法应该就是iperf了吧。</p>
+<p>Padavan虽说是华硕自家的系统，但是也内置了opkg，opkg是一个开源的包管理系统，是<code>Open PacKaGe management</code>的缩写。直接进入K2P的后台使用opkg安装iperf3即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install iperf3</span><br><span class="line"><span class="comment"># 这里需要注意的是，安装的路径是在tmpfs中的，也就是内存盘</span></span><br><span class="line"><span class="comment"># 所以重启会丢失安装的内容，以避免闪存被占满</span></span><br></pre></td></tr></table></figure>
+
+<p>而在群晖上使用iperf3就更加简单了。只需要从docker套件中，安装iperf3的镜像，然后在配置容器的时候按照iperf3的语法规则配置启动命令即可。附上一个张大妈的参考文章：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/ag89wxk7/">如何快速测试网卡性能——群晖Docker 安装使用Iperf3教程 - 什么值得买</a></p>
+</blockquote>
+<p>运行iperf3。iperf3和iperf相同，有服务端和客户端两种运行模式，在测试的时候需要自己确定哪个设备是服务端，哪个设备是客户端。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务端启动</span></span><br><span class="line">iperf3 -s</span><br><span class="line"><span class="comment"># 客户端启动</span></span><br><span class="line">iperf3 -c [服务端IP]</span><br><span class="line"><span class="comment"># 其他更多选项，典型的也就下面这些</span></span><br><span class="line">iperf3 -c [服务端IP] -l 1024M -t 60 -i 5 -P 4 -u</span><br><span class="line"><span class="comment"># -l length   代表每个buffer的长度，可以跟kKmM单位</span></span><br><span class="line"><span class="comment"># -t time     是测试的总共时长，单位是秒</span></span><br><span class="line"><span class="comment"># -i interval 是每次测试发起的时间间隔</span></span><br><span class="line"><span class="comment"># -P parallel 并行数，一般写1或者CPU核心数</span></span><br><span class="line"><span class="comment"># -u udp      使用UDP进行测试，一般指定UDP之后客户端的带宽测试结果会大很多，两到三倍不等。</span></span><br><span class="line">iperf3 --<span class="built_in">help</span> <span class="comment"># 查询其他命令使用方法</span></span><br></pre></td></tr></table></figure>
+
+<p>测试之后，只能说，很遗憾，问题也不是出在路由器到NAS之间的链路上。</p>
+<h3 id="路由器网口之间的交换性能"><a href="#路由器网口之间的交换性能" class="headerlink" title="路由器网口之间的交换性能"></a>路由器网口之间的交换性能</h3><p>由于每个厂商的路由器设计不同，每个网口的工作行为虽然在用户侧看来是相同的，但是在内部实现上却是不同的。</p>
+<p>例如大部分家用路由器只需要支持单WAN口，+N个LAN口的工作模式，这时候路由器厂商在设计时，是在CPU后方接一个带网管的交换机，通过不同的vLAN来区分WAN、LAN、DMZ等。在这种设计模式下，同属于LAN区域或者DMZ区域的流量会直接经过交换机里头的交换芯片，而不通过CPU，这样交换效率就会比较高。</p>
+<p>而另一些工业级、企业级的路由器上，由于需要满足自定义网口配置（例如多WAN口、自定义WAN口、自定义vLAN等），这时候则可能将路由器内部实现为每个网口都是一个独立的网卡，每个网卡都直接接通CPU，在配置LAN区是某几个网口时，CPU会在系统内建立一个虚拟网卡（例如eth0）去桥接每个需要绑定在LAN区的网口（例如ge0、ge3、ge4），将其上的流量在CPU上模拟出来的交换机（虚拟网卡）上进行交换。在这种设计模式下，由于没有硬件交换机芯片，交换机功能是通过CPU模拟出来的，这时候同区域的网络流量的交换在经过CPU的时候就会产生性能的损失。</p>
+<p>基于这种情况，所以需要看看是否是这一环节出了问题。为了排查这个影响因素，我还去专门买了一个USB3.0转2.5G RJ45口的网卡【捂脸】。</p>
+<p>结果一顿操作猛如虎，一测，路由器到电脑有线连接跑iperf3可以跑满千兆，NAS到电脑中间经过路由器有线连接跑iperf3还是可以跑满千兆。</p>
+<p>哦豁，这一波，白亏一个USB网卡。</p>
+<h3 id="NAS中的硬盘读取速度"><a href="#NAS中的硬盘读取速度" class="headerlink" title="NAS中的硬盘读取速度"></a>NAS中的硬盘读取速度</h3><p>由于具备了上面的条件，就可以直接通过电脑拷贝NAS上的文件到本地来测试NAS上硬盘的读取速度了。</p>
+<p>拷贝一个3G的文件到本地，速度可以维持在100到130MB&#x2F;S之间，这样的速度测试，反正看下来也是没啥问题，千兆极限妥妥的。</p>
+<blockquote>
+<p>一个题外话，使用windows电脑就可以跑满速度，而使用mac就跑不满，估计这mac系统也有问题，mmp…</p>
+</blockquote>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>到了这里，大概可以确定问题就出现在数据到达电视的“最后一公里”——接入网络的介质——上了。</p>
+<p>本来是想着换一个牛批一点的路由器比如华硕AC86U或者小米AX3600这种以通过高功率wifi信号传输更大的带宽稳定性到电视。但是经过仔细分析，K2P原先号称千元最强不仅仅是因为它性价比、0元薅、全千兆，更是因为K2P的wifi信号的强大。有大佬拆机分析之后发现，K2P的硬件系统，对2.4G和5G wifi模块都有各自独立的功放，我的一个朋友甚至说在一楼都能收到K2P在6楼发出的信号，连上之后还能上网，不可谓牛哉。所以，在当下有如此强大的无线信号下，还是有这样的问题，那么通过更换路由器来改善网络的程度是非常不确定的。</p>
+<p>放弃了走无线的思路后，我把目光转向了有线连接。但是再来看看这个难顶的网络拓扑结构和户型图：</p>
+<p><img src="/../img/NAS/route-by-modem-origin-topo.png" alt="网络拓扑&amp;户型图"></p>
+<p>在这样的户型结构下，光猫啥的还可以放在电视柜后面或者弱电箱中，而想要把K2P挪到客厅几乎是不可能的，因为客厅还有猫（真·猫，一只豹猫，一只橘猫，一只英短），把路由器搞挂了那就是真的挂了，毕竟影响到全家的上网。</p>
+<p>那么现在只能寄希望于光猫。光猫除了一个千兆（LAN）口桥接给到K2P做PPPoE之外，还有三个百兆口。其中一个绑定了IPTV的vlan没法改（也不是没法改，就是怕改了出问题），剩下两个可以用于光猫的LAN区域。</p>
+<p>电视接入光猫剩余的两个网口，此时对于光猫的LAN端和K2P的WAN端以及电视的网口之间，组成了一个无外网权限，也无K2P内网权限的局域网，或者可以说是城域网（MAN）。以下是对MAN城域网的一些定义：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/%E5%9F%8E%E5%9F%9F%E7%BD%91">wikipedia</a><br>都会网域（Metropolitan Area Network，MAN）指大型的计算机网络，属于IEEE802.6标准，是介于LAN和WAN之间能传输语音与资料的公用网络。MAN是改进LAN（局域网）中的传输介质，扩大局域网的范围，达到包含一个大学校园、城市或都会区。它是较大型的局域网，需要的成本较高，但可以提供更快的传输速率。例如：某一家企业把在一个城市或同一国家内的服务据点连接起来，就可以称为一个或多个城域网。一些常用于城市区网的技术包括：以太网（10Gbps&#x2F;100Gbps）、WiMAX（全球互通微波访问）。</p>
+<p><a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/forum.php?mod=viewthread&tid=199086&extra=page=1&page=1&mobile=no">PPPoE协议和MAN访问 这个是什么东西? - 恩山</a><br>BYFAN:</p>
+<blockquote>
+<p>man是一个网络工程术语，全称是Metropolitan Area Network，意思是城域网，指大型的计算机网络，属于IEEE802.6标准，是介于LAN和WAN之间能传输语音与数据的公用网络。<br>光猫会给你分配一个光猫的IP，然后你的路由PPPOE拨号会拿到运营商给你的外网IP<br>man网关是光猫分配的地址。</p>
+</blockquote>
+</blockquote>
+<p>在组成WAN和LAN之间的中间网络MAN城域网之后，此时就形成了同网段下，电视需要使用K2P做网关，也就是熟知的旁路由场景，但是这个旁路由又有那么点不一样。</p>
+<p><img src="/../img/NAS/route-by-modem-new-topo.png" alt="现在的网络拓扑成了这样"></p>
+<p>既然说这个旁路由不那么一样，那它究竟不一样在哪里呢？</p>
+<blockquote>
+<p>传统旁路由并非是接入广域网的最后一关，而是旁路由自身还有一个指向的网关，用于旁路由的流量的下一跳，而旁路由自己则负责同网段内其他设备流量的加密解密以及各种转发策略等。</p>
+</blockquote>
+<ol>
+<li>K2P要充当拨号上网的总网关来代理它自己LAN端的流量上网。</li>
+<li>K2P要参与MAN端的组网，充当MAN端的旁路由代理电视流量上网以及访问K2P的LAN端设备（NAS）。</li>
+</ol>
+<p>所以说K2P一个设备既要做流量出口，又要做旁路由，这就给K2P的配置带来了一些纠结。K2P在刷了Padavan后，是有做AP的功能的，也就是可以在这个模式下用于做旁路由，但又要K2P运行pppd来拨号上网，那么又需要它运行在网关模式下。</p>
+<p>本着优先不影响环境上网的原则，K2P是肯定要配置在网关模式下拨号上网的。基于这个原则，就开始折腾了。</p>
+<h2 id="配置思路-amp-方法"><a href="#配置思路-amp-方法" class="headerlink" title="配置思路&amp;方法"></a>配置思路&amp;方法</h2><p><strong>注：以下提及的MAN、WAN、LAN都是从K2P的角度来讨论的。</strong></p>
+<h3 id="MAN端需要访问LAN端"><a href="#MAN端需要访问LAN端" class="headerlink" title="MAN端需要访问LAN端"></a>MAN端需要访问LAN端</h3><p><strong>需求：</strong></p>
+<blockquote>
+<p>MAN端需要访问LAN端设备。<br>MAN端网段为192.168.1.0&#x2F;24，而LAN端网段为192.168.2.0&#x2F;24，需要满足192.168.1.4&#x2F;24之间192.168.2.65&#x2F;24互访。</p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<p>实现电视可以访问NAS，总体思路就无非以下几点，电视访问NAS的请求可以正确到达K2P，而K2P又能正确转发请求到NAS，并且反向可通。</p>
+<p>其一，请求可达网关。这一点由于电视和K2P都属于MAN网段，即同一个广播域，电视发出的请求自然可以到达K2P，但是为了不被光猫转发到它的外部（因为我们不知道光猫外部的网络环境是什么样的），则需要手动指派发往LAN端的流量到K2P，也就是配置一个静态路由。</p>
+<p>其二，K2P能够转发MAN端的流量到LAN端。这一点则需要手动放通防火墙规则，因为在默认情况下，路由器固件编写者是不会放通MAN到LAN的转发的，这样的场景实在是少之又少。而我们做的放通，也并非是完全放通，而是仅针对MAN端地址进行放通，因为我们不知道运营商PPPoE给到K2P的网段中是否有图谋不轨的人，对同网段进行端口扫描或者网络扫描等不良行为。毕竟安全大过天。</p>
+<p><strong>配置步骤：</strong></p>
+<p>光猫配置静态路由将MAN端（192.168.1.0&#x2F;24）中目的地址为LAN端（192.168.2.0&#x2F;24）的流量定向转发到K2P。</p>
+<blockquote>
+<ol>
+<li>使用光猫的运营商管理员账号登录光猫后台，像电信的运营商管理员账号为<code>telecomadmin</code>，密码或者其他的运营商可以去网上搜索。</li>
+<li>进入用户侧网络配置 - 静态路由配置</li>
+<li>添加静态路由：</li>
+</ol>
+</blockquote>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">目的地址</th>
+<th align="left">下一跳地址</th>
+<th align="center">网络接口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">192.168.2.65&#x2F;24<br>（NAS）</td>
+<td align="left">192.168.1.2&#x2F;24<br>（K2P）</td>
+<td align="center">LAN<br>（这里的LAN代表光猫的LAN，就是K2P的MAN）</td>
+</tr>
+<tr>
+<td align="left">192.168.2.1&#x2F;24<br>（K2P - LAN IP）</td>
+<td align="left">192.168.1.2&#x2F;24<br>（K2P - MAN IP）</td>
+<td align="center">LAN</td>
+</tr>
+</tbody></table>
+</blockquote>
+<p>配置K2P开放MAN端到LAN端流量的转发</p>
+<blockquote>
+<p>在Padavan的自定义设置 - 脚本配置中 - <code>在防火墙规则启动后执行:</code>中添加以下iptables规则：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 放通FORWARD放通K2P的流量转发，可让电视访问nas</span></span><br><span class="line">iptables -A FORWARD -s 192.168.1.0/24 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<h3 id="代理MAN端设备上网"><a href="#代理MAN端设备上网" class="headerlink" title="代理MAN端设备上网"></a>代理MAN端设备上网</h3><p><strong>需求：</strong></p>
+<blockquote>
+<p>K2P要代理MAN端设备上网。<br>MAN端设备需要配置网关和DNS为K2P地址。</p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<p>基于这个需求，可以看出MAN端设备的请求不仅需要能够被K2P转发，还需要能够进入K2P。为什么要进入K2P呢？因为：</p>
+<ol>
+<li>需要使用K2P作DNS服务器，也就是请求K2P本身的服务。</li>
+<li>需要通过K2P代理上网。</li>
+</ol>
+<blockquote>
+<p>这里明确一下，请求被转发和被代理是不同的概念，转发是将请求报文原封不动地再发出去，而代理则是将请求报文中的源地址从原来真实的地址换成自身的地址之后，再发出去，以起到“代理”的作用。<br>这里的<u><strong>能够进入</strong></u>，指的就是请求进到K2P中，被K2P接收之后处理完成后再发出去。在这个场景中就是我们常说的NAT——网络地址转换——也是一种代理方式。</p>
+</blockquote>
+<p>明确了以上的定义之后，也就明确了，为什么需要满足流量可以进入K2P了。</p>
+<p><strong>配置步骤：</strong></p>
+<p>有了上面光猫的配置之后，我们就只需要配置电视和K2P即可。</p>
+<blockquote>
+<p>电视配置以下网络参数：</p>
+<table>
+<thead>
+<tr>
+<th align="right">键</th>
+<th align="left">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">IP</td>
+<td align="left">192.168.1.4</td>
+</tr>
+<tr>
+<td align="right">掩码</td>
+<td align="left">255.255.255.0</td>
+</tr>
+<tr>
+<td align="right">网关</td>
+<td align="left">192.168.2.1<br>或者是<br>192.168.1.2</td>
+</tr>
+<tr>
+<td align="right">DNS</td>
+<td align="left">192.168.2.1</td>
+</tr>
+</tbody></table>
+</blockquote>
+<p>K2P还是在Padavan的自定义设置 - 脚本配置中 - <code>在防火墙规则启动后执行:</code>中添加以下iptables规则：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 放通INPUT 和OUTPUT 可以让MAN端的电视访问K2P做DNS代理</span></span><br><span class="line">iptables -A INPUT -s 192.168.1.0/24 -j ACCEPT</span><br><span class="line">iptables -A OUTPUT -s 192.168.1.0/24 -j ACCEPT</span><br><span class="line"><span class="comment">## 配置SNAT可以让K2P正确代理MAN端终端的流量</span></span><br><span class="line">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o ppp0 -j MASQUERADE</span><br></pre></td></tr></table></figure>
+
+<p>至此，已经全部实现MAN端的电视可以访问LAN端的NAS以及通过K2P代理上网了。并且访问NAS播放蓝光原盘也可以没有卡顿得播放了。所以说这一套操作还是对了的。</p>
+<h2 id="后记-amp-展望"><a href="#后记-amp-展望" class="headerlink" title="后记&amp;展望"></a>后记&amp;展望</h2><p>需求被满足了，但是新的需求永远都会产生。例如如果说我以后需要在K2P的LAN端网络中添加一个旁路由用于代理全网流量出国留学，那么就只需要配置电视的网关为旁路由的IP即可，而不是需要配置更多的参数。</p>
+<p>所以说这一套方案实际上是已经考虑到了未来的拓展性的。</p>
+<p>而另外一个因素，还记得前面说的电视通过wifi进行广域网测速可以跑到20M&#x2F;S吧？20MB&#x2F;S，也就是200Mbps（二百兆比特每秒）而接入光猫的接口只有100Mbps（百兆比特每秒），带宽整整小了一半。但是文件播放的顺畅程度却提高了，所以可以断言，影响NAS上文件的播放的因素不仅仅只是带宽，更多的可能是时延和抖动。</p>
+<p>如果我采取了将K2P挪到客厅，将电视连接到K2P的LAN端的方案，将来添加旁路由的时候又需要在K2P上插一个设备，而在宠物猫眼底下多添加一个设备就是多一份危险。当然，除去使用交换机的场景（我认为家里的网络设备规模还打不到使用交换机的地步哈哈哈）。</p>
+<p>如果有大佬朋友也有这样的需求，又正好看到了我的这个记录，那么在看到有纰漏的地方，请指出，感谢！</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">SmallXeon</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hexo.chensmallx.top/2021/04/06/route-by-modem/">https://hexo.chensmallx.top/2021/04/06/route-by-modem/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/K2P/">K2P</a><a class="post-meta__tags" href="/tags/iptables/">iptables</a><a class="post-meta__tags" href="/tags/network/">network</a><a class="post-meta__tags" href="/tags/MAN/">MAN</a><a class="post-meta__tags" href="/tags/modem/">modem</a><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C/">网络</a><a class="post-meta__tags" href="/tags/%E5%9F%8E%E5%9F%9F%E7%BD%91/">城域网</a><a class="post-meta__tags" href="/tags/%E5%85%89%E7%8C%AB/">光猫</a></div><div class="social-share pull-right" data-disabled="linkedin, diandian, tencent"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/04/08/nextcloud-on-docker/"><i class="fa fa-chevron-left">  </i><span>使用docker-compose搭建nextcloud+Nginx+MySQL+Redis</span></a></div><div class="next-post pull-right"><a href="/2020/06/30/hexo-all-files-sync-by-github/"><span>HEXO博客实现多端同步</span><i class="fa fa-chevron-right"></i></a></div></nav><div class="post-adv">一些推广链接<br> <table border=0 width="80%" frame=void rules=rows > <tr> <th> 几个便宜量大的小✈场： <a target="_blank" rel="noopener" href="https://fastlink-aff.com/auth/register?code=FjoR">FASTLINK</a>, <a target="_blank" rel="noopener" href="https://oxycontin.top/aff.php?aff=1014">YToo</a>, </th> <th> 论坛邀请注册： <a target="_blank" rel="noopener" href="https://www.v2ex.com/?r=SmallXeon"><img src="https://www.v2ex.com/static/img/v2ex@2x.png" height="15px" ></a>, </th> </tr> <tr> <th> 便宜量大但是稳定性不足的VPS： <a target="_blank" rel="noopener" href="https://billing.virmach.com/aff.php?aff=4570">Virmach<img src="https://imgsa.baidu.com/forum/pic/item/9358d109b3de9c824aed32106281800a18d843a1.jpg" height="15px" ></a>, </th> <th> 价格略贵但好用的VPN： <a target="_blank" rel="noopener" href="https://app.cloudcone.com/?ref=8165"><img src="https://app.cloudcone.com/assets/img/logo-foo.png" height="15px" ></a>, <a target="_blank" rel="noopener" href="https://www.digitalocean.com/?refcode=5a7aeb1abf81"><img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg" height="15px" ></a>, </th> </tr> </table></div><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '75eea99fbaa476d396ec',
+  clientSecret: 'b019e8a827f40619f9e561b234552d05288e732e',
+  repo: 'ChenSmallX.github.io',
+  owner: 'ChenSmallX',
+  admin: 'ChenSmallX',
+  id: md5(decodeURI(location.pathname)),
+  language: 'en'
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/topimg.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2017 - 2022 By SmallXeon</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">Host - Github Pages | Deploy - Github Action | Edit - <a target="_blank" rel="noopener" href="https://github.com/ChenSmallX">ChenSmallX</a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="黑裙 NAS 搭建 - 初"><meta name="keywords" content="Synology,黑裙,NAS"><meta name="author" content="SmallXeon"><meta name="copyright" content="SmallXeon"><title>黑裙 NAS 搭建 - 初 | Case of Xeon</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-3407535148645575',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?185d8da67933791c43d61b695fbd7008";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-120435702-1', 'auto');
+ga('send', 'pageview');</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66453607";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '6.2.0'
+} </script><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Case of Xeon" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%91%E8%A3%99%EF%BC%9F%E9%BB%91%E7%BE%A4%E6%99%96%EF%BC%81"><span class="toc-number">1.</span> <span class="toc-text">黑裙？黑群晖！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NAS"><span class="toc-number">1.1.</span> <span class="toc-text">NAS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9C%97%E7%89%9B%E6%98%9F%E9%99%85-J1900-%E8%BD%A6%E6%9D%A5"><span class="toc-number">1.2.</span> <span class="toc-text">蜗牛星际 J1900 车来</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#J1900-%E9%BB%91%E8%A3%99%E5%8F%AF%E7%8E%A9%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">J1900 黑裙可玩性</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avator.jpg"></div><div class="author-info__name text-center">SmallXeon</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="/about-me">👔Résumé</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">73</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">79</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">8</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links List</div><a class="author-info-links__name text-center" href="https://hexo.chensmallx.top">This site</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://untitled.pw/">Untitle Spot</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://molunerfinn.com">MARKSZのBlog(author of melody)</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.zhengwenfeng.com">郑文峰的博客</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/topimg.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Case of Xeon</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">🏠Home</a><a class="site-page" href="/archives">⏱Timeline</a><a class="site-page" href="/tags">🔖Tags</a><a class="site-page" href="/categories">📚Categories</a><a class="site-page" href="/gallery">🖼Gallery</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title">黑裙 NAS 搭建 - 初</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-01</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Geek-s-Work/">Geek's Work</a><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">1.9k</span><span class="post-meta__separator">|</span><span>Reading time: 5 min</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>初次接触 NAS，也是第一次接触这样子专用用途的 Linux，不得不说着实是一次奇妙的经历。原来本以为 NAS 对于我们来说没有太大用处，但是直到自己有了一个之后，真香！</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="黑裙？黑群晖！"><a href="#黑裙？黑群晖！" class="headerlink" title="黑裙？黑群晖！"></a>黑裙？黑群晖！</h2><p>黑群晖这个词，我刚开始也不太明白的，甚至觉得黑群晖是一个电脑品牌，只是名字很酷炫（然而严格意义上就是也是一个电脑整机品牌）。<br>但是我知道另一个名词，黑苹果。众所周知，要想享受苹果的 MacOS 系统就必须要购买苹果品牌的电脑才可以获得最好的系统体验。而老司机们出于钱包问题或者是折腾爱好，就捣鼓出来了黑苹果。<br>顾名思义，就是黑的苹果，不是真正的苹果系统，是装在非苹果电脑硬件系统上的苹果 MacOS 系统。</p>
+<p>这么一想就很简单了。黑群晖，去掉黑字就是“群晖”，群晖是一家 NAS 的制造商，包括硬件和软件在内。</p>
+<p><strong>群晖</strong></p>
+<blockquote>
+<p>群晖科技股份有限公司（品牌名称：Synology，简称群晖或群晖科技）为台湾一家网络附加储存（NAS）服务商，总部位于台北市。<br>截至2017年，群晖以Synology品牌行销全球，在中小企业及家用NAS市场占有率居世界首位[5]。<br>参考资料：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%BE%A4%E6%9A%89%E7%A7%91%E6%8A%80">群晖 - Wikipedia</a><br><a target="_blank" rel="noopener" href="https://www.synology.cn/zh-cn">群晖中文官网</a></p>
+</blockquote>
+<p>体验群晖硬件的话自然就是购买群晖本身的硬件来体验，黑不起来。而软件就可以运行在非群晖硬件上，获得群晖系统的体验和功能。所以说，黑群晖也就不是真正的群晖系统（包括软硬件），而是装在玩家自己 DIY 的 NAS 硬件系统上的群晖系统。</p>
+<h3 id="NAS"><a href="#NAS" class="headerlink" title="NAS"></a>NAS</h3><p>那么 NAS 又是啥嘞。说实话，我才之前也没体验过 NAS 的，只是知道这么个东西，可以作为私有云来将资料存储在自己的云上，这样安全性和自由度就更高。</p>
+<p><strong>网络附加存储</strong></p>
+<blockquote>
+<p>网络附加存储设备（英语：Network Attached Storage，缩写：NAS），是一种专门的数据存储技术的名称，它可以直接连接在计算机网络上面，对异质网络用户提供了集中式数据访问服务。出国带着可以使用内部网</p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%B6%B2%E8%B7%AF%E9%99%84%E5%8A%A0%E5%84%B2%E5%AD%98">NAS Wikipedia</a></p>
+</blockquote>
+<p>而维基也说了，NAS 的优点在于：</p>
+<blockquote>
+<p>NAS从两方面改善了数据的可用性：<br>即使相应的应用服务器不再工作了，仍然可以读出数据。<br>简易服务器本身不会崩溃，因为它避免了引起服务器崩溃的首要原因，即应用软件引起的问题。</p>
+<p>NAS产品具有的优点包括：<br>NAS产品是真正即插即用产品。NAS设备一般支持多计算机平台，用户通过网络支持协议可进入相同的文档，因而NAS设备无需改造即可用于混合UNIX／Windows NT局域网内。<br>NAS设备的物理位置同样是灵活的，它们可放置在工作组内，靠近数据中心的应用服务器，或者也可放在其他地点，通过物理链路与网络连接起来。无需应用服务器的干预，NAS设备允许用户在网络上存储数据，这样既可减小CPU的开销，也能显著改善网络的性能。</p>
+</blockquote>
+<p>而这些都不是我上这台黑裙的重点。</p>
+<p>重点在于某天（周二）的多媒体技术课上，看到群里大佬 LFX 在浏览器里头使用一个类似桌面环境的东西，于是我就问了一下，得知这是群晖系统的面板。于是就种草了。</p>
+<p>怎么会因为看了一眼就喜欢上了呢？别说，还真是一见钟情。能有多惊艳呢？我先放两张图吧</p>
+<p><img src="/../img/NAS/login.png" alt="Login site"></p>
+<p><img src="/../img/NAS/desktop.png" alt="Desktop"></p>
+<p>这简洁明了的界面，直观的 dashboard，实在是深得我心哇有木有。虽然我已经爱上 sh 的操作方式，但是不得不说，这样美观的鼠标操作的页面真的是太 cool 了。</p>
+<p>话说回来，我虽然是种草了，但是却没有提上日程，毕竟硬件加上折腾成本也不便宜。但是！</p>
+<h3 id="蜗牛星际-J1900-车来"><a href="#蜗牛星际-J1900-车来" class="headerlink" title="蜗牛星际 J1900 车来"></a>蜗牛星际 J1900 车来</h3><p><strong>硬件概况</strong></p>
+<blockquote>
+<p>CPU+主板：    J1900<br>内存：        4G<br>固态：        16G<br>网卡：        Intel i211 千兆<br>重点：        低功耗</p>
+</blockquote>
+<p>关于这辆车的由来，我个人也说不清，只能归纳为发了矿难-&gt;出机器-&gt;翻车-&gt;司机扶正-&gt;又翻车-&gt;又扶正-&gt;下放市场。</p>
+<p>感兴趣可以看看这篇：<a target="_blank" rel="noopener" href="https://post.smzdm.com/p/adwl2krk/?send_by=9714620998">矿渣小分队 篇一：矿渣小分队之蜗牛星际主板补件测试</a></p>
+<p>我上这辆车是跟着协会大佬一起上的，没办法，消息不灵通，只能跟着别人的消息走，不过也不算晚，赶在了最适合的时机上车。<br>为什么说是最合适的时机呢？看了上面那篇文章的同学一定也知道了这趟车的翻车性大大的有，而在不断的大佬出手扶正之后终于将车的所有性能榨干，并且登上了神车的神坛，稳如老狗。<br>而另一个因素就是价格，车刚开的时候，价格甚至炒到了400元一台。而经过一天的冷静之后，价格到达了市场最能够接受的270-300元一台。我就是在这个时候上了车。在之后货源慢慢的出手之后，物以稀为贵的定律又发挥出来了，慢慢的价格也回升到了350左右。</p>
+<p>只能说机会是给有准备的人的（我哪有啥准备？）。</p>
+<p>于是乎我就遇到了这种“在刚刚种草的时候车就来了”的奇妙时刻上车了。</p>
+<hr>
+<h2 id="J1900-黑裙可玩性"><a href="#J1900-黑裙可玩性" class="headerlink" title="J1900 黑裙可玩性"></a>J1900 黑裙可玩性</h2><p>正规硬件+正规软件，必定安安心心使用绝不折腾。但是跳出了规规矩矩使用的圈子，只要是 DIY，就必定可玩性 up up。就如同我现在这台 Macbook Pro 2015 T2，纯正的最后一代 A 面亮灯顶配机器，加上最新的 <code>Mojave 10.14.4</code> 系统，完全就安排的妥妥当当，安心的使用就行了，不用 xjr 折腾。</p>
+<p>一台自由度极高并且功能齐全的黑群晖究竟能怎么折腾呢？<br>按照我的折腾时间线，大致可以列出这么多。</p>
+<ol>
+<li>在 J1900 上安装黑群晖【废话？</li>
+<li>安装硬盘配置网络硬盘【NAS 基本操作</li>
+<li>通过 <code>AFP</code> 协议设置 MacOS 的 <code>Time Machine</code> 备份到 NAS 上</li>
+<li>使用阿里云服务器配置 <code>frp</code> 内网穿透，实现外网控制 NAS</li>
+<li>配置 <code>Xware</code> 实现迅雷远程下载功能</li>
+<li>配置 <code>BaiduPCS-GO</code> Web 端实现百度云不限速下载</li>
+<li>配置人人美剧 Linux 客户端<code>rrshareweb</code>实现人人影视下载功能</li>
+<li>配置 Photo Station （群晖官方套件）实现手机照片自动备份</li>
+<li>配置 Music Station （群晖官方套件）实现手机远程聆听 NAS 内无损音源</li>
+<li>配置 Video Station （群晖官方套件）实现 ipad 观看 NAS 内高清片源</li>
+<li>配置计划任务和邮件通知，实现日志远程查看</li>
+<li>配置主板BIOS和系统实现远程唤醒功能</li>
+<li>… 【待续</li>
+</ol>
+<p>以上列出的全部我都已经全部实现了，所以说你所见即所得，后续都会趁热打铁写在博客里面，作为记录，也为茫然的和我一样的小萌新铺路。</p>
+<hr>
+<p>本文完~</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">SmallXeon</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hexo.chensmallx.top/2019/04/01/synology-overview/">https://hexo.chensmallx.top/2019/04/01/synology-overview/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Synology/">Synology</a><a class="post-meta__tags" href="/tags/%E9%BB%91%E8%A3%99/">黑裙</a><a class="post-meta__tags" href="/tags/NAS/">NAS</a></div><div class="social-share pull-right" data-disabled="linkedin, diandian, tencent"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/04/03/synology-something/"><i class="fa fa-chevron-left">  </i><span>黑裙 NAS - 简单配置</span></a></div><div class="next-post pull-right"><a href="/2019/04/01/post-everyday-2019-4-1/"><span>黑裙 NAS 环境搭建完毕</span><i class="fa fa-chevron-right"></i></a></div></nav><div class="post-adv">一些推广链接<br> <table border=0 width="80%" frame=void rules=rows > <tr> <th> 几个便宜量大的小✈场： <a target="_blank" rel="noopener" href="https://fastlink-aff.com/auth/register?code=FjoR">FASTLINK</a>, <a target="_blank" rel="noopener" href="https://oxycontin.top/aff.php?aff=1014">YToo</a>, </th> <th> 论坛邀请注册： <a target="_blank" rel="noopener" href="https://www.v2ex.com/?r=SmallXeon"><img src="https://www.v2ex.com/static/img/v2ex@2x.png" height="15px" ></a>, </th> </tr> <tr> <th> 便宜量大但是稳定性不足的VPS： <a target="_blank" rel="noopener" href="https://billing.virmach.com/aff.php?aff=4570">Virmach<img src="https://imgsa.baidu.com/forum/pic/item/9358d109b3de9c824aed32106281800a18d843a1.jpg" height="15px" ></a>, </th> <th> 价格略贵但好用的VPN： <a target="_blank" rel="noopener" href="https://app.cloudcone.com/?ref=8165"><img src="https://app.cloudcone.com/assets/img/logo-foo.png" height="15px" ></a>, <a target="_blank" rel="noopener" href="https://www.digitalocean.com/?refcode=5a7aeb1abf81"><img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg" height="15px" ></a>, </th> </tr> </table></div><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '75eea99fbaa476d396ec',
+  clientSecret: 'b019e8a827f40619f9e561b234552d05288e732e',
+  repo: 'ChenSmallX.github.io',
+  owner: 'ChenSmallX',
+  admin: 'ChenSmallX',
+  id: md5(decodeURI(location.pathname)),
+  language: 'en'
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/topimg.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2017 - 2022 By SmallXeon</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">Host - Github Pages | Deploy - Github Action | Edit - <a target="_blank" rel="noopener" href="https://github.com/ChenSmallX">ChenSmallX</a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

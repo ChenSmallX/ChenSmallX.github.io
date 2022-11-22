@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="VPS网络优化：net-speeder"><meta name="keywords" content="VPS,Net-Optimize,Net-Speeder"><meta name="author" content="SmallXeon"><meta name="copyright" content="SmallXeon"><title>VPS网络优化：net-speeder | Case of Xeon</title><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-3407535148645575',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?185d8da67933791c43d61b695fbd7008";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-120435702-1', 'auto');
+ga('send', 'pageview');</script><link rel="dns-prefetch" href="http://ta.qq.com"><script>(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://tajs.qq.com/stats?sId=66453607";
+   var s = document.getElementsByTagName("script")[0];
+   s.parentNode.insertBefore(hm, s);
+ })();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '6.2.0'
+} </script><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Case of Xeon" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#net-speeder"><span class="toc-number">1.</span> <span class="toc-text">net-speeder</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%9C%89-net-speeder"><span class="toc-number">1.1.</span> <span class="toc-text">为什么会有 net-speeder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%83%85%E5%86%B5%EF%BC%88%E5%88%AB%E4%BA%BA%E7%9A%84%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">测试情况（别人的）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC"><span class="toc-number">2.</span> <span class="toc-text">安装脚本</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avator.jpg"></div><div class="author-info__name text-center">SmallXeon</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="/about-me">👔Résumé</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">73</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">79</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">8</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links List</div><a class="author-info-links__name text-center" href="https://hexo.chensmallx.top">This site</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://untitled.pw/">Untitle Spot</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://molunerfinn.com">MARKSZのBlog(author of melody)</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.zhengwenfeng.com">郑文峰的博客</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/topimg.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Case of Xeon</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">🏠Home</a><a class="site-page" href="/archives">⏱Timeline</a><a class="site-page" href="/tags">🔖Tags</a><a class="site-page" href="/categories">📚Categories</a><a class="site-page" href="/gallery">🖼Gallery</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title">VPS网络优化：net-speeder</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-08</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Geek-s-Work/">Geek's Work</a><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">926</span><span class="post-meta__separator">|</span><span>Reading time: 2 min</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="net-speeder"><a href="#net-speeder" class="headerlink" title="net-speeder"></a>net-speeder</h1><h2 id="为什么会有-net-speeder"><a href="#为什么会有-net-speeder" class="headerlink" title="为什么会有 net-speeder"></a>为什么会有 net-speeder</h2><p>当使用国外服务器时，经常会发现，下载速度只有十几k。平时可能不太注意，认为服务器带宽不足，或者自己使用的宽带不给力，其实很有可能原因并不在此。</p>
+<p>由于光速的局限性，延迟会比较高（即使光沿直线传播，太平洋一个往返也要一百多毫秒）。并且由于距离较远，途径路由跳数较多，并且网络拥堵的原因。经常会发生丢包的情况。</p>
+<p>对于平时使用最广泛的TCP协议来讲，发送端发出包后，接收端会回复ACK，表示自己收到了。用这种机制来保证可靠性。但对于高延迟链路来讲，如果每发送一个包都等待应答，那么大部分时间都在等待数据包到达，而链路则空置了。为此一般会采用滑动窗口技术。即在窗口满之前，发送端一直发送包，然后收到应答后将确认收到的包从窗口中移除。这样可以提高链路利用率。</p>
+<p>TCP还有一个特性则是拥塞控制。当发送端检测到链路发生丢包时，则会主动缩小窗口大小以减慢发送速度，避免拥塞。不过对于跳数较多的链路来讲，只要有一个路由不够稳定丢包，就会被发送端判断为拥塞，从而影响网络速度。</p>
+<p><strong>为了解决丢包问题，最简单粗暴的方法就是双倍发送，即同一份数据包发送两份。这样的话在服务器带宽充足情况下，丢包率会平方级降低。</strong></p>
+<p>这种方式下，直接优点是降低丢包率，直接缺点是耗费双倍流量。一些延伸影响是更容易触发快速恢复逻辑，避免了丢包时窗口缩减过快。一定程度也能提高网络速度。</p>
+<h2 id="测试情况（别人的）"><a href="#测试情况（别人的）" class="headerlink" title="测试情况（别人的）"></a>测试情况（别人的）</h2><p>最近比较忙，空闲时间做了一个最简单的程序，试用效果很好，在一台VPS上测试后发现，未开启时单线程下载、ssh管道速度在十几K级别。开启后可以达到平均300KB+的速度。效果非常明显。但对于不加速就可以跑满带宽的类型来讲（多线程下载），开启后反而由于多出来的无效流量，导致速度减半。所以对于多线程&#x2F;高速链路，这个方案是不适合的。</p>
+<p>目前版本是最简单的逻辑，未来会进行细化（主动触发快速恢复、快速重传等），降低流量浪费，提升加速效果。</p>
+<p>目前程序起名net-speeder，相对于修改协议栈来讲，由于后者需要重新升级编译内核，使用用户态程序部署更方便，稳定性更高，兼容性更好。缺点则是性能开销稍大和自由度有损失。总体比较起来，个人使用还是使用用户态程序更合适一些，特别是在虚拟机中使用（OpenVZ，LXC等虚拟机无法自己定制内核）。</p>
+<hr>
+<h1 id="安装脚本"><a href="#安装脚本" class="headerlink" title="安装脚本"></a>安装脚本</h1><ul>
+<li>安装脚本：<br>CentOS</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://gist.github.com/LazyZhu/dc3f2f84c336a08fd6a5/raw/d8aa4bcf955409e28a262ccf52921a65fe49da99/net_speeder_lazyinstall.sh</span><br><span class="line">sh net_speeder_lazyinstall.sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装脚本：<br>Debian &#x2F; Ubuntu</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/tennfy/debian_netspeeder_tennfy/master/debian_netspeeder_tennfy.sh</span><br><span class="line"><span class="built_in">chmod</span> a+x debian_netspeeder_tennfy.sh</span><br><span class="line">bash debian_netspeeder_tennfy.sh</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>启动：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> /usr/local/net_speeder/net_speeder venet0 <span class="string">&quot;ip&quot;</span> &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置开机启动</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;nohup /usr/local/net_speeder/net_speeder venet0 &quot;ip&quot; &gt;/dev/null 2&gt;&amp;1 &amp; &#x27;</span> &gt;&gt; /etc/rc.local</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>记录完毕</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">SmallXeon</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hexo.chensmallx.top/2018/06/08/net-optimize-for-VPS-net-speeder/">https://hexo.chensmallx.top/2018/06/08/net-optimize-for-VPS-net-speeder/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/VPS/">VPS</a><a class="post-meta__tags" href="/tags/Net-Optimize/">Net-Optimize</a><a class="post-meta__tags" href="/tags/Net-Speeder/">Net-Speeder</a></div><div class="social-share pull-right" data-disabled="linkedin, diandian, tencent"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/06/08/VPS-panel-VPSMate/"><i class="fa fa-chevron-left">  </i><span>VPS管理面板：VPSMate</span></a></div><div class="next-post pull-right"><a href="/2018/06/08/VPS-panel-bt/"><span>VPS管理面板：宝塔面板</span><i class="fa fa-chevron-right"></i></a></div></nav><div class="post-adv">一些推广链接<br> <table border=0 width="80%" frame=void rules=rows > <tr> <th> 几个便宜量大的小✈场： <a target="_blank" rel="noopener" href="https://fastlink-aff.com/auth/register?code=FjoR">FASTLINK</a>, <a target="_blank" rel="noopener" href="https://oxycontin.top/aff.php?aff=1014">YToo</a>, </th> <th> 论坛邀请注册： <a target="_blank" rel="noopener" href="https://www.v2ex.com/?r=SmallXeon"><img src="https://www.v2ex.com/static/img/v2ex@2x.png" height="15px" ></a>, </th> </tr> <tr> <th> 便宜量大但是稳定性不足的VPS： <a target="_blank" rel="noopener" href="https://billing.virmach.com/aff.php?aff=4570">Virmach<img src="https://imgsa.baidu.com/forum/pic/item/9358d109b3de9c824aed32106281800a18d843a1.jpg" height="15px" ></a>, </th> <th> 价格略贵但好用的VPN： <a target="_blank" rel="noopener" href="https://app.cloudcone.com/?ref=8165"><img src="https://app.cloudcone.com/assets/img/logo-foo.png" height="15px" ></a>, <a target="_blank" rel="noopener" href="https://www.digitalocean.com/?refcode=5a7aeb1abf81"><img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg" height="15px" ></a>, </th> </tr> </table></div><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '75eea99fbaa476d396ec',
+  clientSecret: 'b019e8a827f40619f9e561b234552d05288e732e',
+  repo: 'ChenSmallX.github.io',
+  owner: 'ChenSmallX',
+  admin: 'ChenSmallX',
+  id: md5(decodeURI(location.pathname)),
+  language: 'en'
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/topimg.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2017 - 2022 By SmallXeon</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">Host - Github Pages | Deploy - Github Action | Edit - <a target="_blank" rel="noopener" href="https://github.com/ChenSmallX">ChenSmallX</a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
